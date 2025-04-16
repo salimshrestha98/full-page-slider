@@ -50,3 +50,5 @@ wp-config.php
 # Node Modules folder
 node_modules
 /node_modules
+
+/vendor/

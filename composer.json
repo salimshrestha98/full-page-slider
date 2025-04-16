@@ -1,0 +1,15 @@
+{
+    "name": "salim/super-blocks",
+    "autoload": {
+        "psr-4": {
+            "SuperBlocks\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Salim Shrestha",
+            "email": "salimshrestha98@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,2 @@
+(()=>{const{__:e}=wp.i18n,{registerBlockType:o}=wp.blocks;o("super-blocks/author_profile",{title:e("Author Profile","super-blocks"),icon:"megaphone",category:"common",edit:()=>React.createElement("div",null,"Author Profile"),save:()=>React.createElement("div",null,"Author Profile")})})();
+//# sourceMappingURL=index.js.map

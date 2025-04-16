@@ -48,7 +48,10 @@ wp-config.php
 #/wp-content/themes
 
 # Node Modules folder
-node_modules
-/node_modules
+/node_modules/
 
+# Vendor folder
 /vendor/
+
+# Build folder
+/build/

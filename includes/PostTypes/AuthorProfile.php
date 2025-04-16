@@ -1,6 +1,6 @@
 <?php
 
-namespace SuperBlocks\Admin\PostTypes;
+namespace SuperBlocks\PostTypes;
 
 use SuperBlocks\Traits\Singleton;
 

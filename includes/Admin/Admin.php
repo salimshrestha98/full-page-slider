@@ -2,7 +2,7 @@
 
 namespace SuperBlocks\Admin;
 
-use SuperBlocks\Admin\PostTypes\AuthorProfile;
+use SuperBlocks\PostTypes\AuthorProfile;
 use SuperBlocks\Traits\Singleton;
 
 /**

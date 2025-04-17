@@ -21,6 +21,7 @@ class Loader {
 	 * Init method.
 	 */
 	public function init() {
+		RESTController::instance()->init();
 		AssetsLoader::instance()->init();
 		Blocks::instance()->init();
 

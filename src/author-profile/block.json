@@ -11,9 +11,41 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"selectedAuthorId": {
+		  "type": "number",
+		  "default": 0
+		},
+		"author": {
+			"type": "object",
+			"default": {
+				"name": "",
+				"email": "",
+				"description": "",
+				"thumbnail": ""
+			}
+		},
+		"showMore": {
+		  "type": "boolean",
+		  "default": false
+		},
+		"moreText": {
+		  "type": "string",
+		  "default": ""
+		},
+		"backgroundColor": {
+		  "type": "string",
+		  "default": "#ffffff"
+		},
+		"textAlign": {
+		  "type": "string",
+		  "default": "left"
+		},
+		"padding": {
+		  "type": "string",
+		  "default": "20px"
+		}
+	},
 	"editorScript": "file:index.js",
-	"editorStyle": "file:index.css",
-	"style": "file:style-index.css",
-	"script": "file:view.js",
-	"render": "file:./render.php"
+	"style": "file:style-index.css"
 }

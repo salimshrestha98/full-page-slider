@@ -1,0 +1,25 @@
+.super-block.author-profile {
+	.author-image-container{
+		.author-thumbnail {
+			max-width: 160px;
+			margin: 0 20px 0 0;
+		}
+	}
+
+	.author-details-container {
+		.author-name {
+			font-size: 32px;
+			margin: 0;
+		}
+
+		.author-email {
+			font-size: 16px;
+			margin: 0;
+		}
+
+		.author-description, .author-more-text {
+			font-size: 18px;
+		}
+
+	}
+}

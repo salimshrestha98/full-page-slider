@@ -1,3 +1,4 @@
+import './editor.scss';
 import './style.scss';
 
 import {
@@ -51,6 +52,7 @@ export default function Edit ( { attributes, setAttributes } ) {
 		<div { ...useBlockProps() }>
 			<InspectorControls>
 				<PanelBody title={ __( "General", 'super-blocks' ) }>
+
 					<SelectControl
 						label={ __( "Select Author", 'super-blocks' ) }
 						value={ selectedAuthorId }
@@ -63,18 +65,22 @@ export default function Edit ( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) => selectAuthor( value ) }
 					/>
+
+					<label className="sb-setting-label">{ __( "Show More Section", 'super-blocks' ) }</label>
 					<ToggleControl
-						label={ __( "Show More Section", 'super-blocks' ) }
 						checked={ showMore }
 						onChange={ ( value ) => setAttributes( { showMore: value } ) }
 					/>
 				</PanelBody>
+
 				<PanelBody title="Styles">
+
+					<label className="sb-setting-label">{ __( "Background Color", 'super-blocks' ) }</label>
 					<ColorPicker
-						label="Background Color"
 						color={ backgroundColor }
 						onChangeComplete={ ( value ) => setAttributes( { backgroundColor: value.hex } ) }
 					/>
+
 					<SelectControl
 						label="Text Alignment"
 						value={ textAlign }
@@ -85,6 +91,7 @@ export default function Edit ( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) => setAttributes( { textAlign: value } ) }
 					/>
+
 					<UnitControl
 						label="Padding"
 						value={ padding }
@@ -100,6 +107,7 @@ export default function Edit ( { attributes, setAttributes } ) {
 					textAlign,
 					padding
 				} }>
+
 				{ selectedAuthor ? (
 					<Flex align='start'>
 						<FlexItem className="author-image-container">
@@ -129,6 +137,7 @@ export default function Edit ( { attributes, setAttributes } ) {
 				) : (
 					<p>{ __( 'Select an author', 'super-blocks' ) }</p>
 				) }
+
 			</div>
 		</div >
 	);

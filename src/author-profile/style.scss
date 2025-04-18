@@ -1,4 +1,9 @@
 .super-block.author-profile {
+	& > div {
+		display: flex;
+		align-items: start;
+	}
+
 	.author-image-container{
 		.author-thumbnail {
 			max-width: 160px;

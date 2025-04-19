@@ -1,0 +1,22 @@
+.full-page-slider {
+    .swiper {
+        .swiper-slide > div {
+            display: flex;
+            flex-direction: column;
+            height: 691px;
+
+            & > h2 {
+                text-align: center;
+            }
+
+            .slide-main {
+                flex-grow: 1;
+            }
+
+            .slide-footer {
+                padding-top: 328px;
+                padding-bottom: 328px;
+            }
+        }
+    }
+}

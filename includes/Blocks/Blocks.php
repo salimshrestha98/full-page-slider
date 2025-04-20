@@ -21,10 +21,6 @@ class Blocks {
 	 * Register the blocks in server side.
 	 */
 	public function register_blocks() {
-		if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
-			wp_register_block_types_from_metadata_collection( SB_PLUGIN_DIR . '/build', SB_PLUGIN_DIR . '/build/blocks-manifest.php' );
-			return;
-		}
 
 		if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
 			wp_register_block_metadata_collection( SB_PLUGIN_DIR . '/build', SB_PLUGIN_DIR . '/build/blocks-manifest.php' );

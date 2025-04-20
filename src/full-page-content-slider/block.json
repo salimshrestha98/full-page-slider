@@ -43,6 +43,10 @@
 		"style": true
 	},
 	"attributes": {
+		"slidesCount": {
+			"type": "number",
+			"default": 0
+		},
 		"previewMode": {
 			"type": "string",
 			"default": "tablet"

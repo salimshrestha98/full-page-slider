@@ -10,13 +10,35 @@
 		"type": "string",
 		"default": "Slide Title"
 	  },
+	  "footer": {
+		"type": "string",
+		"default": "Slide Footer"
+	  },
+	  "showHeader": {
+		"type": "boolean",
+		"default": true
+	  },
 	  "showFooter": {
 		"type": "boolean",
 		"default": true
 	  }
 	},
 	"supports": {
-	  "html": false
+		"customClassName": true,
+		"className": true,
+		"color": {
+			"text": true,
+			"background": true,
+			"link": true,
+			"gradients": true,
+			"defaultGradients": true
+		},
+		"html": false,
+		"inserter": true,
+		"multiple": true,
+		"reusable": true,
+		"defaultStylePicker": true,
+		"style": true
 	},
 	"editorScript": "file:./index.js"
   }

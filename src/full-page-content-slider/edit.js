@@ -2,6 +2,13 @@ import './style.scss';
 import './editor.scss';
 
 import {
+	Button,
+	PanelBody,
+	RangeControl,
+	SelectControl,
+	ToggleControl,
+} from '@wordpress/components';
+import {
 	EffectCards,
 	EffectCoverflow,
 	EffectCreative,
@@ -12,19 +19,14 @@ import {
 	Scrollbar
 } from 'swiper/modules';
 import { InspectorControls, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	RangeControl,
-	SelectControl,
-	ToggleControl,
-} from '@wordpress/components';
+import { useDispatch, useSelect } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 
 import { Swiper } from 'swiper';
 import { __ } from '@wordpress/i18n';
 import { useThemeColorResolver } from '../hooks/useThemeColorResolver';
 
-export default function Edit ( { attributes, setAttributes } ) {
+export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 	const {
 		backgroundColor,
@@ -47,6 +49,15 @@ export default function Edit ( { attributes, setAttributes } ) {
 		[ 'super-blocks/slide', { title: 'Slide 3' } ],
 		[ 'super-blocks/slide', { title: 'Slide 4' } ],
 	];
+
+	const slideCount = useSelect(
+		( select ) => {
+			const { getBlock, getBlockOrder } = select( 'core/block-editor' );
+			const block = getBlock( clientId );
+			return block?.innerBlocks?.length || 0;
+		},
+		[ clientId ]
+	);
 
 	const blockProps = useBlockProps();
 	const innerBlocksProps = useInnerBlocksProps(
@@ -154,13 +165,29 @@ export default function Edit ( { attributes, setAttributes } ) {
 
 		swiperRef.current = new Swiper( containerRef.current, swiperArgs );
 
-	}, [ direction, loop, pagination, navigation, scrollbar, effect, speed ] );
+	}, [
+		direction,
+		loop,
+		pagination,
+		navigation, scrollbar,
+		effect,
+		speed,
+		slideCount
+	] );
+
+	const { insertBlock } = useDispatch( 'core/block-editor' );
+
+	function handleClick () {
+		const slideBlock = wp.blocks.createBlock( 'super-blocks/slide' );
+		insertBlock( slideBlock, undefined, clientId, false );
+	}
 
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( "General", 'super-blocks' ) }>
+					<Button variant='primary' onClick={ handleClick }>Add New Slide</Button><br />
 					<SelectControl
 						label="Preview Mode"
 						value={ previewMode }

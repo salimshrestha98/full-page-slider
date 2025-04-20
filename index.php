@@ -4,7 +4,7 @@
  * Plugin Name:       Super Blocks
  * Description:       Super Blocks Plugin.
  * Version:           1.0.0
- * Requires at least: 6.2
+ * Requires at least: 6.6.2
  * Requires PHP:      7.4
  * Author:            Salim Shrestha
  * Author URI:        https://github.com/salimshrestha98/

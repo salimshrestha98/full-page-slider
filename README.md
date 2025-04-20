@@ -11,6 +11,8 @@ A zipped install-ready file <mark>super-blocks.zip</mark> is also included here 
 
 ## Getting Started
 
+The plugin has been tested to work on minimum of **PHP 7.4** and **WordPress 6.6.2** installed on the system. Please use the latest version of PHP and WordPress if possible.
+
 Follow the steps below to set up the plugin for development or deployment.
 
 ### 1. Clone the Repository
@@ -39,3 +41,13 @@ npm start
 
 ### 5. Activate Plugin
 Activate the plugin from WordPress admin dashboard.
+
+
+## How to Use the block:
+
+1. Create a new author profile from the **Author Profiles** menu.
+2. Add a new post and insert an **Author Profile** block.
+3. Choose the settings as you like and publish/update the post.
+4. The author profile now will now be rendered on the frontend.
+
+*Note: The block is rendered dynamically. So, any update to the author profile will be reflected on the frontend immediately.*

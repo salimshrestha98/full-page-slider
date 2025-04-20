@@ -5,6 +5,9 @@
             "SuperBlocks\\": "includes/"
         }
     },
+    "config": {
+        "platform-check": false
+      },
     "authors": [
         {
             "name": "Salim Shrestha",

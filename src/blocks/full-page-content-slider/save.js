@@ -1,6 +1,5 @@
 import './style.scss';
 
-// import Swiper core and required modules
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,6 +9,7 @@ import { store as blockEditorStore } from '@wordpress/block-editor';
 import { getColorObjectByAttributeValues } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 
+// import Swiper core and required modules
 export default function Save ( { attributes } ) {
 	const {
 		backgroundColor,
@@ -22,11 +22,10 @@ export default function Save ( { attributes } ) {
 
 	return (
 		<div
-			className="full-page-slider"
+			className="full-page-slider frontend"
 			data-attrs={ JSON.stringify( attributes ) }
 			style={
 				{
-					backgroundColor: colors?.backgroundColor || backgroundColor,
 					color: colors?.textColor || textColor
 				}
 			}

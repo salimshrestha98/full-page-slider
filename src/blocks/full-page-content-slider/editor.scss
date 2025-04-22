@@ -1,0 +1,78 @@
+button.components-button.is-destructive:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: transparent !important;
+}
+
+.full-page-slider {
+	max-width: 476px !important;
+	min-height: 691px !important;
+	display: flex;
+	align-items: center;
+	margin: 0 !important;
+	
+	.swiper {
+		max-width: 476px !important;
+		min-height: 691px !important;
+		display: flex;
+		align-items: center;
+		
+		.swiper-slide {
+			max-width: 476px !important;
+			min-height: 691px !important;
+		}
+	}
+}
+
+.full-page-slider {
+    border: 1px solid #ccc;
+    .swiper {
+        .swiper-slide > div {
+            height: 691px;
+        }
+    }
+
+    .floating-buttons-container {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        & > div {
+            display: flex;
+
+            button {
+                border: none;
+                border-radius: 8px;
+                width: 38px;
+                height: 38px;
+                margin: 0 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 99;
+
+                &:hover {
+                    cursor: pointer;
+                }
+    
+                &.add-slide-btn {
+                    background: 	#38BDF8;
+                    color: #ffffff;
+
+                    &:hover {
+                        background: #0EA5E9;
+                    }
+                }
+    
+                &.delete-slide-btn {
+                    background: #DC2626;
+                    color: #ffffff;
+
+                    &:hover {
+                        background: #B91C1C;
+                    }
+                }
+            }
+        }
+    }
+}

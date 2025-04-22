@@ -5,42 +5,14 @@
 	"category": "layout",
 	"icon": "slides",
 	"supports": {
-		"align": true,
-		"anchor": true,
-		"alignWide": true,
 		"customClassName": true,
 		"className": true,
-		"color": {
-			"text": true,
-			"background": true,
-			"link": true,
-			"gradients": true,
-			"defaultGradients": true
-		},
-		"spacing": {
-			"margin": true,
-			"padding": true,
-			"blockGap": true
-		},
-		"dimensions": {
-			"minHeight": true,
-			"width": true,
-			"height": true
-		},
-		"typography": {
-			"fontSize": true,
-			"lineHeight": true,
-			"fontStyle": true,
-			"fontWeight": true,
-			"letterSpacing": true,
-			"textTransform": true
-		},
 		"html": false,
-		"inserter": true,
-		"multiple": true,
+		"inserter": false,
+		"multiple": false,
 		"reusable": true,
-		"defaultStylePicker": true,
-		"style": true
+		"defaultStylePicker": false,
+		"style": false
 	},
 	"attributes": {
 		"slidesCount": {
@@ -50,6 +22,14 @@
 		"previewMode": {
 			"type": "string",
 			"default": "tablet"
+		},
+		"showHeader": {
+			"type": "boolean",
+			"default": true
+		},
+		"showFooter": {
+		"type": "boolean",
+		"default": true
 		},
 		"direction": {
 			"type": "string",
@@ -89,7 +69,7 @@
 		},
 		"backgroundColor": {
 			"type": "string",
-			"default": ""
+			"default": "#cccccc"
 		},
 		"textColor": {
 			"type": "string",
@@ -108,8 +88,8 @@
 			"default": ""
 		},
 		"padding": {
-			"type": "object",
-			"default": {}
+			"type": "number",
+			"default": 20
 		},
 		"margin": {
 			"type": "object",

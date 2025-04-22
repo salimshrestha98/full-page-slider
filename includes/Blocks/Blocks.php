@@ -28,7 +28,7 @@ class Blocks {
 
 		$manifest_data = require SB_PLUGIN_DIR . '/build/blocks-manifest.php';
 		foreach ( array_keys( $manifest_data ) as $block_type ) {
-			register_block_type( SB_PLUGIN_DIR . "/build/{$block_type}" );
+			register_block_type( SB_PLUGIN_DIR . "/build/blocks/{$block_type}" );
 		}
 	}
 }

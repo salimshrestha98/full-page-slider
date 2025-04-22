@@ -1,24 +1,35 @@
-.full-page-slider {
-	max-width: 476px !important;
-	min-height: 691px !important;
-	display: flex;
-	align-items: center;
-	padding: 20px !important;
-	margin: 0 !important;
+
+.full-page-slider{
+    .swiper {
+        .swiper-slide > div {
+			display: flex;
+            flex-direction: column;
+			
+            & > h2 {
+				text-align: center;
+            }
+			
+            .slide-main {
+				flex-grow: 1;
+            }
+			
+            .slide-footer {
+			}
+        }
+    }
 	
-	.swiper {
-		max-width: 476px !important;
-		min-height: 691px !important;
-		display: flex;
-		align-items: center;
-		
-		.swiper-slide {
-			max-width: 476px !important;
-			min-height: 691px !important;
+	&.frontend {
+		.swiper {
+			.swiper-slide > div {
+					// margin-bottom: 50px;
+
+				.slide-main {
+					overflow-x: scroll;
+				}
+			}
 		}
 	}
 }
-
 
 
 

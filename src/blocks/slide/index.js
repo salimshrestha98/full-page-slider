@@ -3,37 +3,27 @@ import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 
 import { SwiperSlide } from 'swiper/react';
 import { registerBlockType } from '@wordpress/blocks';
+import { useSelect } from '@wordpress/data';
 
 registerBlockType( 'super-blocks/slide', {
-	edit: ( { attributes, setAttributes } ) => {
-		const { title, footer, showHeader, showFooter } = attributes;
+	edit: ( { clientId, attributes, setAttributes } ) => {
+		const { title, footer } = attributes;
+
+		const parentAttributes = useSelect( ( select ) => {
+			const { getBlockHierarchyRootClientId, getBlockAttributes } = select( 'core/block-editor' );
+
+			const parentClientId = getBlockHierarchyRootClientId( clientId );
+			if ( !parentClientId ) return {};
+
+			return getBlockAttributes( parentClientId );
+		}, [ clientId ] );
+
+		const { showHeader, showFooter } = parentAttributes;
 
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="General">
-						<ToggleControl
-							label="Show Header"
-							checked={ showHeader }
-							onChange={ ( value ) => setAttributes( { showHeader: value } ) }
-						/>
-						<ToggleControl
-							label="Show Footer"
-							checked={ showFooter }
-							onChange={ ( value ) => setAttributes( { showFooter: value } ) }
-						/>
-					</PanelBody>
-
-					{ showHeader && (
-						<PanelBody title="Header" initialOpen={ false }>
-						</PanelBody>
-					) }
-
-					{ showFooter && (
-						<PanelBody title="Footer" initialOpen={ false }>
-						</PanelBody>
-					) }
-
+					No settings.
 				</InspectorControls>
 
 				<SwiperSlide className="slide-block swiper-slide">
@@ -45,7 +35,6 @@ registerBlockType( 'super-blocks/slide', {
 								value={ title }
 								onChange={ ( newTitle ) => setAttributes( { title: newTitle } ) }
 								placeholder="Give me a title…"
-							// allowedFormats={ [ 'core/bold', 'core/italic' ] }
 							/> }
 
 						<div className="slide-main">
@@ -59,7 +48,6 @@ registerBlockType( 'super-blocks/slide', {
 								value={ footer }
 								onChange={ ( newFooter ) => setAttributes( { footer: newFooter } ) }
 								placeholder="Give me a footnote..."
-							// allowedFormats={ [ 'core/bold', 'core/italic' ] }
 							/> }
 					</div>
 				</SwiperSlide>

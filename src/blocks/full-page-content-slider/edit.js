@@ -1,15 +1,20 @@
-import './style.scss';
-import './editor.scss';
-
 import {
-	Button,
+	__experimentalBoxControl as BoxControl,
 	PanelBody,
 	RangeControl,
 	SelectControl,
 	ToggleControl,
+	__experimentalUnitControl as UnitControl
 } from '@wordpress/components';
 import {
-	EffectCards,
+	ColorPalette,
+	InspectorControls,
+	PanelColorSettings,
+	store as blockEditorStore,
+	useBlockProps,
+	useInnerBlocksProps,
+} from '@wordpress/block-editor';
+import {
 	EffectCoverflow,
 	EffectCreative,
 	EffectCube,
@@ -18,13 +23,14 @@ import {
 	Pagination,
 	Scrollbar
 } from 'swiper/modules';
-import { InspectorControls, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 
+import { BlockControls } from '@wordpress/block-editor';
 import { Swiper } from 'swiper';
 import { __ } from '@wordpress/i18n';
-import { useThemeColorResolver } from '../hooks/useThemeColorResolver';
+import { useThemeColorResolver } from '../../hooks/useThemeColorResolver';
 
 export default function Edit ( { clientId, attributes, setAttributes } ) {
 
@@ -36,10 +42,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		direction,
 		effect,
 		speed,
+		padding,
 		navigation,
 		pagination,
 		loop,
-		scrollbar
+		scrollbar,
+		showHeader,
+		showFooter
 	} = attributes;
 
 
@@ -59,7 +68,12 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		[ clientId ]
 	);
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		style: {
+			backgroundColor,
+			padding: padding + 'px'
+		}
+	} );
 	const innerBlocksProps = useInnerBlocksProps(
 		{ className: 'swiper-wrapper' },
 		{
@@ -112,9 +126,9 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 	/**
 	 * Handle Swiper initialization and loading.
 	 */
-
 	const swiperRef = useRef( null );
 	const containerRef = useRef( null );
+	const setInitialSlide = useRef( null );
 
 	useEffect( () => {
 		let swiperModules = [];
@@ -126,7 +140,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		if ( 'coverflow' === effect ) swiperModules.push( EffectCoverflow );
 		if ( 'flip' === effect ) swiperModules.push( EffectFlip );
 		if ( 'creative' === effect ) swiperModules.push( EffectCreative );
-		if ( 'cards' === effect ) swiperModules.push( EffectCards );
 
 		if ( swiperRef.current )
 		{
@@ -140,7 +153,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 			simulateTouch: false,
 			touchStartPreventDefault: false,
 			touchStartForcePreventDefault: false,
-			initialSlide: 0,
+			initialSlide: setInitialSlide.current || 0,
 			centeredSlides: true,
 			spaceBetween: 50,
 			slidesPerView: "auto",
@@ -164,6 +177,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		};
 
 		swiperRef.current = new Swiper( containerRef.current, swiperArgs );
+		setInitialSlide.current = null;
 
 	}, [
 		direction,
@@ -175,19 +189,42 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		slideCount
 	] );
 
-	const { insertBlock } = useDispatch( 'core/block-editor' );
+	const { insertBlock, removeBlock } = useDispatch( blockEditorStore );
+	const { getBlockOrder } = useSelect(
+		( select ) => select( blockEditorStore ),
+		[]
+	);
 
-	function handleClick () {
+	function addSlide () {
+		const activeSlideIndex = swiperRef.current.activeIndex || 0;
 		const slideBlock = wp.blocks.createBlock( 'super-blocks/slide' );
-		insertBlock( slideBlock, undefined, clientId, false );
+		insertBlock( slideBlock, activeSlideIndex + 1, clientId, false );
+		setInitialSlide.current = activeSlideIndex + 1;
 	}
 
+	function deleteSlide () {
+		const activeSlideIndex = swiperRef.current.activeIndex;
+		const slideBlockOrder = getBlockOrder( clientId );
+		const slideClientId = slideBlockOrder[ activeSlideIndex ];
+
+		if ( slideClientId )
+		{
+			removeBlock( slideClientId );
+		}
+	}
+
+	function handleAdd () {
+		console.log( 'add' );
+	}
+
+	function handleDelete () {
+		console.log( 'delete' );
+	}
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( "General", 'super-blocks' ) }>
-					<Button variant='primary' onClick={ handleClick }>Add New Slide</Button><br />
 					<SelectControl
 						label="Preview Mode"
 						value={ previewMode }
@@ -197,6 +234,42 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							{ label: 'Desktop', value: 'desktop' }
 						] }
 						onChange={ ( value ) => setAttributes( { previewMode: value } ) }
+					/>
+
+					<ToggleControl
+						label="Show Header"
+						checked={ showHeader }
+						onChange={ ( value ) => setAttributes( { showHeader: value } ) }
+					/>
+
+					<ToggleControl
+						label="Show Footer"
+						checked={ showFooter }
+						onChange={ ( value ) => setAttributes( { showFooter: value } ) }
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( "Styles", 'super-blocks' ) }>
+					<RangeControl
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						label="Spacing"
+						value={ padding }
+						onChange={ ( newPadding ) => setAttributes( { padding: newPadding } ) }
+						min={ 0 }
+						max={ 50 }
+					/>
+
+					<PanelColorSettings
+						title="Color Settings"
+						initialOpen={ true }
+						colorSettings={ [
+							{
+								value: backgroundColor,
+								onChange: ( background ) => setAttributes( { backgroundColor: background } ),
+								label: 'Background Color'
+							}
+						] }
 					/>
 				</PanelBody>
 
@@ -219,7 +292,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							{ label: 'Cube', value: 'cube' },
 							{ label: 'Coverflow', value: 'coverflow' },
 							{ label: 'Flip', value: 'flip' },
-							{ label: 'Cards', value: 'cards' },
 						] }
 						onChange={ ( value ) => setAttributes( { effect: value } ) }
 					/>
@@ -260,6 +332,22 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ <span className="dashicons dashicons-plus-alt2"></span> }
+						label="Add New Slide"
+						onClick={ handleAdd }
+					/>
+					<ToolbarButton
+						icon={ <span className="dashicons dashicons-trash"></span> }
+						label="Delete Slide"
+						onClick={ handleDelete }
+						isDestructive
+					/>
+				</ToolbarGroup>
+			</BlockControls>
+
 			<div { ...blockProps } className={ `${ blockProps.className } full-page-slider` }>
 				<div className="swiper" ref={ containerRef }>
 					<div { ...innerBlocksProps }>
@@ -280,6 +368,14 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						<div className="swiper-scrollbar"></div>
 					) }
 				</div>
+
+				<div className="floating-buttons-container">
+					<div>
+						<button title="Add New Slide" className='add-slide-btn' onClick={ addSlide }><span className="dashicons dashicons-plus-alt2"></span></button>
+						<button title="Delete Slide" className='delete-slide-btn' onClick={ deleteSlide }><span className="dashicons dashicons-trash"></span></button>
+					</div>
+				</div>
+
 			</div>
 		</>
 	);

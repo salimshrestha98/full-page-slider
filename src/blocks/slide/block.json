@@ -1,0 +1,23 @@
+{
+	"apiVersion": 2,
+	"name": "super-blocks/slide",
+	"title": "Slide",
+	"category": "layout",
+	"icon": "media-document",
+	"parent": ["super-blocks/full-page-content-slider"],
+	"attributes": {
+	  "title": {
+		"type": "string",
+		"default": "Slide Title"
+	  },
+	  "footer": {
+		"type": "string",
+		"default": "Slide Footer"
+	  }
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js"
+  }
+  

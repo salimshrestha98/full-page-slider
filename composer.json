@@ -5,6 +5,9 @@
             "FullPageSlider\\": "includes/"
         }
     },
+    "config": {
+        "platform-check": false
+      },
     "authors": [
         {
             "name": "Salim Shrestha",

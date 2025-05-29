@@ -14,14 +14,5 @@ class Admin {
 	/**
 	 * Init method.
 	 */
-	public function init() {
-		$this->register_custom_post_types();
-	}
-
-	/**
-	 * Register custom post types.
-	 */
-	public function register_custom_post_types() {
-		AuthorProfile::instance()->init();
-	}
+	public function init() {}
 }

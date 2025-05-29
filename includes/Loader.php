@@ -1,10 +1,10 @@
 <?php
 
-namespace SuperBlocks;
+namespace FullPageSlider;
 
-use SuperBlocks\Admin\Admin;
-use SuperBlocks\Blocks\Blocks;
-use SuperBlocks\Traits\Singleton;
+use FullPageSlider\Admin\Admin;
+use FullPageSlider\Blocks\Blocks;
+use FullPageSlider\Traits\Singleton;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

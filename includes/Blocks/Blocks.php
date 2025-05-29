@@ -1,8 +1,8 @@
 <?php
 
-namespace SuperBlocks\Blocks;
+namespace FullPageSlider\Blocks;
 
-use SuperBlocks\Traits\Singleton;
+use FullPageSlider\Traits\Singleton;
 
 /**
  * Blocks class.
@@ -15,6 +15,7 @@ class Blocks {
 	 */
 	public function init() {
 		add_action( 'init', array( $this, 'register_blocks' ) );
+		add_action( 'enqueue_block_editor_assets', array($this, 'register_blocks_assets' ) );
 	}
 
 	/**
@@ -29,6 +30,16 @@ class Blocks {
 		$manifest_data = require SB_PLUGIN_DIR . '/build/blocks-manifest.php';
 		foreach ( array_keys( $manifest_data ) as $block_type ) {
 			register_block_type( SB_PLUGIN_DIR . "/build/blocks/{$block_type}" );
+		}
+	}
+
+	public function register_blocks_assets() {
+		
+		$manifest_data = require SB_PLUGIN_DIR . '/build/blocks-manifest.php';
+		foreach ( array_keys( $manifest_data ) as $block_type ) {
+			wp_localize_script( "full-page-slider-$block_type-editor-script", 'fullPageSliderL10n', [
+			   'pluginURL' => SB_PLUGIN_URL,
+		   ]);
 		}
 	}
 }

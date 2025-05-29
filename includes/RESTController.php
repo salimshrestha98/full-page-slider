@@ -1,9 +1,9 @@
 <?php
 
 
-namespace SuperBlocks;
+namespace FullPageSlider;
 
-use SuperBlocks\Traits\Singleton;
+use FullPageSlider\Traits\Singleton;
 use WP_Error;
 use WP_REST_Controller;
 use WP_REST_Response;

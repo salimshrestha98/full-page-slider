@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "super-blocks/full-page-content-slider",
+	"name": "full-page-slider/full-page-content-slider",
 	"title": "Full Page Content Slider",
 	"category": "layout",
 	"icon": "slides",
@@ -8,28 +8,33 @@
 		"customClassName": true,
 		"className": true,
 		"html": false,
-		"inserter": false,
+		"inserter": true,
 		"multiple": false,
 		"reusable": true,
-		"defaultStylePicker": false,
-		"style": false
+		"defaultStylePicker": true,
+		"style": true,
+		"align": ["wide", "full"]
 	},
 	"attributes": {
 		"slidesCount": {
 			"type": "number",
 			"default": 0
 		},
-		"previewMode": {
+		"device": {
 			"type": "string",
 			"default": "tablet"
 		},
-		"showHeader": {
+		"showTitle": {
 			"type": "boolean",
 			"default": true
 		},
-		"showFooter": {
-		"type": "boolean",
-		"default": true
+		"titleAlignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"stickToBottom": {
+			"type": "boolean",
+			"default": true
 		},
 		"direction": {
 			"type": "string",
@@ -67,11 +72,15 @@
 			"type": "object",
 			"default": ""
 		},
-		"backgroundColor": {
+		"titleColor": {
 			"type": "string",
 			"default": "#cccccc"
 		},
-		"textColor": {
+		"bgColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"contentColor": {
 			"type": "string",
 			"default": ""
 		},
@@ -88,8 +97,14 @@
 			"default": ""
 		},
 		"padding": {
-			"type": "number",
-			"default": 20
+			"type": "object",
+			"default": {
+				"top": 20,
+				"right": 20,
+				"bottom": 20,
+				"left": 20,
+				"unit": "px"
+			}
 		},
 		"margin": {
 			"type": "object",
@@ -123,6 +138,12 @@
 			"type": "string",
 			"default": ""
 		}
+	},
+	"providesContext": {
+		"full-page-slider/showTitle": "showTitle",
+		"full-page-slider/titleAlignment": "titleAlignment",
+		"full-page-slider/stickToBottom": "stickToBottom",
+		"full-page-slider/padding": "padding"
 	},
 	"example": {},
 	"editorScript": "file:./index.js",

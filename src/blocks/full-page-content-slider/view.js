@@ -14,10 +14,12 @@ import { Swiper } from "swiper";
 
 // Wait for DOM to be ready
 document.addEventListener( 'DOMContentLoaded', () => {
-	const swiperContainers = document.querySelectorAll( '.swiper' );
+	const sliderWrappers = document.querySelectorAll( '.full-page-slider.frontend' );
 
-	swiperContainers.forEach( ( swiperEl ) => {
-		const attributes = JSON.parse( swiperEl.parentElement.dataset.attrs || '{}' );
+	sliderWrappers.forEach( ( sliderWrapper ) => {
+		const swiperEl = sliderWrapper.querySelector( '.swiper' );
+
+		const attributes = JSON.parse( sliderWrapper.dataset.attrs || '{}' );
 		const { direction,
 			navigation,
 			pagination,
@@ -30,8 +32,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		} = attributes;
 
 		// Remove padding added by wp on block wrapper.
-		swiperEl.parentElement.parentElement.style.padding = 0;
-		swiperEl.parentElement.style.padding = padding + 'px';
+		sliderWrapper.parentElement.style.padding = 0;
 
 		if ( backgroundColor )
 		{

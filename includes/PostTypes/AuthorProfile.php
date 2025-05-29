@@ -1,8 +1,8 @@
 <?php
 
-namespace SuperBlocks\PostTypes;
+namespace FullPageSlider\PostTypes;
 
-use SuperBlocks\Traits\Singleton;
+use FullPageSlider\Traits\Singleton;
 
 /**
  * Author Profile class.
@@ -24,19 +24,19 @@ class AuthorProfile {
 	 */
 	public function register() {
 		$labels = array(
-			'name'              => _x( 'Author Profiles', 'Post type general name', 'super-blocks' ),
-			'singular_name'     => _x( 'Author Profile', 'Post type singular name', 'super-blocks' ),
-			'menu_name'         => _x( 'Author Profiles', 'Admin Menu text', 'super-blocks' ),
-			'name_admin_bar'    => _x( 'Author Profile', 'Add New on Toolbar', 'super-blocks' ),
-			'add_new'           => __( 'Add New', 'super-blocks' ),
-			'add_new_item'      => __( 'Add New Author', 'super-blocks' ),
-			'new_item'          => __( 'New Author', 'super-blocks' ),
-			'edit_item'         => __( 'Edit Author', 'super-blocks' ),
-			'view_item'         => __( 'View Author', 'super-blocks' ),
-			'all_items'         => __( 'All Authors', 'super-blocks' ),
-			'search_items'      => __( 'Search Authors', 'super-blocks' ),
-			'parent_item_colon' => __( 'Parent Authors:', 'super-blocks' ),
-			'not_found'         => __( 'No author found.', 'super-blocks' ),
+			'name'              => _x( 'Author Profiles', 'Post type general name', 'full-page-slider' ),
+			'singular_name'     => _x( 'Author Profile', 'Post type singular name', 'full-page-slider' ),
+			'menu_name'         => _x( 'Author Profiles', 'Admin Menu text', 'full-page-slider' ),
+			'name_admin_bar'    => _x( 'Author Profile', 'Add New on Toolbar', 'full-page-slider' ),
+			'add_new'           => __( 'Add New', 'full-page-slider' ),
+			'add_new_item'      => __( 'Add New Author', 'full-page-slider' ),
+			'new_item'          => __( 'New Author', 'full-page-slider' ),
+			'edit_item'         => __( 'Edit Author', 'full-page-slider' ),
+			'view_item'         => __( 'View Author', 'full-page-slider' ),
+			'all_items'         => __( 'All Authors', 'full-page-slider' ),
+			'search_items'      => __( 'Search Authors', 'full-page-slider' ),
+			'parent_item_colon' => __( 'Parent Authors:', 'full-page-slider' ),
+			'not_found'         => __( 'No author found.', 'full-page-slider' ),
 		);
 
 		$args = array(

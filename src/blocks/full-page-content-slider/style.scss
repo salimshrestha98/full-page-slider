@@ -1,31 +1,63 @@
+body:not(.block-editor-page) {
+	.wp-site-blocks,
+	.wp-block-group,
+	.has-global-padding {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+}
 
 .full-page-slider{
     .swiper {
-        .swiper-slide > div {
+		max-width: 100%;
+		height: 100%;
+		overflow: hidden;
+
+        .swiper-slide > :first-child {
 			display: flex;
             flex-direction: column;
+			height: 100%;
+			box-sizing: border-box;
 			
-            & > h2 {
+            .slide-header {
+				margin: 10px 0 20px 0;
 				text-align: center;
             }
 			
             .slide-main {
 				flex-grow: 1;
+				max-height: 80%;
+				overflow-x: hidden;
+				overflow-y: scroll;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+				scroll-behavior: smooth;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
             }
-			
-            .slide-footer {
-			}
         }
     }
 	
 	&.frontend {
-		.swiper {
-			.swiper-slide > div {
-					// margin-bottom: 50px;
+		max-width: 100% !important;
+		box-sizing: border-box;
 
-				.slide-main {
-					overflow-x: scroll;
+		.swiper {
+			.swiper-slide {
+				> div {
+					.slide-main {
+						overflow-x: scroll;
+					}
 				}
+			}
+		}
+
+		&.navigation-disabled {
+			.swiper-button-prev,
+			.swiper-button-next {
+				display: none;
 			}
 		}
 	}

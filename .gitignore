@@ -2,5 +2,7 @@
 /vendor/
 /build/
 
-/package-lock.json
-/composer-lock.json
+
+package-lock.json
+composer.lock
+full-page-slider.zip

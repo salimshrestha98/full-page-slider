@@ -1,9 +1,9 @@
 <?php
 
-namespace SuperBlocks\Admin;
+namespace FullPageSlider\Admin;
 
-use SuperBlocks\PostTypes\AuthorProfile;
-use SuperBlocks\Traits\Singleton;
+use FullPageSlider\PostTypes\AuthorProfile;
+use FullPageSlider\Traits\Singleton;
 
 /**
  * Admin class.

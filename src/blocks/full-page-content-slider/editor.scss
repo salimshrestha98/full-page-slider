@@ -5,30 +5,43 @@ button.components-button.is-destructive:focus {
 }
 
 .full-page-slider {
-	max-width: 476px !important;
-	min-height: 691px !important;
 	display: flex;
 	align-items: center;
 	margin: 0 !important;
+    padding: 20px;
 	
 	.swiper {
-		max-width: 476px !important;
-		min-height: 691px !important;
 		display: flex;
 		align-items: center;
 		
 		.swiper-slide {
-			max-width: 476px !important;
-			min-height: 691px !important;
 		}
 	}
 }
 
 .full-page-slider {
     border: 1px solid #ccc;
+
+    overflow-y: scroll;
+
+	&.preview-desktop {
+		width: 100%;
+		aspect-ratio: 16/9;
+	}
+
+	&.preview-tablet {
+		width: 768px;
+		height: 1024px;
+	}
+
+	&.preview-mobile {
+		width: 375px;
+		height: 667px;
+	}
+
     .swiper {
         .swiper-slide > div {
-            height: 691px;
+            // height: 691px;
         }
     }
 

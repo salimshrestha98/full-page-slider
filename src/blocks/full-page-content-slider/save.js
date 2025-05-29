@@ -17,18 +17,16 @@ export default function Save ( { attributes } ) {
 		align,
 		style,
 		colors,
+		device,
+		navigation,
+		padding,
 	} = attributes;
 
 
 	return (
 		<div
-			className="full-page-slider frontend"
+			className={`full-page-slider frontend preview-${device} navigation-${navigation ? 'enabled' : 'disabled'}`}
 			data-attrs={ JSON.stringify( attributes ) }
-			style={
-				{
-					color: colors?.textColor || textColor
-				}
-			}
 		>
 			<div className='swiper'>
 				<div className="swiper-wrapper">

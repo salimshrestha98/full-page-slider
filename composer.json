@@ -1,8 +1,8 @@
 {
-    "name": "salim/super-blocks",
+    "name": "salim/full-page-slider",
     "autoload": {
         "psr-4": {
-            "SuperBlocks\\": "includes/"
+            "FullPageSlider\\": "includes/"
         }
     },
     "config": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SuperBlocks\Traits;
+namespace FullPageSlider\Traits;
 
 /**
  * Trait to implement Singleton Pattern.

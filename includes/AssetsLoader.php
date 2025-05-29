@@ -1,8 +1,8 @@
 <?php
 
-namespace SuperBlocks;
+namespace FullPageSlider;
 
-use SuperBlocks\Traits\Singleton;
+use FullPageSlider\Traits\Singleton;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,7 +30,7 @@ class AssetsLoader {
 		$assets_config = require_once $assets_file;
 
 		wp_enqueue_script(
-			'super-blocks',
+			'full-page-slider',
 			SB_PLUGIN_URL . '/build/index.js',
 			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n' ),
 			time(),
@@ -38,7 +38,7 @@ class AssetsLoader {
 		);
 
 		wp_register_style(
-			'super-blocks',
+			'full-page-slider',
 			SB_PLUGIN_URL . '/src/style.css',
 			array( 'wp-block-library-theme', 'wp-block-library' ),
 			filemtime( SB_PLUGIN_DIR . '/src/editor.css' )

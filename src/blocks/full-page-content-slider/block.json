@@ -1,0 +1,153 @@
+{
+	"apiVersion": 2,
+	"name": "full-page-slider/full-page-content-slider",
+	"title": "Full Page Content Slider",
+	"category": "layout",
+	"icon": "slides",
+	"supports": {
+		"customClassName": true,
+		"className": true,
+		"html": false,
+		"inserter": true,
+		"multiple": false,
+		"reusable": true,
+		"defaultStylePicker": true,
+		"style": true,
+		"align": ["wide", "full"]
+	},
+	"attributes": {
+		"slidesCount": {
+			"type": "number",
+			"default": 0
+		},
+		"device": {
+			"type": "string",
+			"default": "tablet"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleAlignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"stickToBottom": {
+			"type": "boolean",
+			"default": true
+		},
+		"direction": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"effect": {
+			"type": "string",
+			"default": "slide"
+		},
+		"speed": {
+			"type": "number",
+			"default": 500
+		},
+		"navigation": {
+			"type": "boolean",
+			"default": true
+		},
+		"pagination": {
+			"type": "boolean",
+			"default": true
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"scrollbar": {
+			"type": "boolean",
+			"default": true
+		},
+		"align": {
+			"type": "string",
+			"default": "none"
+		},
+		"colors": {
+			"type": "object",
+			"default": ""
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"bgColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"contentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"gradient": {
+			"type": "string",
+			"default": ""
+		},
+		"fontSize": {
+			"type": "string",
+			"default": ""
+		},
+		"lineHeight": {
+			"type": "string",
+			"default": ""
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": 20,
+				"right": 20,
+				"bottom": 20,
+				"left": 20,
+				"unit": "px"
+			}
+		},
+		"margin": {
+			"type": "object",
+			"default": {}
+		},
+		"width": {
+			"type": "string",
+			"default": ""
+		},
+		"height": {
+			"type": "string",
+			"default": ""
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "object",
+			"default": {}
+		},
+		"position": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"providesContext": {
+		"full-page-slider/showTitle": "showTitle",
+		"full-page-slider/titleAlignment": "titleAlignment",
+		"full-page-slider/stickToBottom": "stickToBottom",
+		"full-page-slider/padding": "padding"
+	},
+	"example": {},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:index.css",
+	"style": "file:style-index.css",
+	"viewScript": "file:./view.js"
+}

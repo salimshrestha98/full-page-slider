@@ -1,8 +1,8 @@
 <?php
 
-namespace SuperBlocks;
+namespace FullPageSlider;
 
-use SuperBlocks\Traits\Singleton;
+use FullPageSlider\Traits\Singleton;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

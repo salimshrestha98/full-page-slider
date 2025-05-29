@@ -1,53 +1,81 @@
-# Full Page Slider – A Gutenberg Block Plugin for WordPress
+# Full Page Slider 🎯
 
-Full Page Slider is a test block plugin. This plugin utilizes **Composer** for PHP class autoloading and **Node.js** for asset bundling and block building.
+**Create immersive full-page sliders directly inside the WordPress Block Editor (Gutenberg).**  
+Perfect for landing pages, portfolios, agency websites, and storytelling sites that need smooth, fullscreen navigation.
 
-It is developed using the structure recommended by WordPress using **@wordpress/scripts**.
-
-A zipped install-ready file <mark>full-page-slider.zip</mark> is also included here which can be installed directly.
-
+![Full Page Slider Preview](assets/banner-1544x500.jpg)
 
 ---
 
-## Getting Started
+## 🚀 Features
 
-The plugin has been tested to work on minimum of **PHP 7.4** and **WordPress 6.6.2** installed on the system. Please use the latest version of PHP and WordPress if possible.
+- 🔲 Fullscreen slide sections
+- 🧱 Gutenberg-native (no page builder required)
+- 🎨 Add headings, paragraphs, buttons, images, and more
+- 🧭 Supports vertical and horizontal slide transitions
+- ⚡ Smooth animations
+- 🌐 Responsive on all devices
+- 💡 Lightweight and easy to use
 
-Follow the steps below to set up the plugin for development or deployment.
+---
 
-### 1. Clone the Repository
+## 🧩 How to Use
 
-```bash
-git clone https://github.com/salimshrestha98/full-page-slider.git
-cd full-page-slider
-```
+1. **Install the Plugin**
+   - Upload the plugin via **Plugins > Add New > Upload Plugin**
+   - Or clone this repo into `wp-content/plugins/full-page-slider`
 
-### 2. Install PHP Dependencies via Composer
-```bash
-composer install
-```
+2. **Activate**
+   - Go to **Plugins > Installed Plugins** and activate _Full Page Slider_
 
-### 3. Install Javascript Dependencies via npm
-```bash
-npm install
-```
+3. **Add to Page**
+   - Edit any page using the Block Editor
+   - Search for `Full Page Slider` block
+   - Add your custom slides as inner blocks
 
-### 4. Build
-```bash
-npm run build
-OR
-npm start
-```
+---
 
-### 5. Activate Plugin
-Activate the plugin from WordPress admin dashboard.
+## 🖼 Screenshots
 
+1. Full Page Slider block in the Gutenberg editor  
+2. Settings panel for animation and direction  
+3. Published full-page slider example  
+4. Mobile responsive view
 
-## How to Use the block:
+---
 
-1. Create a new author profile from the **Author Profiles** menu.
-2. Add a new post and insert an **Author Profile** block.
-3. Choose the settings as you like and publish/update the post.
-4. The author profile now will now be rendered on the frontend.
+## 📦 Requirements
 
-*Note: The block is rendered dynamically. So, any update to the author profile will be reflected on the frontend immediately.*
+- WordPress 5.8 or higher  
+- PHP 7.4 or higher  
+- Works with most modern WordPress themes
+
+---
+
+## 🛠 Development
+
+This plugin is actively maintained by [7uplabs](https://profiles.wordpress.org/7uplabs) and [salimshrestha98](https://profiles.wordpress.org/salimshrestha98).  
+We welcome contributions and feedback!
+
+### 🛠 Want to contribute?
+Fork the repo, create a feature branch, and submit a pull request.
+
+---
+
+## 📄 License
+
+GPLv2 or later  
+See [LICENSE](https://www.gnu.org/licenses/gpl-2.0.html) for details.
+
+---
+
+## 🌍 Plugin on WordPress.org (coming soon)
+
+> Once submitted, the plugin will be available at:  
+> `https://wordpress.org/plugins/full-page-slider/`
+
+---
+
+## ✨ Like this plugin?
+
+Give us a ⭐️ on GitHub or [leave a review on WordPress.org](https://wordpress.org/plugins/full-page-slider/) once it's live!

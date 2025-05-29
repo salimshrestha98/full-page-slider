@@ -5,7 +5,7 @@ module.exports = function ( grunt ) {
 		compress: {
 			main: {
 				options: {
-					archive: './super-blocks.zip',
+					archive: './full-page-slider.zip',
 					mode: 'zip'
 				},
 				expand: true,
@@ -14,14 +14,14 @@ module.exports = function ( grunt ) {
 					'**',
 					'!node_modules/**',
 					'!src/**',
-					'!super-blocks.zip',
+					'!full-page-slider.zip',
 					'!.git/**',
 					'!.gitignore',
 					'!Gruntfile.js',
 					'!package-lock.json',
 					'!package.json'
 				],
-				dest: 'super-blocks/'
+				dest: 'full-page-slider/'
 			}
 		}
 	} );

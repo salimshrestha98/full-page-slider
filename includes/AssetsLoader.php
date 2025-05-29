@@ -26,12 +26,12 @@ class AssetsLoader {
 	 * Enqueue necessary editor scripts and styles.
 	 */
 	public function enqueue_editor_assets() {
-		$assets_file   = SB_PLUGIN_DIR . '/build/index.asset.php';
+		$assets_file   = FPS_PLUGIN_DIR . '/build/index.asset.php';
 		$assets_config = require_once $assets_file;
 
 		wp_enqueue_script(
 			'full-page-slider',
-			SB_PLUGIN_URL . '/build/index.js',
+			FPS_PLUGIN_URL . '/build/index.js',
 			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n' ),
 			time(),
 			true
@@ -39,9 +39,9 @@ class AssetsLoader {
 
 		wp_register_style(
 			'full-page-slider',
-			SB_PLUGIN_URL . '/src/style.css',
+			FPS_PLUGIN_URL . '/src/style.css',
 			array( 'wp-block-library-theme', 'wp-block-library' ),
-			filemtime( SB_PLUGIN_DIR . '/src/editor.css' )
+			filemtime( FPS_PLUGIN_DIR . '/src/editor.css' )
 		);
 	}
 }

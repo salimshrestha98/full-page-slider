@@ -8,23 +8,25 @@
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
     "packages-update": "wp-scripts packages-update",
-    "plugin-zip": "wp-scripts plugin-zip",
+    "plugin-zip": "grunt compress",
     "start": "wp-scripts start --webpack-copy-php --blocks-manifest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/salimshrestha98/full-page-slider.git"
+    "url": "git+https://github.com/7uplabs/full-page-slider.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/salimshrestha98/full-page-slider/issues"
+    "url": "https://github.com/7uplabs/full-page-slider/issues"
   },
-  "homepage": "https://github.com/salimshrestha98/full-page-slider#readme",
+  "homepage": "https://github.com/7uplabs/full-page-slider#readme",
   "description": "",
   "devDependencies": {
-    "@wordpress/scripts": "^30.15.0"
+    "@wordpress/scripts": "^30.17.0",
+    "grunt": "^1.6.1",
+    "grunt-cli": "^1.5.0"
   },
   "dependencies": {
     "@wordpress/icons": "^10.23.0",

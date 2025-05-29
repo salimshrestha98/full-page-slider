@@ -1,7 +1,7 @@
 {
 	"apiVersion": 2,
-	"name": "full-page-slider/full-page-content-slider",
-	"title": "Full Page Content Slider",
+	"name": "full-page-slider/full-page-slider",
+	"title": "Full Page Slider",
 	"category": "layout",
 	"icon": "slides",
 	"supports": {
@@ -34,7 +34,11 @@
 		},
 		"stickToBottom": {
 			"type": "boolean",
-			"default": true
+			"default": false
+		},
+		"forceFullScreen": {
+			"type": "boolean",
+			"default": false
 		},
 		"direction": {
 			"type": "string",

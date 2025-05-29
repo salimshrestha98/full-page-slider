@@ -33,6 +33,7 @@ import { useEffect, useRef } from '@wordpress/element';
 import { BlockControls } from '@wordpress/block-editor';
 import DimensionsControl from '../../components/DimensionsControl/DimensionsControl';
 import { Swiper } from 'swiper';
+import TEMPLATE from './template';
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { useThemeColorResolver } from '../../hooks/useThemeColorResolver';
@@ -52,19 +53,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		scrollbar,
 		showTitle,
 		stickToBottom,
+		forceFullScreen,
 		titleAlignment,
 		titleColor,
 		bgColor,
 		contentColor,
 		typography
 	} = attributes;
-	
-	const TEMPLATE = [
-		[ 'full-page-slider/slide', { title: 'Slide 1' } ],
-		[ 'full-page-slider/slide', { title: 'Slide 2' } ],
-		[ 'full-page-slider/slide', { title: 'Slide 3' } ],
-		[ 'full-page-slider/slide', { title: 'Slide 4' } ],
-	];
 
 	const slideCount = useSelect(
 		( select ) => {
@@ -77,7 +72,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 	const blockProps = useBlockProps( {
 		style: {
-			bgColor,
+			background: bgColor,
 		}
 	} );
 
@@ -283,18 +278,16 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						/>
 					)}
 
-					{/* {showTitle && (
-						<TextAlignmentControl
-							label={__('Title Alignment')}
-							value={titleAlignment}
-							onChange={(newAlign) => setAttributes({ titleAlignment: newAlign || 'left' })}
-						/>
-					)} */}
-
 					<ToggleControl
 						label="Stick Content to Bottom"
 						checked={ stickToBottom }
 						onChange={ ( value ) => setAttributes( { stickToBottom: value } ) }
+					/>
+
+					<ToggleControl
+						label="Force Fullscreen"
+						checked={ forceFullScreen }
+						onChange={ ( value ) => setAttributes( { forceFullScreen: value } ) }
 					/>
 				</PanelBody>
 

@@ -5,7 +5,7 @@ import Edit from './edit';
 import Save from './save';
 import { registerBlockType } from '@wordpress/blocks';
 
-registerBlockType( 'full-page-slider/full-page-content-slider', {
+registerBlockType( 'full-page-slider/full-page-slider', {
 	edit: Edit,
 	save: Save,
 } );

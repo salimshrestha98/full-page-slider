@@ -4,7 +4,7 @@
 	"title": "Slide",
 	"category": "layout",
 	"icon": "media-document",
-	"parent": ["full-page-slider/full-page-content-slider"],
+	"parent": ["full-page-slider/full-page-slider"],
 	"attributes": {
 	  "title": {
 		"type": "string",

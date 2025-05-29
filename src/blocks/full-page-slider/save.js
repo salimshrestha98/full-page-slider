@@ -12,7 +12,7 @@ import { useSelect } from '@wordpress/data';
 // import Swiper core and required modules
 export default function Save ( { attributes } ) {
 	const {
-		backgroundColor,
+		bgColor,
 		textColor,
 		align,
 		style,
@@ -22,11 +22,16 @@ export default function Save ( { attributes } ) {
 		padding,
 	} = attributes;
 
+	const styles = {
+		backgroundColor: bgColor
+	}
+
 
 	return (
 		<div
 			className={`full-page-slider frontend preview-${device} navigation-${navigation ? 'enabled' : 'disabled'}`}
 			data-attrs={ JSON.stringify( attributes ) }
+			style={styles}
 		>
 			<div className='swiper'>
 				<div className="swiper-wrapper">

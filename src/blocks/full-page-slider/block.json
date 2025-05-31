@@ -17,6 +17,10 @@
 		"align": ["wide", "full"]
 	},
 	"attributes": {
+		"activeSlide": {
+			"type": "number",
+			"default": 0	
+		},
 		"slidesCount": {
 			"type": "number",
 			"default": 0
@@ -72,6 +76,22 @@
 		"align": {
 			"type": "string",
 			"default": "none"
+		},
+		"enableContentAnimation": {
+			"type": "boolean",
+			"default": false
+		},
+		"contentAnimation": {
+			"type": "string",
+			"default": "fade-in-up"
+		},
+		"contentAnimationDuration": {
+			"type": "number",
+			"default": 1500
+		},
+		"contentAnimationDelay": {
+			"type": "number",
+			"default": 500
 		},
 		"colors": {
 			"type": "object",
@@ -177,9 +197,14 @@
 		}
 	},
 	"providesContext": {
+		"full-page-slider/activeSlide": "activeSlide",
 		"full-page-slider/showTitle": "showTitle",
 		"full-page-slider/titleAlignment": "titleAlignment",
 		"full-page-slider/stickToBottom": "stickToBottom",
+		"full-page-slider/enableContentAnimation": "enableContentAnimation",
+		"full-page-slider/contentAnimation": "contentAnimation",
+		"full-page-slider/contentAnimationDuration": "contentAnimationDuration",
+		"full-page-slider/contentAnimationDelay": "contentAnimationDelay",
 		"full-page-slider/titleColor": "titleColor",
 		"full-page-slider/titleBackground": "titleBackground",
 		"full-page-slider/contentColor": "contentColor",

@@ -45,6 +45,7 @@ import { useThemeColorResolver } from '../../hooks/useThemeColorResolver';
 export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 	const {
+		activeSlide,
 		device,
 		showTitle,
 		stickToBottom,
@@ -57,6 +58,10 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		pagination,
 		loop,
 		scrollbar,
+		enableContentAnimation,
+		contentAnimation,
+		contentAnimationDuration,
+		contentAnimationDelay,
 		titleColor,
 		titleBackground,
 		contentColor,
@@ -153,11 +158,24 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		swiperRef.current = new Swiper( containerRef.current, swiperArgs );
 		setInitialSlide.current = null;
 
+		// Sync with activeSlide attribute.
+		const updateIndex = () => {
+			setAttributes({ activeSlide: swiperRef.current.activeIndex });
+		};
+
+		swiperRef.current.on('slideChange', updateIndex);
+
+		// Cleanup
+		return () => {
+			swiperRef.current.off('slideChange', updateIndex);
+		}
+
 	}, [
 		direction,
 		loop,
 		pagination,
-		navigation, scrollbar,
+		navigation,
+		scrollbar,
 		effect,
 		speed,
 		slideCount,
@@ -338,6 +356,61 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						checked={ loop }
 						onChange={ ( value ) => setAttributes( { loop: value } ) }
 					/>
+
+				</PanelBody>
+
+				<PanelBody title="Content Animation" initialOpen={ false }>
+					<ToggleControl
+						label={__( "Enable Content Animation", 'full-page-slider' )}
+						checked={ enableContentAnimation }
+						onChange={ ( value ) => setAttributes( { enableContentAnimation: value } ) }
+					/>
+
+					{ enableContentAnimation && (
+						<>
+							<SelectControl
+								label="Animation Type"
+								value={ contentAnimation }
+								options={ [
+									{ label: 'None', value: '' },
+									{ label: 'Fade In Up', value: 'fade-in-up' },
+									{ label: 'Fade In Down', value: 'fade-in-down' },
+									{ label: 'Fade In Left', value: 'fade-in-left' },
+									{ label: 'Fade In Right', value: 'fade-in-right' },
+									{ label: 'Slide In Up', value: 'slide-in-up' },
+									{ label: 'Slide In Down', value: 'slide-in-down' },
+									{ label: 'Slide In Left', value: 'slide-in-left' },
+									{ label: 'Slide In Right', value: 'slide-in-right' },
+									{ label: 'Zoom In', value: 'zoom-in' },
+									{ label: 'Zoom Out', value: 'zoom-out' },
+									{ label: 'Rotate In', value: 'rotate-in' },
+									{ label: 'Flip In X', value: 'flip-in-x' },
+									{ label: 'Flip In Y', value: 'flip-in-y' },
+									{ label: 'Bounce In', value: 'bounce-in' },
+									{ label: 'Pop In', value: 'pop-in' },
+								] }
+								onChange={ ( value ) => setAttributes( { contentAnimation: value } ) }
+							/>
+
+							<RangeControl
+								label="Animation Duration (ms)"
+								value={ contentAnimationDuration }
+								onChange={ ( value ) => setAttributes( { contentAnimationDuration: value } ) }
+								min={ 500 }
+								max={ 5000 }
+								step={ 50 }
+							/>
+
+							<RangeControl
+								label="Animation Delay (ms)"
+								value={ contentAnimationDelay }
+								onChange={ ( value ) => setAttributes( { contentAnimationDelay: value } ) }
+								min={ 0 }
+								max={ 2000 }
+								step={ 50 }
+							/>
+						</>
+					)}
 
 				</PanelBody>
 

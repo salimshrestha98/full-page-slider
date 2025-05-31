@@ -34,9 +34,14 @@
 	  }
 	},
 	"usesContext": [
+		"full-page-slider/activeSlide",
 		"full-page-slider/showTitle",
 		"full-page-slider/titleAlignment",
 		"full-page-slider/stickToBottom",
+		"full-page-slider/enableContentAnimation",
+		"full-page-slider/contentAnimation",
+		"full-page-slider/contentAnimationDuration",
+		"full-page-slider/contentAnimationDelay",
 		"full-page-slider/titleColor",
 		"full-page-slider/titleBackground",
 		"full-page-slider/contentColor",

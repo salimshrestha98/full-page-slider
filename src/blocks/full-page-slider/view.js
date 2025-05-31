@@ -17,7 +17,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const sliderWrapper = document.querySelector( '.full-page-slider.frontend' );
 	const swiperEl      = sliderWrapper.querySelector( '.swiper' );
 	const attributes    = JSON.parse( sliderWrapper.dataset.attrs || '{}' );
-	const { 
+	const {
+		enableContentAnimation,
+		contentAnimation,
 		direction,
 		navigation,
 		pagination,
@@ -43,13 +45,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			height: '100vh',
 			zIndex: 999999,
 		});
-
-		// if ( bgColor ) {
-		// 	sliderWrapper.style.backgroundColor = bgColor;
-		// }
 		document.getElementsByTagName( 'body' )[ 0 ].classList.remove('hide-until-ready');
-	} else if ( bgColor ) {
-		// document.getElementsByTagName( 'body' )[ 0 ].style.backgroundColor = bgColor;
 	}
 
 	const topOffset = swiperEl.getBoundingClientRect().top;
@@ -95,6 +91,18 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		scrollbar: {
 			el: '.swiper-scrollbar',
 			draggable: true
+		},
+		on: {
+			slideChangeTransitionStart: (swiper) => {
+				const activeSlide = swiper.slides[swiper.activeIndex];
+				const content = activeSlide.querySelector('.slide-content');
+
+				if (content && enableContentAnimation) {
+					content.classList.remove('animate', `animate--${contentAnimation}`);
+					void content.offsetWidth;
+					content.classList.add('animate', `animate--${contentAnimation}`);
+				}
+			}
 		}
 	};
 

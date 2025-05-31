@@ -40,12 +40,11 @@ export function getBackgroundStyles(background) {
 	return styles;
 }
 
-export function getTypographyStyles({
-		fontSize,
-		...styles
-	}){
-	if ( fontSize ) {
-		styles.fontSize = fontSize.size + fontSize.unit;
+export function getTypographyStyles(typography = {}) {
+	const { fontSize, ...styles } = typography || {};
+
+	if (fontSize && fontSize.size && (typeof fontSize.size == 'number') && fontSize.unit) {
+		styles.fontSize = `${fontSize.size}${fontSize.unit}`;
 	}
 
 	return styles;

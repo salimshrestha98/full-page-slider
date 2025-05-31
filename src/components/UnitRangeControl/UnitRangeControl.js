@@ -2,20 +2,27 @@ import {Flex, FlexItem, RangeControl} from '@wordpress/components';
 
 const UnitRangeControl = (
 	{
-		value,
+		value = {},
 		onChange,
 		units=['px', 'em', 'rem', '%'],
-		range,
-		style,
+		range = {},
+		style = {},
 		...rangeControlProps
 	}
 ) => {
 	
-	const handleChange = (key, newValue) => {
-		onChange({...value, [key]: newValue})
+const handleChange = (key, newValue) => {
+	const newValueObj = { ...value, [key]: newValue };
+
+	// If unit is not yet set and we're changing something else (like size)
+	if (!newValueObj.unit && key !== 'unit') {
+		newValueObj.unit = 'px'; // Or your default unit
 	}
 
-	const unitRange = range[value.unit] ? range[value.unit] : {};
+	onChange(newValueObj);
+}
+
+	const unitRange = range[value?.unit] || {};
 
 	return (
 		<Flex style={{
@@ -23,11 +30,11 @@ const UnitRangeControl = (
 			...style
 		}}>
 			<FlexItem style={{flexGrow: 1}}>
-				<RangeControl {...rangeControlProps} onChange={(newSize) => handleChange('size', newSize)} {...unitRange} />
+				<RangeControl {...rangeControlProps} value={value?.size} onChange={(newSize) => handleChange('size', newSize)} {...unitRange} />
 			</FlexItem>
 			<FlexItem>
 				<select
-					value={value.unit}
+					value={value.unit || 'px'}
 					onChange={(e) => handleChange('unit', e.target.value)}
 					style={{marginTop: '15px', lineHeight: 2.1}}
 				>

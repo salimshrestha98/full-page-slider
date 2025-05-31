@@ -47,6 +47,7 @@
 		"full-page-slider/contentColor",
 		"full-page-slider/contentBackground",
 		"full-page-slider/titleTypography",
+		"full-page-slider/contentTypography",
 		"full-page-slider/titlePadding",
 		"full-page-slider/contentPadding"
 	],

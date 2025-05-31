@@ -36,6 +36,7 @@ registerBlockType( 'full-page-slider/slide', {
 			["full-page-slider/contentColor"]: contentColor,
 			["full-page-slider/contentBackground"]: contentBackground,
 			["full-page-slider/titleTypography"]: titleTypography,
+			["full-page-slider/contentTypography"]: contentTypography,
 			["full-page-slider/titlePadding"]: titlePadding,
 			["full-page-slider/contentPadding"]: contentPadding,
 		} = context;
@@ -55,6 +56,7 @@ registerBlockType( 'full-page-slider/slide', {
 			contentColor,
 			contentBackground,
 			titleTypography,
+			contentTypography,
 			titlePadding,
 			contentPadding,
 		};
@@ -100,6 +102,7 @@ registerBlockType( 'full-page-slider/slide', {
 							style={{
 								animationDuration: contentAnimationDuration + 'ms',
 								animationDelay: contentAnimationDelay + 'ms',
+								background: contentBackground,
 								}}
 							>
 							{ showTitle && (
@@ -113,7 +116,6 @@ registerBlockType( 'full-page-slider/slide', {
 										...getTypographyStyles(titleTypography),
 										textAlign: titleAlignment,
 										color: titleColor,
-										background: titleBackground,
 										padding: `${titlePadding?.top}${titlePadding?.unit} ${titlePadding?.right}${titlePadding?.unit} ${titlePadding?.bottom}${titlePadding?.unit} ${titlePadding?.left}${titlePadding?.unit}`
 									}}
 								/> )}
@@ -122,8 +124,8 @@ registerBlockType( 'full-page-slider/slide', {
 								style={{
 									flexGrow: stickToBottom ? 'unset' : 1,
 									color: contentColor,
-									background: contentBackground,
-									padding: `${contentPadding?.top}${contentPadding?.unit} ${contentPadding?.right}${contentPadding?.unit} ${contentPadding?.bottom}${contentPadding?.unit} ${contentPadding?.left}${contentPadding?.unit}`
+									padding: `${contentPadding?.top}${contentPadding?.unit} ${contentPadding?.right}${contentPadding?.unit} ${contentPadding?.bottom}${contentPadding?.unit} ${contentPadding?.left}${contentPadding?.unit}`,
+									...getTypographyStyles(contentTypography),
 								}}>
 								<InnerBlocks />
 							</div>
@@ -154,6 +156,7 @@ registerBlockType( 'full-page-slider/slide', {
 			contentColor,
 			contentBackground,
 			titleTypography,
+			contentTypography,
 			titlePadding,
 			contentPadding,
 		} = parentAttributes;
@@ -168,16 +171,16 @@ registerBlockType( 'full-page-slider/slide', {
 				}}>
 					<div className={`slide-content animate animate--${contentAnimation}`} style={{
 						animationDuration: contentAnimationDuration + 'ms',
-						animationDelay: contentAnimationDelay + 'ms'
+						animationDelay: contentAnimationDelay + 'ms',
+						background: contentBackground
 					}}>
-						{ showTitle && (
+						{ showTitle && title && (
 							<h2
 								className="slide-title"
 								style={{
 									...getTypographyStyles(titleTypography),
 									textAlign: titleAlignment,
 									color: titleColor,
-									background: titleBackground,
 									padding: `${titlePadding?.top}${titlePadding?.unit} ${titlePadding?.right}${titlePadding?.unit} ${titlePadding?.bottom}${titlePadding?.unit} ${titlePadding?.left}${titlePadding?.unit}`
 								}}
 							>
@@ -187,9 +190,9 @@ registerBlockType( 'full-page-slider/slide', {
 						<div
 							className="slide-main"
 							style={{
+								...getTypographyStyles(contentTypography),
 								flexGrow: stickToBottom ? 'unset' : 1,
 								color: contentColor,
-								background: contentBackground,
 								padding: `${contentPadding?.top}${contentPadding?.unit} ${contentPadding?.right}${contentPadding?.unit} ${contentPadding?.bottom}${contentPadding?.unit} ${contentPadding?.left}${contentPadding?.unit}`
 							}}	
 						>

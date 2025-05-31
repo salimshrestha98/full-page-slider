@@ -68,6 +68,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		contentBackground,
 		background,
 		titleTypography,
+		contentTypography,
 		titlePadding,
 		contentPadding,
 		padding,
@@ -422,12 +423,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 					/>
 
 					<ColorPicker
-						value={titleBackground}
-						onChange={( color ) => setAttributes( { titleBackground: color } )}
-						label='Title Background'
-					/>
-
-					<ColorPicker
 						value={contentColor}
 						onChange={( color ) => setAttributes( { contentColor: color } )}
 						label='Content Color'
@@ -450,6 +445,12 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						label="Title Typography"
 						value={titleTypography}
 						onChange={(val) => setAttributes({ titleTypography: val })}
+					/>
+					
+					<TypographyControl
+						label="Content Typography"
+						value={contentTypography}
+						onChange={(val) => setAttributes({ contentTypography: val })}
 					/>
 				</PanelBody>
 

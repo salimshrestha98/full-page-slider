@@ -36,7 +36,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	sliderWrapper.parentElement.style.padding = 0;
 
 	if ( forceFullScreen) {
-		console.log( 'force fullscreen activated.' );
 		Object.assign(sliderWrapper.style, {
 			position: 'fixed',
 			top: '0',

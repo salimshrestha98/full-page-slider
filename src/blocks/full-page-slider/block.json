@@ -116,19 +116,19 @@
 				"gradient": "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"
 			}
 		},
-		"fontSize": {
-			"type": "string",
-			"default": ""
-		},
-		"lineHeight": {
-			"type": "string",
-			"default": ""
-		},
 		"titleTypography": {
 			"type": "object",
 			"default": {
 				"fontSize": {
 					"size": 40,
+					"unit": "px"
+				}
+			}
+		},
+		"contentTypography": {
+			"type": "object",
+			"default": {
+				"fontSize": {
 					"unit": "px"
 				}
 			}
@@ -210,6 +210,7 @@
 		"full-page-slider/contentColor": "contentColor",
 		"full-page-slider/contentBackground": "contentBackground",
 		"full-page-slider/titleTypography": "titleTypography",
+		"full-page-slider/contentTypography": "contentTypography",
 		"full-page-slider/titlePadding": "titlePadding",
 		"full-page-slider/contentPadding": "contentPadding"
 	},

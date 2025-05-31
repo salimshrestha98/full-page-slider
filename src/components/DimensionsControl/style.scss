@@ -1,5 +1,10 @@
-.full-page-slider-dimensions-control {
+.fps-dimensions-control {
 	.components-base-control__field {
 		margin-bottom: 0;
+		
+		label.components-input-control__label {
+			font-size: 10px !important;
+		}
 	}
+
 }

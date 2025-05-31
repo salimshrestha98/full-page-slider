@@ -1,0 +1,28 @@
+.fps-color-picker-control {
+	.fps-control-label {
+		font-size: 11px;
+		font-weight: 500;
+		line-height: 1.4;
+		text-transform: uppercase;
+		box-sizing: border-box;
+		display: block;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		max-width: 100%;
+		z-index: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+.fps-color-picker__popover{
+	.components-popover__content {
+		min-width: 200px;
+		padding: 10px;
+	}
+
+	.fps-color-picker__popover__reset_btn {
+		margin-left: 16px;
+	}
+}

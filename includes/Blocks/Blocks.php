@@ -47,6 +47,8 @@ class Blocks
                 'fullPageSliderL10n',
                 array(
                 'pluginURL' => FPS_PLUGIN_URL,
+                'ajaxURL'   => admin_url('admin-ajax.php'),
+                'hideFirstTimeNotice' => get_option( 'fps_hide_first_time_notice', false),
                 )
             );
         }

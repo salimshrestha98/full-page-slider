@@ -1,0 +1,56 @@
+import './style.scss';
+
+import { BaseControl, Button, Flex, Popover, ColorPicker as WPColorPicker } from '@wordpress/components';
+import { useRef, useState } from '@wordpress/element';
+
+import { __ } from '@wordpress/i18n';
+
+const ColorPicker = ({ label, value, onChange }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <BaseControl className="fps-color-picker-control">
+			<Flex>
+				<span className="fps-control-label">{label}</span>
+				<Button
+					style={{
+						background: value ?? '#ffffff',
+						width: '20px',
+						height: '20px',
+						borderRadius: '50%',
+						padding: 0,
+						border: '1px solid #aaaaaa'
+					}}
+					onClick={() => setIsOpen(!isOpen)}
+					aria-label={__('Select color')}
+					title={value ?? 'Not Set'}
+				></Button>
+			</Flex>
+            {isOpen && (
+                <Popover
+					className="fps-color-picker__popover"
+					onClose={() => setIsOpen(false)}
+                >
+                    <WPColorPicker
+                        color={value}
+                        onChangeComplete={(newColor) => onChange(newColor?.hex)}
+                        enableAlpha
+                        defaultValue={value}
+                    />
+
+					<Button
+					className='fps-color-picker__popover__reset_btn'
+						onClick={() => onChange(undefined)}
+						size='small'
+						variant='secondary'
+						isDestructive
+					>
+						{__('Reset', 'full-page-slider')}
+					</Button>
+                </Popover>
+            )}
+        </BaseControl>
+    );
+};
+
+export default ColorPicker;

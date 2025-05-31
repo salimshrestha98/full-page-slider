@@ -7,26 +7,12 @@ import {
 	SelectControl,
 	TextControl,
 } from '@wordpress/components';
+import { FONT_FAMILIES, FONT_WEIGHTS, TEXT_TRANSFORMS } from './types';
 import { useRef, useState } from '@wordpress/element';
 
+import {UnitRangeControl} from'../../components';
 import { __ } from '@wordpress/i18n';
 import { __experimentalUseAnchor as useAnchor } from '@wordpress/components';
-
-const FONT_WEIGHTS = [
-	{ label: __('Default'), value: '' },
-	{ label: __('Light'), value: '300' },
-	{ label: __('Regular'), value: '400' },
-	{ label: __('Medium'), value: '500' },
-	{ label: __('Bold'), value: '700' },
-	{ label: __('Black'), value: '900' },
-];
-
-const TEXT_TRANSFORMS = [
-	{ label: __('Default'), value: '' },
-	{ label: __('Uppercase'), value: 'uppercase' },
-	{ label: __('Lowercase'), value: 'lowercase' },
-	{ label: __('Capitalize'), value: 'capitalize' },
-];
 
 export default function TypographyControl({ label, value = {}, onChange }) {
 	const [isOpen, setOpen] = useState(false);
@@ -59,9 +45,10 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 				>
 					<div style={{ padding: '16px', width: '250px', maxWidth: '250px' }}>
 						
-						<TextControl
+						<SelectControl
 							label={__('Font Family')}
 							value={value.fontFamily}
+							options={FONT_FAMILIES}
 							onChange={(v) => update('fontFamily', v)}
 						/>
 
@@ -72,12 +59,31 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 							onChange={(v) => update('fontWeight', v)}
 						/>
 
-						<RangeControl
+						<UnitRangeControl
 							label={__('Font Size')}
 							value={value.fontSize}
 							onChange={(v) => update('fontSize', v)}
-							min={8}
+							min={0}
 							max={100}
+							units={['px', 'em', 'rem']}
+							range={{
+								px: {
+									min: 0,
+									max: 100,
+									step: 1
+								},
+								em: {
+									min: 0,
+									max: 5,
+									step: 0.1
+								},
+								rem: {
+									min: 0,
+									max: 5,
+									step: 0.1
+								}
+
+							}}
 						/>
 
 						<RangeControl

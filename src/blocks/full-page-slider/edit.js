@@ -1,12 +1,14 @@
+import {BackgroundControl, ChooseControl, TypographyControl} from '../../components';
 import {
 	__experimentalBoxControl as BoxControl,
+	Button,
+	Flex,
 	PanelBody,
 	RangeControl,
 	SelectControl,
 	ToggleControl,
 	__experimentalUnitControl as UnitControl
 } from '@wordpress/components';
-import {ChooseControl, TypographyControl} from '../../components';
 import {
 	ColorPalette,
 	InspectorControls,
@@ -26,39 +28,44 @@ import {
 	Scrollbar
 } from 'swiper/modules';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { justifyCenter, justifyLeft, justifyRight } from '@wordpress/icons';
+import { desktop, justifyCenter, justifyLeft, justifyRight, mobile, tablet } from '@wordpress/icons';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 
 import { BlockControls } from '@wordpress/block-editor';
+import ColorPicker from '../../components/ColorPicker/ColorPicker';
 import DimensionsControl from '../../components/DimensionsControl/DimensionsControl';
 import { Swiper } from 'swiper';
 import TEMPLATE from './template';
 import { __ } from '@wordpress/i18n';
+import { getBackgroundStyles } from '../../utilities';
 import { useState } from 'react';
 import { useThemeColorResolver } from '../../hooks/useThemeColorResolver';
 
 export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 	const {
-		colors,
 		device,
-		direction,
-		effect,
-		speed,
-		padding,
-		navigation,
-		pagination,
-		loop,
-		scrollbar,
 		showTitle,
 		stickToBottom,
 		forceFullScreen,
 		titleAlignment,
+		direction,
+		effect,
+		speed,
+		navigation,
+		pagination,
+		loop,
+		scrollbar,
 		titleColor,
-		bgColor,
+		titleBackground,
 		contentColor,
-		typography
+		contentBackground,
+		background,
+		titleTypography,
+		titlePadding,
+		contentPadding,
+		padding,
 	} = attributes;
 
 	const slideCount = useSelect(
@@ -70,9 +77,12 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		[ clientId ]
 	);
 
+	const backgroundStyles = getBackgroundStyles(background);
+
 	const blockProps = useBlockProps( {
 		style: {
-			background: bgColor,
+			...backgroundStyles,
+			padding: `${padding.top}${padding.unit} ${padding.right}${padding.unit} ${padding.bottom}${padding.unit} ${padding.left}${padding.unit}`,
 		}
 	} );
 
@@ -86,46 +96,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 			templateLock: false
 		}
 	);
-
-
-
-	/**
-	 * Convert theme palette color into proper hex format to use later in frontend.
-	 */
-	const getColorFromSlug = useThemeColorResolver();
-
-	useEffect( () => {
-		if (
-			bgColor &&
-			bgColor.startsWith( 'accent' ) &&
-			( getColorFromSlug( bgColor ) != colors?.bgColor )
-		)
-		{
-			setAttributes( {
-				colors:
-				{
-					...colors,
-					bgColor: getColorFromSlug( bgColor )
-				}
-			} );
-		}
-
-		if (
-			contentColor &&
-			contentColor.startsWith( 'accent' ) &&
-			( getColorFromSlug( contentColor ) != colors?.contentColor )
-		)
-		{
-			setAttributes( {
-				colors: {
-					...colors,
-					contentColor: getColorFromSlug( contentColor )
-				}
-			} );
-		}
-	}, [ bgColor, contentColor ] );
-
-
 
 	/**
 	 * Handle Swiper initialization and loading.
@@ -202,7 +172,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 	function addSlide () {
 		const activeSlideIndex = swiperRef.current.activeIndex || 0;
-		const slideBlock = wp.blocks.createBlock( 'full-page-slider/slide' );
+		const slideBlock = wp.blocks.createBlock(
+			'full-page-slider/slide',
+			{title: 'New Slide'},
+			[
+				wp.blocks.createBlock('core/paragraph', { placeholder: 'Start your first sentence here or add any blocks you want...' }),
+			],
+		);
 		insertBlock( slideBlock, activeSlideIndex + 1, clientId, false );
 		setInitialSlide.current = activeSlideIndex + 1;
 	}
@@ -236,28 +212,41 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		}
 	}
 
-	function handleAdd () {
-		console.log( 'add' );
-	}
+	/**
+	 * Handler to close the first timer notice if user clicks on close button.
+	 */
+	const [hideFirstTimeNotice, setHideFirstTimeNotice] = useState(fullPageSliderL10n.hideFirstTimeNotice);
 
-	function handleDelete () {
-		console.log( 'delete' );
+	function closeFirstTimeNotice() {
+		setHideFirstTimeNotice(true);
+		fetch(fullPageSliderL10n.ajaxURL + '?action=disable_first_time_notice').catch(() => {});
 	}
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( "General", 'full-page-slider' ) }>
-					<SelectControl
-						label="Preview"
-						value={ device }
-						options={ [
-							{ label: 'Desktop', value: 'desktop' },
-							{ label: 'Tablet', value: 'tablet' },
-							{ label: 'Mobile', value: 'mobile' },
+				{!hideFirstTimeNotice && (
+					<Flex style={{alignItems: 'flex-start'}}>
+						<p style={{padding: '0 18px'}}><em>Using for the first time? Check out our guide <a href="#">here</a>.</em></p>
+						<Button
+							icon="no-alt"
+							title={__('Close Forever', 'full-page-slider')}
+							onClick={() => closeFirstTimeNotice()}
+							isDestructive
+						/>
+					</Flex>
+				)}
+				<PanelBody title={ __( "General", 'full-page-slider' ) } initialOpen={false}>
+					<ChooseControl
+							label="Preview"
+							value={device}
+							onChange={(val) => setAttributes({ device: val })}
+							options={ [
+							{ label: 'Desktop', value: 'desktop', icon: desktop },
+							{ label: 'Tablet', value: 'tablet', icon: tablet },
+							{ label: 'Mobile', value: 'mobile', icon: mobile },
 						] }
-						onChange={ ( value ) => setAttributes( { device: value } ) }
-					/>
+						/>
 
 					<ToggleControl
 						label="Show Title"
@@ -324,28 +313,28 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						step={ 100 }
 					/>
 
-					<label className="sb-setting-label">{ __( "Enable Prev/Next Buttons", 'full-page-slider' ) }</label>
 					<ToggleControl
+						label={ __( "Enable Prev/Next Buttons", 'full-page-slider' )}
 						checked={ navigation }
 						onChange={ ( value ) => setAttributes( { navigation: value } ) }
 					/>
 
 					{ !navigation && (<p><i>Prev/Next Button will be disabled on frontend only.</i></p>)}
 
-					<label className="sb-setting-label">{ __( "Enable Pagination", 'full-page-slider' ) }</label>
 					<ToggleControl
+						label={__( "Enable Pagination", 'full-page-slider' )}
 						checked={ pagination }
 						onChange={ ( value ) => setAttributes( { pagination: value } ) }
 					/>
 
-					<label className="sb-setting-label">{ __( "Enable Scrollbar", 'full-page-slider' ) }</label>
 					<ToggleControl
+						label={__( "Enable Scrollbar", 'full-page-slider' )}
 						checked={ scrollbar }
 						onChange={ ( value ) => setAttributes( { scrollbar: value } ) }
 					/>
 
-					<label className="sb-setting-label">{ __( "Loop Slides", 'full-page-slider' ) }</label>
 					<ToggleControl
+						label={__( "Loop Slides", 'full-page-slider' )}
 						checked={ loop }
 						onChange={ ( value ) => setAttributes( { loop: value } ) }
 					/>
@@ -353,37 +342,55 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( "Color", 'full-page-slider' ) } initialOpen={false}>
-				<PanelColorSettings
-					title={__('Choose Colors', 'full-page-slider')}
-					colorSettings={ [
-						{
-							value: titleColor,
-							onChange: ( color ) => setAttributes( { titleColor: color } ),
-							label: 'Title Color'
-						},
-						{
-							value: bgColor,
-							onChange: ( color ) => setAttributes( { bgColor: color } ),
-							label: 'Background Color'
-						},
-						{
-							value: contentColor,
-							onChange: ( color ) => setAttributes( { contentColor: color } ),
-							label: 'Content Color'
-						},
-					] }
-				/>
+					<ColorPicker
+						value={titleColor}
+						onChange={( color ) => setAttributes( { titleColor: color } )}
+						label='Title Color'
+					/>
+
+					<ColorPicker
+						value={titleBackground}
+						onChange={( color ) => setAttributes( { titleBackground: color } )}
+						label='Title Background'
+					/>
+
+					<ColorPicker
+						value={contentColor}
+						onChange={( color ) => setAttributes( { contentColor: color } )}
+						label='Content Color'
+					/>
+
+					<ColorPicker
+						value={contentBackground}
+						onChange={( color ) => setAttributes( { contentBackground: color } )}
+						label='Content Background'
+					/>
+
+					<BackgroundControl
+						value={background || {}}
+						onChange={(newVal) => setAttributes({ background: newVal })}
+					/>
 				</PanelBody>
 
 				<PanelBody title={ __( "Typography", 'full-page-slider' ) } initialOpen={false}>
 					<TypographyControl
-						label="Some Typography"
-						value={typography}
-						onChange={(val) => setAttributes({ typography: val })}
+						label="Title Typography"
+						value={titleTypography}
+						onChange={(val) => setAttributes({ titleTypography: val })}
 					/>
 				</PanelBody>
 
 				<PanelBody title={ __( "Spacing", 'full-page-slider' ) } initialOpen={false}>
+					<DimensionsControl
+						label="Title Padding"
+						value={titlePadding}
+						onChange={(newVal) => setAttributes({ titlePadding: newVal })}
+					/>
+					<DimensionsControl
+						label="Content Padding"
+						value={contentPadding}
+						onChange={(newVal) => setAttributes({ contentPadding: newVal })}
+					/>
 					<DimensionsControl
 						label="Padding"
 						value={padding}
@@ -397,12 +404,17 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 					<ToolbarButton
 						icon={ <span className="dashicons dashicons-plus-alt2"></span> }
 						label="Add New Slide"
-						onClick={ handleAdd }
+						onClick={ addSlide }
+					/>
+					<ToolbarButton
+						icon={ <span className="dashicons dashicons-admin-page"></span> }
+						label="Duplicate Slide"
+						onClick={ duplicateSlide }
 					/>
 					<ToolbarButton
 						icon={ <span className="dashicons dashicons-trash"></span> }
 						label="Delete Slide"
-						onClick={ handleDelete }
+						onClick={ deleteSlide }
 						isDestructive
 					/>
 				</ToolbarGroup>
@@ -426,13 +438,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 					) }
 				</div>
 
-				<div className="floating-buttons-container">
+				{/* <div className="floating-buttons-container">
 					<div>
 						<button title="Add New Slide" className='add-slide-btn' onClick={ addSlide }><span className="dashicons dashicons-plus-alt2"></span></button>
 						<button title="Duplicate Slide" className='duplicate-slide-btn' onClick={ duplicateSlide }><span className="dashicons dashicons-admin-page"></span></button>
 						<button title="Delete Slide" className='delete-slide-btn' onClick={ deleteSlide }><span className="dashicons dashicons-trash"></span></button>
 					</div>
-				</div>
+				</div> */}
 
 			</div>
 		</>

@@ -54,11 +54,11 @@ const DimensionsControl = ({ label = 'Dimensions', value = {}, onChange }) => {
 
 	return (
 		<BaseControl
-			className="full-page-slider-dimensions-control"
+			className="fps-dimensions-control"
 			label={
 				<Flex justify="space-between" align="center">
 					<span>{label}</span>
-					<Flex align="center" style={{ justifyContent: 'end'}}>
+					<Flex align="center" style={{ justifyContent: 'end', width: 'auto'}}>
 						<Tooltip text={linked ? 'Unlink sides' : 'Link sides'}>
 							<IconButton
 								icon={linked ? unlinkIcon : linkIcon}
@@ -86,7 +86,7 @@ const DimensionsControl = ({ label = 'Dimensions', value = {}, onChange }) => {
 				{['top', 'right', 'bottom', 'left'].map((side) => (
 					<FlexItem key={side}>
 						<NumberControl
-							label={side[0].toUpperCase()}
+							label={side}
 							value={value[side]}
 							onChange={(val) => handleChange(side, val)}
 							isShiftStepEnabled

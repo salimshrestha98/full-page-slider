@@ -2,8 +2,8 @@
 
 namespace FullPageSlider\Admin;
 
-use FullPageSlider\PostTypes\AuthorProfile;
 use FullPageSlider\Traits\Singleton;
+use FullPageSlider\Admin\Ajax;
 
 /**
  * Admin class.
@@ -14,5 +14,7 @@ class Admin {
 	/**
 	 * Init method.
 	 */
-	public function init() {}
+	public function init() {
+		Ajax::instance()->init();
+	}
 }

@@ -4,6 +4,7 @@
 	"title": "Full Page Slider",
 	"category": "layout",
 	"icon": "slides",
+	"keywords": ["slider", "full page", "full page slider", "fps"],
 	"supports": {
 		"customClassName": true,
 		"className": true,
@@ -77,20 +78,23 @@
 			"default": ""
 		},
 		"titleColor": {
-			"type": "string",
-			"default": "#cccccc"
+			"type": "string"
 		},
-		"bgColor": {
-			"type": "string",
-			"default": "#cccccc"
+		"titleBackground": {
+			"type": "string"
 		},
 		"contentColor": {
-			"type": "string",
-			"default": ""
+			"type": "string"
 		},
-		"gradient": {
-			"type": "string",
-			"default": ""
+		"contentBackground": {
+			"type": "string"
+		},
+		"background": {
+			"type": "object",
+			"default": {
+				"backgroundType": "gradient",
+				"gradient": "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"
+			}
 		},
 		"fontSize": {
 			"type": "string",
@@ -99,6 +103,35 @@
 		"lineHeight": {
 			"type": "string",
 			"default": ""
+		},
+		"titleTypography": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"size": 40,
+					"unit": "px"
+				}
+			}
+		},
+		"titlePadding": {
+			"type": "object",
+			"default": {
+				"top": 20,
+				"right": 20,
+				"bottom": 20,
+				"left": 20,
+				"unit": "px"
+			}
+		},
+		"contentPadding": {
+			"type": "object",
+			"default": {
+				"top": 20,
+				"right": 20,
+				"bottom": 20,
+				"left": 20,
+				"unit": "px"
+			}
 		},
 		"padding": {
 			"type": "object",
@@ -147,7 +180,13 @@
 		"full-page-slider/showTitle": "showTitle",
 		"full-page-slider/titleAlignment": "titleAlignment",
 		"full-page-slider/stickToBottom": "stickToBottom",
-		"full-page-slider/padding": "padding"
+		"full-page-slider/titleColor": "titleColor",
+		"full-page-slider/titleBackground": "titleBackground",
+		"full-page-slider/contentColor": "contentColor",
+		"full-page-slider/contentBackground": "contentBackground",
+		"full-page-slider/titleTypography": "titleTypography",
+		"full-page-slider/titlePadding": "titlePadding",
+		"full-page-slider/contentPadding": "contentPadding"
 	},
 	"example": {},
 	"editorScript": "file:./index.js",

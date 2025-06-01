@@ -31,7 +31,7 @@ const ImageControl = ({
         setImage(null);
     };
 
-	const placeholderImage = fullPageSliderL10n.pluginURL + '/assets/image/default-placeholder.jpg';
+	const placeholderImage = fullPageSliderL10n.pluginURL + '/assets/image/default-placeholder.png';
 
     return (
         <div className="full-page-slider-image-control">

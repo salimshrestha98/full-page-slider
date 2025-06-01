@@ -91,7 +91,7 @@ const BackgroundControl = ({
                                 <>
                                     <Flex direction='column' gap='8px'>
                                         <img
-                                            src={value.image ? value.image.url : fullPageSliderL10n.pluginURL + '/assets/image/default-placeholder.jpg'}
+                                            src={value.image ? value.image.url : fullPageSliderL10n.pluginURL + '/assets/image/default-placeholder.png'}
                                             onClick={open}
                                             style={{
                                                 maxHeight: '150px',

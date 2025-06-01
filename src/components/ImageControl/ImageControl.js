@@ -36,7 +36,7 @@ const ImageControl = ({
     return (
         <div className="full-page-slider-image-control">
 
-			{label && (<label>{label}</label>)}
+			{label && (<label>{__(label, 'full-page-slider')}</label>)}
 
             <MediaUploadCheck>
                 <Flex direction="column" gap="8px">
@@ -63,7 +63,7 @@ const ImageControl = ({
                                     onClick={open}
                                     isSmall
                                 >
-                                    {image ? 'Change Image' : 'Add Image'}
+                                    {image ? __('Change Image', 'full-page-slider') : __('Add Image', 'full-page-slider')}
                                 </Button>
                             )}
                             {...mediaUploadProps}

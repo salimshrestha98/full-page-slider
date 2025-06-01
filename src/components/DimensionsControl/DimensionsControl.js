@@ -23,7 +23,7 @@ const UNIT_OPTIONS = [
 	{ label: 'vw', value: 'vw' },
 ];
 
-const DimensionsControl = ({ label = 'Dimensions', value = {}, onChange }) => {
+const DimensionsControl = ({ label = __('Dimensions', 'full-page-slider'), value = {}, onChange }) => {
 	const { top = '', right = '', bottom = '', left = '', unit = 'px' } = value;
 
 	const [linked, setLinked] = useState(top === right && right === bottom && bottom === left);
@@ -57,12 +57,12 @@ const DimensionsControl = ({ label = 'Dimensions', value = {}, onChange }) => {
 			className="fps-dimensions-control"
 			label={
 				<Flex justify="space-between" align="center">
-					<span>{label}</span>
+					<span>{__(label, 'full-page-slider')}</span>
 					<Flex align="center" style={{ justifyContent: 'end', width: 'auto'}}>
-						<Tooltip text={linked ? 'Unlink sides' : 'Link sides'}>
+						<Tooltip text={linked ? __('Unlink sides', 'full-page-slider') : __('Link sides', 'full-page-slider')}>
 							<IconButton
 								icon={linked ? unlinkIcon : linkIcon}
-								label={linked ? 'Unlink' : 'Link'}
+								label={linked ? __('Unlink', 'full-page-slider') : __('Link', 'full-page-slider')}
 								onClick={toggleLink}
 								isSmall
 								variant="tertiary"
@@ -86,7 +86,7 @@ const DimensionsControl = ({ label = 'Dimensions', value = {}, onChange }) => {
 				{['top', 'right', 'bottom', 'left'].map((side) => (
 					<FlexItem key={side}>
 						<NumberControl
-							label={side}
+							label={__(side, 'full-page-slider')}
 							value={value[side]}
 							onChange={(val) => handleChange(side, val)}
 							isShiftStepEnabled

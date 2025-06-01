@@ -26,7 +26,8 @@
   "devDependencies": {
     "@wordpress/scripts": "^30.17.0",
     "grunt": "^1.6.1",
-    "grunt-cli": "^1.5.0"
+    "grunt-cli": "^1.5.0",
+    "grunt-contrib-compress": "^2.0.0"
   },
   "dependencies": {
     "@wordpress/icons": "^10.23.0",

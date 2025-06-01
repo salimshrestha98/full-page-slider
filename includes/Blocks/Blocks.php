@@ -38,6 +38,10 @@ class Blocks
         }
     }
 
+    /**
+     * Register block assets.
+     * @return void
+     */
     public function register_blocks_assets()
     {
         $manifest_data = include FPS_PLUGIN_DIR . '/build/blocks-manifest.php';
@@ -56,7 +60,7 @@ class Blocks
 
     public function enqueue_styles()
     {
-        // Add your inline CSS
+        // Add inline CSS to hide body until ready.
         $custom_css = '
 			body.hide-until-ready {
 				opacity: 0;

@@ -25,7 +25,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 	return (
 		<div className="typography-popover-control">
 			<Flex>
-				<FlexItem>{label}</FlexItem>
+				<FlexItem>{__(label, 'full-page-slider')}</FlexItem>
 				<FlexItem>
 					<Button
 						ref={buttonRef}
@@ -46,21 +46,21 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 					<div style={{ padding: '16px', width: '250px', maxWidth: '250px' }}>
 						
 						<SelectControl
-							label={__('Font Family')}
+							label={__('Font Family', 'full-page-slider')}
 							value={value.fontFamily}
 							options={FONT_FAMILIES}
 							onChange={(v) => update('fontFamily', v)}
 						/>
 
 						<SelectControl
-							label={__('Font Weight')}
+							label={__('Font Weight', 'full-page-slider')}
 							value={value.fontWeight}
 							options={FONT_WEIGHTS}
 							onChange={(v) => update('fontWeight', v)}
 						/>
 
 						<UnitRangeControl
-							label={__('Font Size')}
+							label={__('Font Size', 'full-page-slider')}
 							value={value.fontSize}
 							onChange={(v) => update('fontSize', v)}
 							min={0}
@@ -87,7 +87,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 						/>
 
 						<RangeControl
-							label={__('Line Height')}
+							label={__('Line Height', 'full-page-slider')}
 							value={value.lineHeight}
 							onChange={(v) => update('lineHeight', v)}
 							min={0.5}
@@ -96,7 +96,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 						/>
 
 						<RangeControl
-							label={__('Letter Spacing')}
+							label={__('Letter Spacing', 'full-page-slider')}
 							value={value.letterSpacing}
 							onChange={(v) => update('letterSpacing', v)}
 							min={-2}
@@ -105,7 +105,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 						/>
 
 						<SelectControl
-							label={__('Text Transform')}
+							label={__('Text Transform', 'full-page-slider')}
 							value={value.textTransform}
 							options={TEXT_TRANSFORMS}
 							onChange={(v) => update('textTransform', v)}

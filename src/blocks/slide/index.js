@@ -124,7 +124,7 @@ registerBlockType( 'full-page-slider/slide', {
 									className='slide-title'
 									value={ title }
 									onChange={ ( newTitle ) => setAttributes( { title: newTitle } ) }
-									placeholder="Give me a title…"
+									placeholder={__("Give me a title…", 'full-page-slider')}
 									style={{
 										...getTypographyStyles(titleTypography),
 										textAlign: titleAlignment,
@@ -149,7 +149,7 @@ registerBlockType( 'full-page-slider/slide', {
 		);
 	},
 
-	save: ( { context, attributes } ) => {
+	save: ( { attributes } ) => {
 		const { 
 			title, 
 			background,

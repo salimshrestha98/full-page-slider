@@ -54,7 +54,7 @@ const BackgroundControl = ({
     return (
         <BaseControl className="fps-background-control">
             <ChooseControl
-                label={label}
+                label={__(label, 'full-page-slider')}
                 value={value.backgroundType || 'color'}
                 onChange={(val) => setBackgroundValue('backgroundType', val )}
                 options={BACKGROUND_TYPES}
@@ -63,7 +63,7 @@ const BackgroundControl = ({
             {('color' == value.backgroundType || !value.backgroundType) && (
                 <Fragment>
                     <ColorPicker
-						label='Background Color'
+						label={__('Background Color', 'full-page-slider')}
                         value={value.color}
 						onChange={(newColor) => setBackgroundValue('color', newColor)}
                     />
@@ -118,7 +118,7 @@ const BackgroundControl = ({
             {'image' == value.backgroundType && (
                 <div style={{marginTop: '15px'}}>
                     <Flex>
-                        <label>Advanced Controls</label>
+                        <label>{__('Advanced Controls', 'full-page-slider')}</label>
                         <Button
                             variant="secondary"
                             icon={brush}

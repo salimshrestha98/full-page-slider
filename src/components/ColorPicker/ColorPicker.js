@@ -11,7 +11,7 @@ const ColorPicker = ({ label, value, onChange }) => {
     return (
         <BaseControl className="fps-color-picker-control">
 			<Flex>
-				<span className="fps-control-label">{label}</span>
+				<span className="fps-control-label">{__(label, 'full-page-slider')}</span>
 				<Button
 					style={{
 						background: value ?? '#ffffff',
@@ -22,8 +22,8 @@ const ColorPicker = ({ label, value, onChange }) => {
 						border: '1px solid #aaaaaa'
 					}}
 					onClick={() => setIsOpen(!isOpen)}
-					aria-label={__('Select color')}
-					title={value ?? 'Not Set'}
+					aria-label={__('Select color', 'full-page-slider')}
+					title={value ?? __('Not Set', 'full-page-slider')}
 				></Button>
 			</Flex>
             {isOpen && (

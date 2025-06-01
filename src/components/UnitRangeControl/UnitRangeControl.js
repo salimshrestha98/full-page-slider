@@ -16,7 +16,7 @@ const handleChange = (key, newValue) => {
 
 	// If unit is not yet set and we're changing something else (like size)
 	if (!newValueObj.unit && key !== 'unit') {
-		newValueObj.unit = 'px'; // Or your default unit
+		newValueObj.unit = 'px';
 	}
 
 	onChange(newValueObj);

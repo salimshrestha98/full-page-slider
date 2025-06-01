@@ -257,74 +257,74 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 				)}
 				<PanelBody title={ __( "General", 'full-page-slider' ) } initialOpen={false}>
 					<ChooseControl
-							label="Preview"
+							label={__("Preview", 'full-page-slider')}
 							value={device}
 							onChange={(val) => setAttributes({ device: val })}
 							options={ [
-							{ label: 'Desktop', value: 'desktop', icon: desktop },
-							{ label: 'Tablet', value: 'tablet', icon: tablet },
-							{ label: 'Mobile', value: 'mobile', icon: mobile },
+							{ label: __('Desktop', 'full-page-slider'), value: 'desktop', icon: desktop },
+							{ label: __('Tablet', 'full-page-slider'), value: 'tablet', icon: tablet },
+							{ label: __('Mobile', 'full-page-slider'), value: 'mobile', icon: mobile },
 						] }
 						/>
 
 					<ToggleControl
-						label="Show Title"
+						label={__("Show Title", 'full-page-slider')}
 						checked={ showTitle }
 						onChange={ ( value ) => setAttributes( { showTitle: value } ) }
 					/>
 
 					{ showTitle && (
 						<ChooseControl
-							label="Title Alignment"
+							label={__("Title Alignment", 'full-page-slider')}
 							value={titleAlignment}
 							onChange={(val) => setAttributes({ titleAlignment: val })}
 							options={[
-								{ value: 'left', label: 'Align Left', icon: justifyLeft },
-								{ value: 'center', label: 'Align Center', icon: justifyCenter },
-								{ value: 'right', label: 'Align Right', icon: justifyRight },
+								{ value: 'left', label: __('Align Left', 'full-page-slider'), icon: justifyLeft },
+								{ value: 'center', label: __('Align Center', 'full-page-slider'), icon: justifyCenter },
+								{ value: 'right', label: __('Align Right', 'full-page-slider'), icon: justifyRight },
 							]}
 						/>
 					)}
 
 					<ToggleControl
-						label="Stick Content to Bottom"
+						label={__("Stick Content to Bottom", 'full-page-slider')}
 						checked={ stickToBottom }
 						onChange={ ( value ) => setAttributes( { stickToBottom: value } ) }
 					/>
 
 					<ToggleControl
-						label="Force Fullscreen"
+						label={__("Force Fullscreen", 'full-page-slider')}
 						checked={ forceFullScreen }
 						onChange={ ( value ) => setAttributes( { forceFullScreen: value } ) }
 					/>
 				</PanelBody>
 
 
-				<PanelBody title="Slider" initialOpen={ false }>
+				<PanelBody title={__("Slider", 'full-page-slider')} initialOpen={ false }>
 					<SelectControl
-						label="Direction"
+						label={__("Direction", 'full-page-slider')}
 						value={ direction }
 						options={ [
-							{ label: 'Horizontal', value: 'horizontal' },
-							{ label: 'Vertical', value: 'vertical' },
+							{ label: __('Horizontal', 'full-page-slider'), value: 'horizontal' },
+							{ label: __('Vertical', 'full-page-slider'), value: 'vertical' },
 						] }
 						onChange={ ( value ) => setAttributes( { direction: value } ) }
 					/>
 
 					<SelectControl
-						label="Slide Effect"
+						label={__("Slide Effect", 'full-page-slider')}
 						value={ effect }
 						options={ [
-							{ label: 'Slide', value: 'slide' },
-							{ label: 'Cube', value: 'cube' },
-							{ label: 'Coverflow', value: 'coverflow' },
-							{ label: 'Flip', value: 'flip' },
+							{ label: __('Slide', 'full-page-slider'), value: 'slide' },
+							{ label: __('Cube', 'full-page-slider'), value: 'cube' },
+							{ label: __('Coverflow', 'full-page-slider'), value: 'coverflow' },
+							{ label: __('Flip', 'full-page-slider'), value: 'flip' },
 						] }
 						onChange={ ( value ) => setAttributes( { effect: value } ) }
 					/>
 
 					<RangeControl
-						label="Slide Speed (ms)"
+						label={__("Slide Speed (ms)", 'full-page-slider')}
 						value={ speed }
 						onChange={ ( newSpeed ) => setAttributes( { speed: newSpeed } ) }
 						min={ 100 }
@@ -338,7 +338,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { navigation: value } ) }
 					/>
 
-					{ !navigation && (<p><i>Prev/Next Button will be disabled on frontend only.</i></p>)}
+					{ !navigation && (<p><i>{__('Prev/Next Button will be disabled on frontend only.', 'full-page-slider')}</i></p>)}
 
 					<ToggleControl
 						label={__( "Enable Pagination", 'full-page-slider' )}
@@ -360,7 +360,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 				</PanelBody>
 
-				<PanelBody title="Content Animation" initialOpen={ false }>
+				<PanelBody title={__("Content Animation", 'full-page-slider')} initialOpen={ false }>
 					<ToggleControl
 						label={__( "Enable Content Animation", 'full-page-slider' )}
 						checked={ enableContentAnimation }
@@ -370,31 +370,31 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 					{ enableContentAnimation && (
 						<>
 							<SelectControl
-								label="Animation Type"
+								label={__("Animation Type", 'full-page-slider')}
 								value={ contentAnimation }
 								options={ [
-									{ label: 'None', value: '' },
-									{ label: 'Fade In Up', value: 'fade-in-up' },
-									{ label: 'Fade In Down', value: 'fade-in-down' },
-									{ label: 'Fade In Left', value: 'fade-in-left' },
-									{ label: 'Fade In Right', value: 'fade-in-right' },
-									{ label: 'Slide In Up', value: 'slide-in-up' },
-									{ label: 'Slide In Down', value: 'slide-in-down' },
-									{ label: 'Slide In Left', value: 'slide-in-left' },
-									{ label: 'Slide In Right', value: 'slide-in-right' },
-									{ label: 'Zoom In', value: 'zoom-in' },
-									{ label: 'Zoom Out', value: 'zoom-out' },
-									{ label: 'Rotate In', value: 'rotate-in' },
-									{ label: 'Flip In X', value: 'flip-in-x' },
-									{ label: 'Flip In Y', value: 'flip-in-y' },
-									{ label: 'Bounce In', value: 'bounce-in' },
-									{ label: 'Pop In', value: 'pop-in' },
+									{ label: __('None', 'full-page-slider'), value: '' },
+									{ label: __('Fade In Up', 'full-page-slider'), value: 'fade-in-up' },
+									{ label: __('Fade In Down', 'full-page-slider'), value: 'fade-in-down' },
+									{ label: __('Fade In Left', 'full-page-slider'), value: 'fade-in-left' },
+									{ label: __('Fade In Right', 'full-page-slider'), value: 'fade-in-right' },
+									{ label: __('Slide In Up', 'full-page-slider'), value: 'slide-in-up' },
+									{ label: __('Slide In Down', 'full-page-slider'), value: 'slide-in-down' },
+									{ label: __('Slide In Left', 'full-page-slider'), value: 'slide-in-left' },
+									{ label: __('Slide In Right', 'full-page-slider'), value: 'slide-in-right' },
+									{ label: __('Zoom In', 'full-page-slider'), value: 'zoom-in' },
+									{ label: __('Zoom Out', 'full-page-slider'), value: 'zoom-out' },
+									{ label: __('Rotate In', 'full-page-slider'), value: 'rotate-in' },
+									{ label: __('Flip In X', 'full-page-slider'), value: 'flip-in-x' },
+									{ label: __('Flip In Y', 'full-page-slider'), value: 'flip-in-y' },
+									{ label: __('Bounce In', 'full-page-slider'), value: 'bounce-in' },
+									{ label: __('Pop In', 'full-page-slider'), value: 'pop-in' },
 								] }
 								onChange={ ( value ) => setAttributes( { contentAnimation: value } ) }
 							/>
 
 							<RangeControl
-								label="Animation Duration (ms)"
+								label={__("Animation Duration (ms)", 'full-page-slider')}
 								value={ contentAnimationDuration }
 								onChange={ ( value ) => setAttributes( { contentAnimationDuration: value } ) }
 								min={ 500 }
@@ -403,7 +403,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							/>
 
 							<RangeControl
-								label="Animation Delay (ms)"
+								label={__("Animation Delay (ms)", 'full-page-slider')}
 								value={ contentAnimationDelay }
 								onChange={ ( value ) => setAttributes( { contentAnimationDelay: value } ) }
 								min={ 0 }
@@ -419,19 +419,19 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 					<ColorPicker
 						value={titleColor}
 						onChange={( color ) => setAttributes( { titleColor: color } )}
-						label='Title Color'
+						label={__('Title Color', 'full-page-slider')}
 					/>
 
 					<ColorPicker
 						value={contentColor}
 						onChange={( color ) => setAttributes( { contentColor: color } )}
-						label='Content Color'
+						label={__('Content Color', 'full-page-slider')}
 					/>
 
 					<ColorPicker
 						value={contentBackground}
 						onChange={( color ) => setAttributes( { contentBackground: color } )}
-						label='Content Background'
+						label={__('Content Background', 'full-page-slider')}
 					/>
 
 					<BackgroundControl
@@ -442,13 +442,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 				<PanelBody title={ __( "Typography", 'full-page-slider' ) } initialOpen={false}>
 					<TypographyControl
-						label="Title Typography"
+						label={__("Title Typography", 'full-page-slider')}
 						value={titleTypography}
 						onChange={(val) => setAttributes({ titleTypography: val })}
 					/>
 					
 					<TypographyControl
-						label="Content Typography"
+						label={__("Content Typography", 'full-page-slider')}
 						value={contentTypography}
 						onChange={(val) => setAttributes({ contentTypography: val })}
 					/>
@@ -456,17 +456,17 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 				<PanelBody title={ __( "Spacing", 'full-page-slider' ) } initialOpen={false}>
 					<DimensionsControl
-						label="Title Padding"
+						label={__("Title Padding", 'full-page-slider')}
 						value={titlePadding}
 						onChange={(newVal) => setAttributes({ titlePadding: newVal })}
 					/>
 					<DimensionsControl
-						label="Content Padding"
+						label={__("Content Padding", 'full-page-slider')}
 						value={contentPadding}
 						onChange={(newVal) => setAttributes({ contentPadding: newVal })}
 					/>
 					<DimensionsControl
-						label="Padding"
+						label={__("Padding", 'full-page-slider')}
 						value={padding}
 						onChange={(newVal) => setAttributes({ padding: newVal })}
 					/>
@@ -477,17 +477,17 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 				<ToolbarGroup>
 					<ToolbarButton
 						icon={ <span className="dashicons dashicons-plus-alt2"></span> }
-						label="Add New Slide"
+						label={__("Add New Slide", 'full-page-slider')}
 						onClick={ addSlide }
 					/>
 					<ToolbarButton
 						icon={ <span className="dashicons dashicons-admin-page"></span> }
-						label="Duplicate Slide"
+						label={__("Duplicate Slide", 'full-page-slider')}
 						onClick={ duplicateSlide }
 					/>
 					<ToolbarButton
 						icon={ <span className="dashicons dashicons-trash"></span> }
-						label="Delete Slide"
+						label={__("Delete Slide", 'full-page-slider')}
 						onClick={ deleteSlide }
 						isDestructive
 					/>
@@ -511,15 +511,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						<div className="swiper-scrollbar"></div>
 					) }
 				</div>
-
-				{/* <div className="floating-buttons-container">
-					<div>
-						<button title="Add New Slide" className='add-slide-btn' onClick={ addSlide }><span className="dashicons dashicons-plus-alt2"></span></button>
-						<button title="Duplicate Slide" className='duplicate-slide-btn' onClick={ duplicateSlide }><span className="dashicons dashicons-admin-page"></span></button>
-						<button title="Delete Slide" className='delete-slide-btn' onClick={ deleteSlide }><span className="dashicons dashicons-trash"></span></button>
-					</div>
-				</div> */}
-
 			</div>
 		</>
 	);

@@ -47,17 +47,17 @@ export const FONT_FAMILIES = [
 ];
 
 export const FONT_WEIGHTS = [
-	{ label: __('Default'), value: '' },
-	{ label: __('Light'), value: '300' },
-	{ label: __('Regular'), value: '400' },
-	{ label: __('Medium'), value: '500' },
-	{ label: __('Bold'), value: '700' },
-	{ label: __('Black'), value: '900' },
+	{ label: __('Default', 'full-page-slider'), value: '' },
+	{ label: __('Light', 'full-page-slider'), value: '300' },
+	{ label: __('Regular', 'full-page-slider'), value: '400' },
+	{ label: __('Medium', 'full-page-slider'), value: '500' },
+	{ label: __('Bold', 'full-page-slider'), value: '700' },
+	{ label: __('Black', 'full-page-slider'), value: '900' },
 ];
 
 export const TEXT_TRANSFORMS = [
-	{ label: __('Default'), value: '' },
-	{ label: __('Uppercase'), value: 'uppercase' },
-	{ label: __('Lowercase'), value: 'lowercase' },
-	{ label: __('Capitalize'), value: 'capitalize' },
+	{ label: __('Default', 'full-page-slider'), value: '' },
+	{ label: __('Uppercase', 'full-page-slider'), value: 'uppercase' },
+	{ label: __('Lowercase', 'full-page-slider'), value: 'lowercase' },
+	{ label: __('Capitalize', 'full-page-slider'), value: 'capitalize' },
 ];

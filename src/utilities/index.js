@@ -1,3 +1,8 @@
+/**
+ * Extract Background Styles from background attribute.
+ * @param {*} background 
+ * @returns 
+ */
 export function getBackgroundStyles(background) {
 	const {
 		backgroundRepeat,
@@ -40,6 +45,11 @@ export function getBackgroundStyles(background) {
 	return styles;
 }
 
+/**
+ * Extract Typography styles from typography attribute.
+ * @param {*} typography 
+ * @returns 
+ */
 export function getTypographyStyles(typography = {}) {
 	const { fontSize, ...styles } = typography || {};
 

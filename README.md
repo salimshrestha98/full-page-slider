@@ -3,7 +3,7 @@
 **Create immersive full-page sliders directly inside the WordPress Block Editor (Gutenberg).**  
 Perfect for landing pages, portfolios, agency websites, and storytelling sites that need smooth, fullscreen navigation.
 
-![Full Page Slider Preview](assets/banner-772x250.jpg)
+![Full Page Slider Preview](assets/banner-772x250.png)
 
 ---
 

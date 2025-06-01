@@ -1,5 +1,5 @@
 === Full Page Slider ===
-Contributors: 7uplabs, salimshrestha98  
+Contributors: salimshrestha98  
 Tags: gutenberg, slider, page animation, full page slider
 Requires at least: 6.6.2 
 Tested up to: 6.8.1

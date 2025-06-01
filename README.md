@@ -46,7 +46,7 @@ Perfect for landing pages, portfolios, agency websites, and storytelling sites t
 
 ## 📦 Requirements
 
-- WordPress 5.8 or higher  
+- WordPress 6.6.2 or higher  
 - PHP 7.4 or higher  
 - Works with most modern WordPress themes
 
@@ -54,7 +54,7 @@ Perfect for landing pages, portfolios, agency websites, and storytelling sites t
 
 ## 🛠 Development
 
-This plugin is actively maintained by [7uplabs](https://profiles.wordpress.org/7uplabs) and [salimshrestha98](https://profiles.wordpress.org/salimshrestha98).  
+This plugin is actively maintained by [salimshrestha](https://profiles.wordpress.org/salimshrestha).
 We welcome contributions and feedback!
 
 ### 🛠 Want to contribute?

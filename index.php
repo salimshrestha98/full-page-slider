@@ -2,13 +2,13 @@
 
 /*
  * Plugin Name:       Full Page Slider
- * Plugin URI:        https://github.com/7uplabs/full-page-slider
+ * Plugin URI:        https://github.com/salimshrestha98/full-page-slider
  * Description:       Full Page Slider Plugin for WordPress.
  * Version:           1.0.0
  * Requires at least: 6.6.2
  * Requires PHP:      7.4
- * Author:            7uplabs
- * Author URI:        https://github.com/7uplabs/
+ * Author:            Salim Shrestha
+ * Author URI:        https://salim.com.np/
  * License:           GPL2
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       full-page-slider

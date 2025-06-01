@@ -246,7 +246,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 			<InspectorControls>
 				{!hideFirstTimeNotice && (
 					<Flex style={{alignItems: 'flex-start'}}>
-						<p style={{padding: '0 18px'}}><em>Using for the first time? Check out our guide <a href="#">here</a>.</em></p>
+						<p style={{padding: '0 18px'}}><em>Using for the first time? Check out our guide <a href="https://salim.com.np/full-page-slider/guide">here</a>.</em></p>
 						<Button
 							icon="no-alt"
 							title={__('Close Forever', 'full-page-slider')}

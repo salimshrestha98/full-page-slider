@@ -1,10 +1,8 @@
 import { InnerBlocks, InspectorControls, RichText, useBlockProps } from '@wordpress/block-editor';
 import { getBackgroundStyles, getTypographyStyles } from '../../utilities';
+import { useDispatch, useSelect } from '@wordpress/data';
 
-import {BackgroundControl} from '../../components';
-import {
-	PanelBody,
-} from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { SwiperSlide } from 'swiper/react';
 import {__} from '@wordpress/i18n';
 import { store as blockEditorStore } from '@wordpress/block-editor';
@@ -12,7 +10,6 @@ import classNames from 'classnames';
 import metadata from './block.json';
 import { registerBlockType } from '@wordpress/blocks';
 import { useEffect } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
 
 registerBlockType( 'full-page-slider/slide', {
 	edit: ( { clientId, context, attributes, setAttributes } ) => {
@@ -27,6 +24,7 @@ registerBlockType( 'full-page-slider/slide', {
 			["full-page-slider/showTitle"]: showTitle,
 			["full-page-slider/titleAlignment"]: titleAlignment,
 			["full-page-slider/stickToBottom"]: stickToBottom,
+			["full-page-slider/enableSlideSettings"]: enableSlideSettings,
 			["full-page-slider/enableContentAnimation"]: enableContentAnimation,
 			["full-page-slider/contentAnimation"]: contentAnimation,
 			["full-page-slider/contentAnimationDuration"]: contentAnimationDuration,
@@ -43,7 +41,6 @@ registerBlockType( 'full-page-slider/slide', {
 
 		// Compose all context values in one object.
 		const parentValues = {
-			activeSlide,
 			showTitle,
 			titleAlignment,
 			stickToBottom,
@@ -82,16 +79,32 @@ registerBlockType( 'full-page-slider/slide', {
 			return getBlockIndex( clientId ); // `clientId` is passed to every block
 		}, [ clientId ] );
 
+		/**
+		 * Select parent when button clicked.
+		 */
+		const { getBlockRootClientId } = useSelect((select) => select(blockEditorStore), []);
+		const { selectBlock }          = useDispatch(blockEditorStore);
+		const parentClientId           = getBlockRootClientId(clientId);
+
+		function makeParentActive() {
+			if (parentClientId) {
+				selectBlock(parentClientId);
+			}
+		}
+
 		return (
 			<>
-			<InspectorControls>
-				<PanelBody title="Color" initialOpen={ false }>
-					<BackgroundControl
-						value={background || {}}
-						onChange={(newVal) => setAttributes({ background: newVal })}
-					/>
-				</PanelBody>
-			</InspectorControls>
+				<InspectorControls>
+					<Button
+						variant="secondary"
+						onClick={makeParentActive}
+						style={{marginLeft: '20px'}}
+						icon='admin-settings'
+					>
+						All Settings
+					</Button>
+				</InspectorControls>
+
 				<SwiperSlide className="slide-block swiper-slide">
 					<div { ...innerBlockProps }>
 						<div
@@ -147,12 +160,10 @@ registerBlockType( 'full-page-slider/slide', {
 			showTitle,
 			titleAlignment,
 			stickToBottom,
-			enableContentAnimation,
 			contentAnimation,
 			contentAnimationDuration,
 			contentAnimationDelay,
 			titleColor,
-			titleBackground,
 			contentColor,
 			contentBackground,
 			titleTypography,

@@ -2,7 +2,7 @@
 Contributors: salimshrestha98  
 Tags: gutenberg, slider, page animation, full page slider
 Requires at least: 6.6.2 
-Tested up to: 6.8.1
+Tested up to: 6.8
 Requires PHP: 7.4  
 Stable tag: 1.0.0  
 License: GPLv2 or later  

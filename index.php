@@ -2,7 +2,7 @@
 
 /*
  * Plugin Name:       Full Page Slider
- * Plugin URI:        https://github.com/salimshrestha98/full-page-slider
+ * Plugin URI:        https://salim.com.np/full-page-slider
  * Description:       Full Page Slider Plugin for WordPress.
  * Version:           1.0.0
  * Requires at least: 6.6.2

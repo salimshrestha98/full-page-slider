@@ -4,6 +4,10 @@
  * @returns 
  */
 export function getBackgroundStyles(background) {
+    if ( !background ) {
+        return {};
+    }
+
 	const {
 		backgroundRepeat,
 		backgroundPosition,

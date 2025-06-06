@@ -5,6 +5,7 @@ import { useDispatch, useSelect } from '@wordpress/data';
 import { Button } from '@wordpress/components';
 import { SwiperSlide } from 'swiper/react';
 import {__} from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import { store as blockEditorStore } from '@wordpress/block-editor';
 import classNames from 'classnames';
 import metadata from './block.json';
@@ -13,64 +14,46 @@ import { useEffect } from '@wordpress/element';
 
 registerBlockType( 'full-page-slider/slide', {
 	edit: ( { clientId, context, attributes, setAttributes } ) => {
-		const { 
-			title, 
-			background
-		} = attributes;
-
-		// Fetch Context Values.
-		const {
-			["full-page-slider/activeSlide"]: activeSlide,
-			["full-page-slider/showTitle"]: showTitle,
-			["full-page-slider/titleAlignment"]: titleAlignment,
-			["full-page-slider/stickToBottom"]: stickToBottom,
-			["full-page-slider/enableSlideSettings"]: enableSlideSettings,
-			["full-page-slider/enableContentAnimation"]: enableContentAnimation,
-			["full-page-slider/contentAnimation"]: contentAnimation,
-			["full-page-slider/contentAnimationDuration"]: contentAnimationDuration,
-			["full-page-slider/contentAnimationDelay"]: contentAnimationDelay,
-			["full-page-slider/titleColor"]: titleColor,
-			["full-page-slider/titleBackground"]: titleBackground,
-			["full-page-slider/contentColor"]: contentColor,
-			["full-page-slider/contentBackground"]: contentBackground,
-			["full-page-slider/titleTypography"]: titleTypography,
-			["full-page-slider/contentTypography"]: contentTypography,
-			["full-page-slider/titlePadding"]: titlePadding,
-			["full-page-slider/contentPadding"]: contentPadding,
-		} = context;
-
-		// Compose all context values in one object.
-		const parentValues = {
-			showTitle,
-			titleAlignment,
-			stickToBottom,
-			enableContentAnimation,
-			contentAnimation,
-			contentAnimationDuration,
-			contentAnimationDelay,
-			titleColor,
-			titleBackground,
-			contentColor,
-			contentBackground,
-			titleTypography,
-			contentTypography,
-			titlePadding,
-			contentPadding,
-		};
+		// Dynamically extract all full-page-slider/* context values
+        const parentValues = Object.fromEntries(
+            Object.entries(context)
+                .filter(([key]) => key.startsWith('full-page-slider/'))
+                .map(([key, value]) => [key.replace('full-page-slider/', ''), value])
+        );
 
 		// Mirror context values to 'parentsAttribute'.
 		useEffect(() => {
 			setAttributes({ parentAttributes: parentValues });
-		}, [JSON.stringify(parentValues)]);
+		}, [JSON.stringify(parentValues)]); // dependency to avoid infinite loop
+
+        let localAttributes = applyFilters('fps.slide.localAttributes', attributes.parentAttributes, attributes);
+
+        const {
+            showTitle,
+            stickToBottom,
+            background,
+            enableContentAnimation,
+            contentAnimation,
+            contentAnimationDuration,
+            contentAnimationDelay,
+            titleTypography,
+            titleAlignment,
+            titlePadding,
+            titleColor,
+            contentPadding,
+            contentTypography,
+            contentColor,
+            contentBackground
+        } = localAttributes;
 
 		/**
 		 * APPLY STYLES TO BLOCK.
 		 */
 		const innerBlockProps = useBlockProps({
-			style: {
+			style: applyFilters('fps.slide.blockStyles', {
 				justifyContent: stickToBottom ? 'flex-end' : 'flex-start',
 				...getBackgroundStyles(background)
-			}
+			})
 		});
 
 		// Block index.
@@ -96,12 +79,19 @@ registerBlockType( 'full-page-slider/slide', {
 			<>
 				<InspectorControls>
 					<Button
+                        size="compact"
 						variant="secondary"
 						onClick={makeParentActive}
-						style={{marginLeft: '20px'}}
+						style={{
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            marginTop: '12px',
+                            marginRight: '15px'
+                        }}
 						icon='admin-settings'
 					>
-						All Settings
+						{__('Slider Settings', 'full-page-slider')}
 					</Button>
 				</InspectorControls>
 
@@ -110,7 +100,7 @@ registerBlockType( 'full-page-slider/slide', {
 						<div
 							className={classNames(
 								'slide-content',
-								(enableContentAnimation && index === activeSlide) ? `animate animate--${contentAnimation}` : ''
+								(enableContentAnimation && index === parentValues.activeSlide) ? `animate animate--${contentAnimation}` : ''
 							)}
 							style={{
 								animationDuration: contentAnimationDuration + 'ms',
@@ -122,7 +112,7 @@ registerBlockType( 'full-page-slider/slide', {
 								<RichText
 									tagName="h2"
 									className='slide-title'
-									value={ title }
+									value={ attributes.title }
 									onChange={ ( newTitle ) => setAttributes( { title: newTitle } ) }
 									placeholder={__("Give me a title…", 'full-page-slider')}
 									style={{
@@ -135,7 +125,7 @@ registerBlockType( 'full-page-slider/slide', {
 
 							<div className="slide-main"
 								style={{
-									flexGrow: stickToBottom ? 'unset' : 1,
+									flexGrow: parentValues.stickToBottom ? 'unset' : 1,
 									color: contentColor,
 									padding: `${contentPadding?.top}${contentPadding?.unit} ${contentPadding?.right}${contentPadding?.unit} ${contentPadding?.bottom}${contentPadding?.unit} ${contentPadding?.left}${contentPadding?.unit}`,
 									...getTypographyStyles(contentTypography),
@@ -178,7 +168,7 @@ registerBlockType( 'full-page-slider/slide', {
 			<div className="slide-block swiper-slide">
 				<div style={{
 					...backgroundStyles,
-					justifyContent: stickToBottom ? 'flex-end' : 'flex-start',
+					justifyContent: parentAttributes.stickToBottom ? 'flex-end' : 'flex-start',
 				}}>
 					<div className={`slide-content animate animate--${contentAnimation}`} style={{
 						animationDuration: contentAnimationDuration + 'ms',
@@ -202,7 +192,7 @@ registerBlockType( 'full-page-slider/slide', {
 							className="slide-main"
 							style={{
 								...getTypographyStyles(contentTypography),
-								flexGrow: stickToBottom ? 'unset' : 1,
+								flexGrow: parentAttributes.stickToBottom ? 'unset' : 1,
 								color: contentColor,
 								padding: `${contentPadding?.top}${contentPadding?.unit} ${contentPadding?.right}${contentPadding?.unit} ${contentPadding?.bottom}${contentPadding?.unit} ${contentPadding?.left}${contentPadding?.unit}`
 							}}	

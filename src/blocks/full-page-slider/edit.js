@@ -40,7 +40,6 @@ import TEMPLATE from './template';
 import { __ } from '@wordpress/i18n';
 import { getBackgroundStyles } from '../../utilities';
 import { useState } from 'react';
-import { useThemeColorResolver } from '../../hooks/useThemeColorResolver';
 
 export default function Edit ( { clientId, attributes, setAttributes } ) {
 
@@ -298,7 +297,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { forceFullScreen: value } ) }
 					/>
 				</PanelBody>
-
 
 				<PanelBody title={__("Slider", 'full-page-slider')} initialOpen={ false }>
 					<SelectControl

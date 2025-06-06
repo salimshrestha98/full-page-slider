@@ -6,51 +6,55 @@
 	"icon": "media-document",
 	"parent": ["full-page-slider/full-page-slider"],
 	"attributes": {
-		"parentAttributes": {
-			"type": "object",
-			"default": ""
-		},
-	  "title": {
-		"type": "string",
-		"default": "Slide Title"
-	  },
-	  "footer": {
-		"type": "string",
-		"default": "Slide Footer"
-	  },
-	  "padding": {
-		"type": "object",
-		"default": {
-			"top": 20,
-			"right": 20,
-			"bottom": 20,
-			"left": 20,
-			"unit": "px"
-		}
-	  },
-	  "background": {
-		"type": "object",
-		"default": {}
-	  }
+        "title": {
+            "type": "string",
+            "default": "Slide Title"
+        },
+        "parentAttributes": {
+            "type": "object",
+            "default": {}
+        }
 	},
-	"usesContext": [
-		"full-page-slider/activeSlide",
-		"full-page-slider/showTitle",
-		"full-page-slider/titleAlignment",
-		"full-page-slider/stickToBottom",
-		"full-page-slider/enableContentAnimation",
-		"full-page-slider/contentAnimation",
-		"full-page-slider/contentAnimationDuration",
-		"full-page-slider/contentAnimationDelay",
-		"full-page-slider/titleColor",
-		"full-page-slider/titleBackground",
-		"full-page-slider/contentColor",
-		"full-page-slider/contentBackground",
-		"full-page-slider/titleTypography",
-		"full-page-slider/contentTypography",
-		"full-page-slider/titlePadding",
-		"full-page-slider/contentPadding"
-	],
+    "usesContext": [
+        "full-page-slider/activeSlide",
+        "full-page-slider/slidesCount",
+        "full-page-slider/device",
+        "full-page-slider/showTitle",
+        "full-page-slider/titleAlignment",
+        "full-page-slider/stickToBottom",
+        "full-page-slider/forceFullScreen",
+        "full-page-slider/direction",
+        "full-page-slider/effect",
+        "full-page-slider/speed",
+        "full-page-slider/navigation",
+        "full-page-slider/pagination",
+        "full-page-slider/loop",
+        "full-page-slider/scrollbar",
+        "full-page-slider/align",
+        "full-page-slider/enableContentAnimation",
+        "full-page-slider/contentAnimation",
+        "full-page-slider/contentAnimationDuration",
+        "full-page-slider/contentAnimationDelay",
+        "full-page-slider/colors",
+        "full-page-slider/titleColor",
+        "full-page-slider/titleBackground",
+        "full-page-slider/contentColor",
+        "full-page-slider/contentBackground",
+        "full-page-slider/background",
+        "full-page-slider/titleTypography",
+        "full-page-slider/contentTypography",
+        "full-page-slider/titlePadding",
+        "full-page-slider/contentPadding",
+        "full-page-slider/padding",
+        "full-page-slider/margin",
+        "full-page-slider/width",
+        "full-page-slider/height",
+        "full-page-slider/borderColor",
+        "full-page-slider/borderWidth",
+        "full-page-slider/borderRadius",
+        "full-page-slider/layout",
+        "full-page-slider/position"
+    ],
 	"supports": {
 		"html": false,
 		"customClassName": false,

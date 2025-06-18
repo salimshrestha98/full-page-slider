@@ -9,9 +9,9 @@ const ColorPicker = ({ label, value, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <BaseControl className="fps-color-picker-control">
+        <BaseControl className="fpslider-color-picker-control">
 			<Flex>
-				<span className="fps-control-label">{__(label, 'full-page-slider')}</span>
+				<span className="fpslider-control-label">{__(label, 'full-page-slider')}</span>
 				<Button
 					style={{
 						background: value ?? '#ffffff',
@@ -28,7 +28,7 @@ const ColorPicker = ({ label, value, onChange }) => {
 			</Flex>
             {isOpen && (
                 <Popover
-					className="fps-color-picker__popover"
+					className="fpslider-color-picker__popover"
 					onClose={() => setIsOpen(false)}
                 >
                     <WPColorPicker
@@ -39,7 +39,7 @@ const ColorPicker = ({ label, value, onChange }) => {
                     />
 
 					<Button
-					className='fps-color-picker__popover__reset_btn'
+					className='fpslider-color-picker__popover__reset_btn'
 						onClick={() => onChange(undefined)}
 						size='small'
 						variant='secondary'

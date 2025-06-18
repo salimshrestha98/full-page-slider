@@ -13,13 +13,13 @@ module.exports = function ( grunt ) {
 				src: [
 					'**',
 					'!node_modules/**',
-					'!src/**',
 					'!full-page-slider.zip',
 					'!.git/**',
 					'!.gitignore',
 					'!Gruntfile.js',
 					'!package-lock.json',
-					'!package.json'
+					'!package.json',
+					'!composer.lock'
 				],
 				dest: 'full-page-slider/'
 			}

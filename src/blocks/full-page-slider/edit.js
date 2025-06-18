@@ -237,7 +237,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 
 	function closeFirstTimeNotice() {
 		setHideFirstTimeNotice(true);
-		fetch(fullPageSliderL10n.ajaxURL + '?action=disable_first_time_notice').catch(() => {});
+		fetch(fullPageSliderL10n.ajaxURL + '?action=fpslider_disable_first_time_notice').catch(() => {});
 	}
 
 	return (

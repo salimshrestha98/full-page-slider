@@ -52,7 +52,7 @@ const BackgroundControl = ({
 	if (enableImage) BACKGROUND_TYPES.push({ value: 'image', label: 'Image', icon: image });
 
     return (
-        <BaseControl className="fps-background-control">
+        <BaseControl className="fpslider-background-control">
             <ChooseControl
                 label={__(label, 'full-page-slider')}
                 value={value.backgroundType || 'color'}
@@ -130,7 +130,7 @@ const BackgroundControl = ({
                         <Popover
                             onClose={() => setIsOpen(false)}
                             placement="bottom-start"
-                            className="fps-background-control__popover"
+                            className="fpslider-background-control__popover"
                         >
                             <SelectControl
                                 label={__('Background Size', 'full-page-slider')}
@@ -143,7 +143,7 @@ const BackgroundControl = ({
                                 onChange={(value) => setBackgroundValue('backgroundSize', value)}
                             />
 
-                            <label className='fps-control-label'>Background Position</label>
+                            <label className='fpslider-control-label'>Background Position</label>
                             <AlignmentMatrixControl
                                 label={__('Background Position', 'full-page-slider')}
                                 value={value?.backgroundPosition}

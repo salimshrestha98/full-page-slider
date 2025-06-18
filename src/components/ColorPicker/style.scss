@@ -1,5 +1,5 @@
-.fps-color-picker-control {
-	.fps-control-label {
+.fpslider-color-picker-control {
+	.fpslider-control-label {
 		font-size: 11px;
 		font-weight: 500;
 		line-height: 1.4;
@@ -16,13 +16,13 @@
 	}
 }
 
-.fps-color-picker__popover{
+.fpslider-color-picker__popover{
 	.components-popover__content {
 		min-width: 200px;
 		padding: 10px;
 	}
 
-	.fps-color-picker__popover__reset_btn {
+	.fpslider-color-picker__popover__reset_btn {
 		margin-left: 16px;
 	}
 }

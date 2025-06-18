@@ -1,12 +1,13 @@
 === Full Page Slider ===
-Contributors: salimshrestha98  
+Contributors: salimshrestha
 Tags: gutenberg, slider, page animation, full page slider
-Requires at least: 6.6.2 
+Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4  
 Stable tag: 1.0.0  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Source Code: https://github.com/salimshrestha98/full-page-slider
 
 Full Page Slider is a Gutenberg-powered plugin that allows you to create immersive, full-page sliders using the WordPress block editor.
 

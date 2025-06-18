@@ -26,7 +26,7 @@ registerBlockType( 'full-page-slider/slide', {
 			setAttributes({ parentAttributes: parentValues });
 		}, [JSON.stringify(parentValues)]); // dependency to avoid infinite loop
 
-        let localAttributes = applyFilters('fps.slide.localAttributes', attributes.parentAttributes, attributes);
+        let localAttributes = applyFilters('fpslider.slide.localAttributes', attributes.parentAttributes, attributes);
 
         const {
             showTitle,
@@ -50,7 +50,7 @@ registerBlockType( 'full-page-slider/slide', {
 		 * APPLY STYLES TO BLOCK.
 		 */
 		const innerBlockProps = useBlockProps({
-			style: applyFilters('fps.slide.blockStyles', {
+			style: applyFilters('fpslider.slide.blockStyles', {
 				justifyContent: stickToBottom ? 'flex-end' : 'flex-start',
 				...getBackgroundStyles(background)
 			})

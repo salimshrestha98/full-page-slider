@@ -23,7 +23,7 @@ const ChooseControl = ({
 	};
 
 	return (
-		<BaseControl className="fps-choose-control">
+		<BaseControl className="fpslider-choose-control">
 			<Flex>
 				<FlexItem>
 					<label>{__(label, 'full-page-slider')}</label>

@@ -29,12 +29,12 @@ class Blocks
     {
 
         if (function_exists('wp_register_block_metadata_collection') ) {
-            wp_register_block_metadata_collection(FPS_PLUGIN_DIR . '/build', FPS_PLUGIN_DIR . '/build/blocks-manifest.php');
+            wp_register_block_metadata_collection(FPSLIDER_PLUGIN_DIR . '/build', FPSLIDER_PLUGIN_DIR . '/build/blocks-manifest.php');
         }
 
-        $manifest_data = include FPS_PLUGIN_DIR . '/build/blocks-manifest.php';
+        $manifest_data = include FPSLIDER_PLUGIN_DIR . '/build/blocks-manifest.php';
         foreach ( array_keys($manifest_data) as $block_type ) {
-            register_block_type(FPS_PLUGIN_DIR . "/build/blocks/{$block_type}");
+            register_block_type(FPSLIDER_PLUGIN_DIR . "/build/blocks/{$block_type}");
         }
     }
 
@@ -44,15 +44,15 @@ class Blocks
      */
     public function register_blocks_assets()
     {
-        $manifest_data = include FPS_PLUGIN_DIR . '/build/blocks-manifest.php';
+        $manifest_data = include FPSLIDER_PLUGIN_DIR . '/build/blocks-manifest.php';
         foreach ( array_keys($manifest_data) as $block_type ) {
             wp_localize_script(
                 "full-page-slider-$block_type-editor-script",
                 'fullPageSliderL10n',
                 array(
-                'pluginURL' => FPS_PLUGIN_URL,
+                'pluginURL' => FPSLIDER_PLUGIN_URL,
                 'ajaxURL'   => admin_url('admin-ajax.php'),
-                'hideFirstTimeNotice' => get_option( 'fps_hide_first_time_notice', false),
+                'hideFirstTimeNotice' => get_option( 'fpslider_hide_first_time_notice', false),
                 )
             );
         }

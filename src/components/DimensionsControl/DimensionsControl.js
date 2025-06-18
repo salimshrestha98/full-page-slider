@@ -54,7 +54,7 @@ const DimensionsControl = ({ label = __('Dimensions', 'full-page-slider'), value
 
 	return (
 		<BaseControl
-			className="fps-dimensions-control"
+			className="fpslider-dimensions-control"
 			label={
 				<Flex justify="space-between" align="center">
 					<span>{__(label, 'full-page-slider')}</span>

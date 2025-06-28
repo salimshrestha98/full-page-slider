@@ -21,7 +21,7 @@
         "full-page-slider/device",
         "full-page-slider/showTitle",
         "full-page-slider/titleAlignment",
-        "full-page-slider/stickToBottom",
+        "full-page-slider/alignContent",
         "full-page-slider/forceFullScreen",
         "full-page-slider/direction",
         "full-page-slider/effect",

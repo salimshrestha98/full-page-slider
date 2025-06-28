@@ -37,9 +37,9 @@
 			"type": "string",
 			"default": "center"
 		},
-		"stickToBottom": {
-			"type": "boolean",
-			"default": false
+		"alignContent": {
+			"type": "string",
+			"default": "top"
 		},
 		"forceFullScreen": {
 			"type": "boolean",
@@ -113,7 +113,8 @@
 			"type": "object",
 			"default": {
 				"backgroundType": "gradient",
-				"gradient": "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"
+				"gradient": "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+                "backgroundSize": "cover"
 			}
 		},
 		"titleTypography": {
@@ -202,7 +203,7 @@
         "full-page-slider/device": "device",
         "full-page-slider/showTitle": "showTitle",
         "full-page-slider/titleAlignment": "titleAlignment",
-        "full-page-slider/stickToBottom": "stickToBottom",
+        "full-page-slider/alignContent": "alignContent",
         "full-page-slider/forceFullScreen": "forceFullScreen",
         "full-page-slider/direction": "direction",
         "full-page-slider/effect": "effect",

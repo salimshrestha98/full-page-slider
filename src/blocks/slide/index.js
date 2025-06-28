@@ -30,7 +30,7 @@ registerBlockType( 'full-page-slider/slide', {
 
         const {
             showTitle,
-            stickToBottom,
+            alignContent,
             background,
             enableContentAnimation,
             contentAnimation,
@@ -46,12 +46,22 @@ registerBlockType( 'full-page-slider/slide', {
             contentBackground
         } = localAttributes;
 
+		// Map alignContent to flexbox values
+		const justifyContentMap = {
+			top: 'flex-start',
+			center: 'center',
+			bottom: 'flex-end',
+			cover: 'stretch',
+		};
+		const justifyContent = justifyContentMap[alignContent] || 'flex-start';
+		const flexGrow = alignContent === 'cover' ? 1 : 'unset';
+
 		/**
 		 * APPLY STYLES TO BLOCK.
 		 */
 		const innerBlockProps = useBlockProps({
 			style: applyFilters('fpslider.slide.blockStyles', {
-				justifyContent: stickToBottom ? 'flex-end' : 'flex-start',
+				justifyContent,
 				...getBackgroundStyles(background)
 			})
 		});
@@ -125,7 +135,7 @@ registerBlockType( 'full-page-slider/slide', {
 
 							<div className="slide-main"
 								style={{
-									flexGrow: parentValues.stickToBottom ? 'unset' : 1,
+									flexGrow,
 									color: contentColor,
 									padding: `${contentPadding?.top}${contentPadding?.unit} ${contentPadding?.right}${contentPadding?.unit} ${contentPadding?.bottom}${contentPadding?.unit} ${contentPadding?.left}${contentPadding?.unit}`,
 									...getTypographyStyles(contentTypography),
@@ -149,7 +159,7 @@ registerBlockType( 'full-page-slider/slide', {
 		const {
 			showTitle,
 			titleAlignment,
-			stickToBottom,
+			alignContent,
 			contentAnimation,
 			contentAnimationDuration,
 			contentAnimationDelay,
@@ -164,11 +174,21 @@ registerBlockType( 'full-page-slider/slide', {
 
 		const backgroundStyles = getBackgroundStyles(background);
 
+		// Map alignContent to flexbox values
+		const justifyContentMap = {
+			top: 'flex-start',
+			center: 'center',
+			bottom: 'flex-end',
+			cover: 'stretch',
+		};
+		const justifyContent = justifyContentMap[alignContent] || 'flex-start';
+		const flexGrow = alignContent === 'cover' ? 1 : 'unset';
+
 		return (
 			<div className="slide-block swiper-slide">
 				<div style={{
 					...backgroundStyles,
-					justifyContent: parentAttributes.stickToBottom ? 'flex-end' : 'flex-start',
+					justifyContent,
 				}}>
 					<div className={`slide-content animate animate--${contentAnimation}`} style={{
 						animationDuration: contentAnimationDuration + 'ms',
@@ -192,7 +212,7 @@ registerBlockType( 'full-page-slider/slide', {
 							className="slide-main"
 							style={{
 								...getTypographyStyles(contentTypography),
-								flexGrow: parentAttributes.stickToBottom ? 'unset' : 1,
+								flexGrow,
 								color: contentColor,
 								padding: `${contentPadding?.top}${contentPadding?.unit} ${contentPadding?.right}${contentPadding?.unit} ${contentPadding?.bottom}${contentPadding?.unit} ${contentPadding?.left}${contentPadding?.unit}`
 							}}	

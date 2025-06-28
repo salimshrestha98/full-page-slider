@@ -47,7 +47,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		activeSlide,
 		device,
 		showTitle,
-		stickToBottom,
+		alignContent,
 		forceFullScreen,
 		titleAlignment,
 		direction,
@@ -244,13 +244,18 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		<>
 			<InspectorControls>
 				{!hideFirstTimeNotice && (
-					<Flex style={{alignItems: 'flex-start'}}>
-						<p style={{padding: '0 18px'}}><em>Using for the first time? Check out our guide <a href="https://salim.com.np/full-page-slider/guide">here</a>.</em></p>
+					<Flex style={{alignItems: 'flex-start', background: '#f8fafc', borderRadius: '6px', marginTop: '8px', padding: '10px 10px 10px 20px'}}>
+						<p style={{padding: '0 12px 0 0', margin: 0}}>
+							<em>
+								<strong>Welcome!</strong> If this is your first time using Full Page Slider, our <a href="https://salim.com.np/full-page-slider/guide" target="_blank" rel="noopener noreferrer">quick start guide</a> will help you get the most out of it.
+							</em>
+						</p>
 						<Button
 							icon="no-alt"
 							title={__('Close Forever', 'full-page-slider')}
 							onClick={() => closeFirstTimeNotice()}
 							isDestructive
+							style={{marginLeft: 'auto'}}
 						/>
 					</Flex>
 				)}
@@ -285,10 +290,16 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						/>
 					)}
 
-					<ToggleControl
-						label={__("Stick Content to Bottom", 'full-page-slider')}
-						checked={ stickToBottom }
-						onChange={ ( value ) => setAttributes( { stickToBottom: value } ) }
+					<SelectControl
+						label={__("Align Content", 'full-page-slider')}
+						value={alignContent || 'top'}
+						onChange={ value => setAttributes({ alignContent: value }) }
+						options={[
+							{ label: __('Top', 'full-page-slider'), value: 'top' },
+							{ label: __('Center', 'full-page-slider'), value: 'center' },
+							{ label: __('Bottom', 'full-page-slider'), value: 'bottom' },
+							{ label: __('Cover', 'full-page-slider'), value: 'cover' },
+						]}
 					/>
 
 					<ToggleControl
@@ -414,12 +425,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( "Color", 'full-page-slider' ) } initialOpen={false}>
-					<ColorPicker
-						value={titleColor}
-						onChange={( color ) => setAttributes( { titleColor: color } )}
-						label={__('Title Color', 'full-page-slider')}
-					/>
-
+					{showTitle && (
+						<ColorPicker
+							value={titleColor}
+							onChange={( color ) => setAttributes( { titleColor: color } )}
+							label={__('Title Color', 'full-page-slider')}
+						/>
+					)}
 					<ColorPicker
 						value={contentColor}
 						onChange={( color ) => setAttributes( { contentColor: color } )}
@@ -439,12 +451,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( "Typography", 'full-page-slider' ) } initialOpen={false}>
-					<TypographyControl
-						label={__("Title Typography", 'full-page-slider')}
-						value={titleTypography}
-						onChange={(val) => setAttributes({ titleTypography: val })}
-					/>
-					
+					{showTitle && (
+						<TypographyControl
+							label={__("Title Typography", 'full-page-slider')}
+							value={titleTypography}
+							onChange={(val) => setAttributes({ titleTypography: val })}
+						/>
+					)}
 					<TypographyControl
 						label={__("Content Typography", 'full-page-slider')}
 						value={contentTypography}
@@ -453,11 +466,13 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( "Spacing", 'full-page-slider' ) } initialOpen={false}>
-					<DimensionsControl
-						label={__("Title Padding", 'full-page-slider')}
-						value={titlePadding}
-						onChange={(newVal) => setAttributes({ titlePadding: newVal })}
-					/>
+					{showTitle && (
+						<DimensionsControl
+							label={__("Title Padding", 'full-page-slider')}
+							value={titlePadding}
+							onChange={(newVal) => setAttributes({ titlePadding: newVal })}
+						/>
+					)}
 					<DimensionsControl
 						label={__("Content Padding", 'full-page-slider')}
 						value={contentPadding}

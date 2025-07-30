@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import metadata from './block.json';
 import { registerBlockType } from '@wordpress/blocks';
 import { useEffect } from '@wordpress/element';
+import SlideInspectorControls from './inspector';
 
 registerBlockType( 'full-page-slider/slide', {
 	edit: ( { clientId, context, attributes, setAttributes } ) => {
@@ -114,6 +115,11 @@ registerBlockType( 'full-page-slider/slide', {
 						{__('Global Settings', 'full-page-slider')}
 					</Button>
 				</InspectorControls>
+
+				<SlideInspectorControls
+					attributes={localAttributes}
+					setAttributes={setAttributes}
+				/>
 
 				<SwiperSlide className="slide-block swiper-slide">
 					<div { ...innerBlockProps }>

@@ -38,8 +38,8 @@ const handleChange = (key, newValue) => {
 					onChange={(e) => handleChange('unit', e.target.value)}
 					style={{marginTop: '15px', lineHeight: 2.1}}
 				>
-					{units.map((unit) => (
-						<option value={unit}>{unit}</option>
+					{units.map((unit, index) => (
+						<option key={index} value={unit}>{unit}</option>
 					))}
 				</select>
 			</FlexItem>

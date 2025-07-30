@@ -1,5 +1,5 @@
 import { InnerBlocks, InspectorControls, RichText, useBlockProps } from '@wordpress/block-editor';
-import { getBackgroundStyles, getTypographyStyles } from '../../utilities';
+import { getBackgroundStyles, getTypographyStyles, loadGoogleFont } from '../../utilities';
 import { useDispatch, useSelect } from '@wordpress/data';
 
 import { Button } from '@wordpress/components';
@@ -85,6 +85,16 @@ registerBlockType( 'full-page-slider/slide', {
 			}
 		}
 
+        // Load Google fonts when typography settings are available
+        useEffect(() => {
+            if (titleTypography?.fontFamily) {
+                loadGoogleFont(titleTypography.fontFamily);
+            }
+            if (contentTypography?.fontFamily) {
+                loadGoogleFont(contentTypography.fontFamily);
+            }
+        }, [titleTypography?.fontFamily, contentTypography?.fontFamily]);
+
 		return (
 			<>
 				<InspectorControls>
@@ -101,7 +111,7 @@ registerBlockType( 'full-page-slider/slide', {
                         }}
 						icon='admin-settings'
 					>
-						{__('Slider Settings', 'full-page-slider')}
+						{__('Global Settings', 'full-page-slider')}
 					</Button>
 				</InspectorControls>
 

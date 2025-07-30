@@ -9,6 +9,7 @@ import { __ } from '@wordpress/i18n'; // Required for localization
 
 export const FONT_FAMILIES = [
 	{ label: 'Default', value: '' },
+	// Web-safe fonts
 	{ label: 'Arial', value: 'Arial, sans-serif' },
 	{ label: 'Helvetica', value: 'Helvetica, sans-serif' },
 	{ label: 'Georgia', value: 'Georgia, serif' },
@@ -33,17 +34,74 @@ export const FONT_FAMILIES = [
 	{ label: 'Consolas', value: 'Consolas, monospace' },
 	{ label: 'Menlo', value: 'Menlo, monospace' },
 	{ label: 'Fira Code', value: '"Fira Code", monospace' },
-	{ label: 'Roboto', value: 'Roboto, sans-serif' },
-	{ label: 'Open Sans', value: '"Open Sans", sans-serif' },
-	{ label: 'Lato', value: 'Lato, sans-serif' },
-	{ label: 'Montserrat', value: 'Montserrat, sans-serif' },
-	{ label: 'Poppins', value: 'Poppins, sans-serif' },
-	{ label: 'Merriweather', value: 'Merriweather, serif' },
-	{ label: 'Playfair Display', value: '"Playfair Display", serif' },
-	{ label: 'Raleway', value: 'Raleway, sans-serif' },
-	{ label: 'Ubuntu', value: 'Ubuntu, sans-serif' },
-	{ label: 'Inter', value: 'Inter, sans-serif' },
-	{ label: 'Source Sans Pro', value: '"Source Sans Pro", sans-serif' },
+	
+	// Google Fonts - Sans Serif
+	{ label: 'Roboto (Google)', value: 'Roboto, sans-serif' },
+	{ label: 'Open Sans (Google)', value: '"Open Sans", sans-serif' },
+	{ label: 'Lato (Google)', value: 'Lato, sans-serif' },
+	{ label: 'Montserrat (Google)', value: 'Montserrat, sans-serif' },
+	{ label: 'Poppins (Google)', value: 'Poppins, sans-serif' },
+	{ label: 'Raleway (Google)', value: 'Raleway, sans-serif' },
+	{ label: 'Ubuntu (Google)', value: 'Ubuntu, sans-serif' },
+	{ label: 'Inter (Google)', value: 'Inter, sans-serif' },
+	{ label: 'Source Sans Pro (Google)', value: '"Source Sans Pro", sans-serif' },
+	{ label: 'Nunito (Google)', value: 'Nunito, sans-serif' },
+	{ label: 'Work Sans (Google)', value: '"Work Sans", sans-serif' },
+	{ label: 'Fira Sans (Google)', value: '"Fira Sans", sans-serif' },
+	{ label: 'Rubik (Google)', value: 'Rubik, sans-serif' },
+	{ label: 'Barlow (Google)', value: 'Barlow, sans-serif' },
+	{ label: 'DM Sans (Google)', value: '"DM Sans", sans-serif' },
+	
+	// Google Fonts - Serif
+	{ label: 'Merriweather (Google)', value: 'Merriweather, serif' },
+	{ label: 'Playfair Display (Google)', value: '"Playfair Display", serif' },
+	{ label: 'Crimson Text (Google)', value: '"Crimson Text", serif' },
+	{ label: 'Libre Baskerville (Google)', value: '"Libre Baskerville", serif' },
+	{ label: 'Lora (Google)', value: 'Lora, serif' },
+	{ label: 'PT Serif (Google)', value: '"PT Serif", serif' },
+	{ label: 'Cormorant Garamond (Google)', value: '"Cormorant Garamond", serif' },
+	{ label: 'Crimson Pro (Google)', value: '"Crimson Pro", serif' },
+	
+	// Google Fonts - Display
+	{ label: 'Oswald (Google)', value: 'Oswald, sans-serif' },
+	{ label: 'Dancing Script (Google)', value: '"Dancing Script", cursive' },
+	{ label: 'Pacifico (Google)', value: 'Pacifico, cursive' },
+	{ label: 'Lobster (Google)', value: 'Lobster, cursive' },
+	{ label: 'Righteous (Google)', value: 'Righteous, cursive' },
+	{ label: 'Fredoka One (Google)', value: '"Fredoka One", cursive' },
+];
+
+// List of Google Fonts for dynamic loading
+export const GOOGLE_FONT_FAMILIES = [
+	'Roboto',
+	'Open Sans',
+	'Lato',
+	'Montserrat',
+	'Poppins',
+	'Raleway',
+	'Ubuntu',
+	'Inter',
+	'Source Sans Pro',
+	'Nunito',
+	'Work Sans',
+	'Fira Sans',
+	'Rubik',
+	'Barlow',
+	'DM Sans',
+	'Merriweather',
+	'Playfair Display',
+	'Crimson Text',
+	'Libre Baskerville',
+	'Lora',
+	'PT Serif',
+	'Cormorant Garamond',
+	'Crimson Pro',
+	'Oswald',
+	'Dancing Script',
+	'Pacifico',
+	'Lobster',
+	'Righteous',
+	'Fredoka One',
 ];
 
 export const FONT_WEIGHTS = [

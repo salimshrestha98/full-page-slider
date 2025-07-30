@@ -31,14 +31,13 @@ import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { desktop, justifyCenter, justifyLeft, justifyRight, mobile, tablet } from '@wordpress/icons';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
-
 import { BlockControls } from '@wordpress/block-editor';
 import ColorPicker from '../../components/ColorPicker/ColorPicker';
 import DimensionsControl from '../../components/DimensionsControl/DimensionsControl';
 import { Swiper } from 'swiper';
 import TEMPLATE from './template';
 import { __ } from '@wordpress/i18n';
-import { getBackgroundStyles } from '../../utilities';
+import { getBackgroundStyles, loadGoogleFont } from '../../utilities';
 import { useState } from 'react';
 
 export default function Edit ( { clientId, attributes, setAttributes } ) {
@@ -81,6 +80,16 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		},
 		[ clientId ]
 	);
+
+	// Load Google fonts when typography settings are available
+	useEffect(() => {
+		if (titleTypography?.fontFamily) {
+			loadGoogleFont(titleTypography.fontFamily);
+		}
+		if (contentTypography?.fontFamily) {
+			loadGoogleFont(contentTypography.fontFamily);
+		}
+	}, [titleTypography?.fontFamily, contentTypography?.fontFamily]);
 
 	const backgroundStyles = getBackgroundStyles(background);
 

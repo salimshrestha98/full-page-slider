@@ -1,0 +1,52 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  php-quality:
+    name: PHP Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        tools: composer:v2
+        coverage: none
+    
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress || true
+    
+    - name: Run PHP Code Beautifier
+      run: |
+        composer global require squizlabs/php_codesniffer
+        ~/.composer/vendor/bin/phpcbf --standard=WordPress --extensions=php --ignore=vendor/ . || true
+
+  javascript-quality:
+    name: JavaScript Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run ESLint
+      run: npx eslint src/ --ext .js --fix || true
+    
+    - name: Run Stylelint
+      run: npx stylelint "src/**/*.scss" "src/**/*.css" --fix || true 

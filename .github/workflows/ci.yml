@@ -46,6 +46,7 @@ jobs:
     
     - name: Install PHPCS and WordPress Coding Standards
       run: |
+        composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
         composer global require squizlabs/php_codesniffer
         composer global require wp-coding-standards/wpcs
         phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
@@ -64,10 +65,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm install
     
     - name: Run ESLint
       run: npx eslint src/ --ext .js || true

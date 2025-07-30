@@ -26,6 +26,7 @@ jobs:
     
     - name: Run PHP Code Beautifier
       run: |
+        composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
         composer global require squizlabs/php_codesniffer
         ~/.composer/vendor/bin/phpcbf --standard=WordPress --extensions=php --ignore=vendor/ . || true
 
@@ -40,10 +41,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm install
     
     - name: Run ESLint
       run: npx eslint src/ --ext .js --fix || true

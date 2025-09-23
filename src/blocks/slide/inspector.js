@@ -38,6 +38,10 @@ const InspectorControls = (props) => {
         padding,
     } = attributes;
 
+    const handleColorChange = ( color ) => {
+        setAttributes( { titleColor: color } );
+    }
+
   return (
     <WPInspectorControls>
         <PanelBody title={ __( "General", 'full-page-slider' ) } initialOpen={false}>
@@ -45,6 +49,7 @@ const InspectorControls = (props) => {
                 label={__("Show Title", 'full-page-slider')}
                 checked={ showTitle }
                 onChange={ ( value ) => setAttributes( { showTitle: value } ) }
+                __nextHasNoMarginBottom
             />
 
             { showTitle && (
@@ -70,6 +75,7 @@ const InspectorControls = (props) => {
                     { label: __('Bottom', 'full-page-slider'), value: 'bottom' },
                     { label: __('Cover', 'full-page-slider'), value: 'cover' },
                 ]}
+                __nextHasNoMarginBottom
             />
         </PanelBody>
 
@@ -78,6 +84,7 @@ const InspectorControls = (props) => {
                 label={__( "Enable Content Animation", 'full-page-slider' )}
                 checked={ enableContentAnimation }
                 onChange={ ( value ) => setAttributes( { enableContentAnimation: value } ) }
+                __nextHasNoMarginBottom
             />
 
             { enableContentAnimation && (
@@ -104,6 +111,7 @@ const InspectorControls = (props) => {
                             { label: __('Pop In', 'full-page-slider'), value: 'pop-in' },
                         ] }
                         onChange={ ( value ) => setAttributes( { contentAnimation: value } ) }
+                        __nextHasNoMarginBottom
                     />
 
                     <RangeControl
@@ -132,7 +140,7 @@ const InspectorControls = (props) => {
             {showTitle && (
                 <ColorPicker
                     value={titleColor}
-                    onChange={( color ) => setAttributes( { titleColor: color } )}
+                    onChange={handleColorChange}
                     label={__('Title Color', 'full-page-slider')}
                 />
             )}

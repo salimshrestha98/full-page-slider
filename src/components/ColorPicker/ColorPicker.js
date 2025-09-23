@@ -8,6 +8,10 @@ import { __ } from '@wordpress/i18n';
 const ColorPicker = ({ label, value, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const handleChange = (newColor) => {
+        onChange(newColor?.hex);
+    }
+
     return (
         <BaseControl className="fpslider-color-picker-control">
 			<Flex>
@@ -33,7 +37,7 @@ const ColorPicker = ({ label, value, onChange }) => {
                 >
                     <WPColorPicker
                         color={value}
-                        onChangeComplete={(newColor) => onChange(newColor?.hex)}
+                        onChangeComplete={handleChange}
                         enableAlpha
                         defaultValue={value}
                     />

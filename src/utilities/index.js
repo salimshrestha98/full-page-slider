@@ -114,3 +114,25 @@ export function loadGoogleFont(fontFamily) {
 	link.href = `https://fonts.googleapis.com/css?family=${cleanFont.replace(/\s+/g, '+')}:300,400,500,700&display=swap`;
 	document.head.appendChild(link);
 }
+
+/**
+ * Stringify object with consistent key ordering to prevent block validation errors.
+ * @param {Object} obj - The object to stringify
+ * @returns {string} - JSON string with consistent key ordering
+ */
+export function stableStringify(obj) {
+	if (obj === null || typeof obj !== 'object') {
+		return JSON.stringify(obj);
+	}
+	
+	if (Array.isArray(obj)) {
+		return '[' + obj.map(stableStringify).join(',') + ']';
+	}
+	
+	const keys = Object.keys(obj).sort();
+	const pairs = keys.map(key => {
+		return JSON.stringify(key) + ':' + stableStringify(obj[key]);
+	});
+	
+	return '{' + pairs.join(',') + '}';
+}

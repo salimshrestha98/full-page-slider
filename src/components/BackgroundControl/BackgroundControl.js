@@ -52,7 +52,7 @@ const BackgroundControl = ({
 	if (enableImage) BACKGROUND_TYPES.push({ value: 'image', label: 'Image', icon: image });
 
     return (
-        <BaseControl className="fpslider-background-control">
+        <BaseControl className="fpslider-background-control" __nextHasNoMarginBottom>
             <ChooseControl
                 label={__(label, 'full-page-slider')}
                 value={value.backgroundType || 'color'}
@@ -141,6 +141,7 @@ const BackgroundControl = ({
                                     { label: __('Contain', 'full-page-slider'), value: 'contain' },
                                 ]}
                                 onChange={(value) => setBackgroundValue('backgroundSize', value)}
+                                __nextHasNoMarginBottom
                             />
 
                             <label className='fpslider-control-label'>Background Position</label>
@@ -160,6 +161,7 @@ const BackgroundControl = ({
                                     { label: __('Repeat Y', 'full-page-slider'), value: 'repeat-y' },
                                 ]}
                                 onChange={(value) => setBackgroundValue('backgroundRepeat', value)}
+                                __nextHasNoMarginBottom
                             />
 
                             <SelectControl
@@ -171,6 +173,7 @@ const BackgroundControl = ({
                                     { label: __('Local', 'full-page-slider'), value: 'local' },
                                 ]}
                                 onChange={(value) => setBackgroundValue('backgroundAttachment', value)}
+                                __nextHasNoMarginBottom
                             />
                         </Popover>
                     )}

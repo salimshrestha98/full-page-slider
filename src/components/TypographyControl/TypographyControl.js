@@ -66,6 +66,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 							value={value.fontFamily}
 							options={FONT_FAMILIES}
 							onChange={(v) => update('fontFamily', v)}
+							__nextHasNoMarginBottom
 						/>
 
 						<SelectControl
@@ -73,6 +74,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 							value={value.fontWeight}
 							options={FONT_WEIGHTS}
 							onChange={(v) => update('fontWeight', v)}
+							__nextHasNoMarginBottom
 						/>
 
 						<UnitRangeControl
@@ -125,6 +127,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 							value={value.textTransform}
 							options={TEXT_TRANSFORMS}
 							onChange={(v) => update('textTransform', v)}
+							__nextHasNoMarginBottom
 						/>
 					</div>
 				</Popover>

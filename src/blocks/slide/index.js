@@ -1,3 +1,4 @@
+import './hooks.js';
 import { InnerBlocks, InspectorControls, RichText, useBlockProps } from '@wordpress/block-editor';
 import { getBackgroundStyles, getTypographyStyles, loadGoogleFont } from '../../utilities';
 import { useDispatch, useSelect } from '@wordpress/data';
@@ -11,6 +12,7 @@ import classNames from 'classnames';
 import metadata from './block.json';
 import { registerBlockType } from '@wordpress/blocks';
 import { useEffect } from '@wordpress/element';
+import SlideInspectorControls from './inspector';
 
 registerBlockType( 'full-page-slider/slide', {
 	edit: ( { clientId, context, attributes, setAttributes } ) => {
@@ -72,19 +74,6 @@ registerBlockType( 'full-page-slider/slide', {
 			return getBlockIndex( clientId ); // `clientId` is passed to every block
 		}, [ clientId ] );
 
-		/**
-		 * Select parent when button clicked.
-		 */
-		const { getBlockRootClientId } = useSelect((select) => select(blockEditorStore), []);
-		const { selectBlock }          = useDispatch(blockEditorStore);
-		const parentClientId           = getBlockRootClientId(clientId);
-
-		function makeParentActive() {
-			if (parentClientId) {
-				selectBlock(parentClientId);
-			}
-		}
-
         // Load Google fonts when typography settings are available
         useEffect(() => {
             if (titleTypography?.fontFamily) {
@@ -97,23 +86,10 @@ registerBlockType( 'full-page-slider/slide', {
 
 		return (
 			<>
-				<InspectorControls>
-					<Button
-                        size="compact"
-						variant="secondary"
-						onClick={makeParentActive}
-						style={{
-                            position: 'absolute',
-                            top: 0,
-                            right: 0,
-                            marginTop: '12px',
-                            marginRight: '15px'
-                        }}
-						icon='admin-settings'
-					>
-						{__('Global Settings', 'full-page-slider')}
-					</Button>
-				</InspectorControls>
+				<SlideInspectorControls
+					attributes={localAttributes}
+					setAttributes={setAttributes}
+				/>
 
 				<SwiperSlide className="slide-block swiper-slide">
 					<div { ...innerBlockProps }>

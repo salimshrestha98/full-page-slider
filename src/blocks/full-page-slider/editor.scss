@@ -13,9 +13,6 @@ button.components-button.is-destructive:focus {
 	.swiper {
 		display: flex;
 		align-items: center;
-		
-		.swiper-slide {
-		}
 	}
 }
 
@@ -24,7 +21,7 @@ button.components-button.is-destructive:focus {
     overflow: hidden;
 
 	&.preview-desktop {
-		width: 100%;
+		width: 95%;
 		aspect-ratio: 16/9;
 	}
 

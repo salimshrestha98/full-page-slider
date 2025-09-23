@@ -43,7 +43,7 @@
 		},
 		"forceFullScreen": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		},
 		"direction": {
 			"type": "string",
@@ -121,7 +121,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"size": 40,
+					"size": 60,
 					"unit": "px"
 				},
 				"fontFamily": "",
@@ -135,6 +135,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
+					"size": 40,
 					"unit": "px"
 				},
 				"fontFamily": "",
@@ -167,10 +168,10 @@
 		"padding": {
 			"type": "object",
 			"default": {
-				"top": 20,
-				"right": 20,
-				"bottom": 20,
-				"left": 20,
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0,
 				"unit": "px"
 			}
 		},

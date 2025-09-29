@@ -452,11 +452,11 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							label={__('Title Color', 'full-page-slider')}
 						/>
 					)}
-					<ColorPicker
+					{/* <ColorPicker
 						value={contentColor}
 						onChange={( color ) => setAttributes( { contentColor: color } )}
 						label={__('Content Color', 'full-page-slider')}
-					/>
+					/> */}
 
 					<ColorPicker
 						value={contentBackground}

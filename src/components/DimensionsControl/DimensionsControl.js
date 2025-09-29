@@ -76,11 +76,13 @@ const DimensionsControl = ({ label = __('Dimensions', 'full-page-slider'), value
 							options={UNIT_OPTIONS}
 							onChange={handleUnitChange}
 							style={{ maxWidth: '70px', margin: 0 }}
+							__nextHasNoMarginBottom
 						/>
 					</Flex>
 				</Flex>
 			}
 			style={{marginBottom: 0}}
+			__nextHasNoMarginBottom
 		>
 			<Flex gap={2}>
 				{['top', 'right', 'bottom', 'left'].map((side) => (

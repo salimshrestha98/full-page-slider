@@ -7,20 +7,36 @@ import {
 	SelectControl,
 	TextControl,
 } from '@wordpress/components';
-import { FONT_FAMILIES, FONT_WEIGHTS, TEXT_TRANSFORMS } from './types';
-import { useRef, useState } from '@wordpress/element';
-
+import { FONT_FAMILIES, FONT_WEIGHTS, GOOGLE_FONT_FAMILIES, TEXT_TRANSFORMS } from './types';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import {UnitRangeControl} from'../../components';
 import { __ } from '@wordpress/i18n';
-import { __experimentalUseAnchor as useAnchor } from '@wordpress/components';
+import { loadGoogleFont } from '../../utilities';
+
 
 export default function TypographyControl({ label, value = {}, onChange }) {
 	const [isOpen, setOpen] = useState(false);
 	const buttonRef = useRef();
 
 	const update = (key, val) => {
-		onChange({ ...value, [key]: val });
+		const newValue = { ...value };
+		
+		// Remove empty values instead of saving empty strings
+		if (val === '' || val === null || val === undefined) {
+			delete newValue[key];
+		} else {
+			newValue[key] = val;
+		}
+		
+		onChange(newValue);
 	};
+
+	// Load Google Font if selected
+	useEffect(() => {
+		if (value.fontFamily) {
+			loadGoogleFont(value.fontFamily);
+		}
+	}, [value.fontFamily]);
 
 	return (
 		<div className="typography-popover-control">
@@ -50,6 +66,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 							value={value.fontFamily}
 							options={FONT_FAMILIES}
 							onChange={(v) => update('fontFamily', v)}
+							__nextHasNoMarginBottom
 						/>
 
 						<SelectControl
@@ -57,6 +74,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 							value={value.fontWeight}
 							options={FONT_WEIGHTS}
 							onChange={(v) => update('fontWeight', v)}
+							__nextHasNoMarginBottom
 						/>
 
 						<UnitRangeControl
@@ -109,6 +127,7 @@ export default function TypographyControl({ label, value = {}, onChange }) {
 							value={value.textTransform}
 							options={TEXT_TRANSFORMS}
 							onChange={(v) => update('textTransform', v)}
+							__nextHasNoMarginBottom
 						/>
 					</div>
 				</Popover>

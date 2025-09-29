@@ -1,0 +1,432 @@
+// Full Page Slider Admin Page - Modern Design
+:root {
+	--fps-primary: #6366f1;
+	--fps-primary-hover: #4f46e5;
+	--fps-secondary: #8b5cf6;
+	--fps-success: #10b981;
+	--fps-warning: #f59e0b;
+	--fps-danger: #ef4444;
+	--fps-gray-50: #f9fafb;
+	--fps-gray-100: #f3f4f6;
+	--fps-gray-200: #e5e7eb;
+	--fps-gray-300: #d1d5db;
+	--fps-gray-400: #9ca3af;
+	--fps-gray-500: #6b7280;
+	--fps-gray-600: #4b5563;
+	--fps-gray-700: #374151;
+	--fps-gray-800: #1f2937;
+	--fps-gray-900: #111827;
+	--fps-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--fps-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	--fps-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	--fps-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	--fps-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+// Base Admin Page
+.fps-admin-page {
+	background: var(--fps-gray-50);
+	min-height: 100vh;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+	color: var(--fps-gray-700);
+	line-height: 1.6;
+	margin: 0 -20px;
+	padding: 0;
+}
+
+// Header Section
+.fps-header {
+	background: linear-gradient(135deg, var(--fps-primary) 0%, var(--fps-secondary) 100%);
+	color: white;
+	padding: 2rem;
+	margin-bottom: 3rem;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="60" cy="60" r="60"/></g></svg>') repeat;
+		opacity: 0.1;
+	}
+
+	h1 {
+		color: white;
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 800;
+		margin: 0 0 1.5rem 0;
+		letter-spacing: -0.025em;
+		text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		position: relative;
+		z-index: 2;
+	}
+
+	p {
+		font-size: clamp(1.125rem, 2vw, 1.25rem);
+		opacity: 0.95;
+		margin: 0;
+		max-width: 42rem;
+		margin-left: auto;
+		margin-right: auto;
+		font-weight: 400;
+		position: relative;
+		z-index: 2;
+	}
+}
+
+// Content Layout
+.fps-content {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem 3rem;
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	gap: 2rem;
+}
+
+// Main Content Area
+.fps-main {
+	background: white;
+	border-radius: 1rem;
+	padding: 2rem;
+	box-shadow: var(--fps-shadow);
+	border: 1px solid var(--fps-gray-200);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:hover {
+		box-shadow: var(--fps-shadow-lg);
+		transform: translateY(-2px);
+	}
+
+	h2 {
+		color: var(--fps-gray-900);
+		font-size: 1.5rem;
+		font-weight: 700;
+		margin: 0 0 1.5rem 0;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+
+		&::before {
+			content: '';
+			width: 4px;
+			height: 1.5rem;
+			background: linear-gradient(to bottom, var(--fps-primary), var(--fps-secondary));
+			border-radius: 2px;
+		}
+	}
+
+	> p {
+		color: var(--fps-gray-600);
+		margin: 0 0 2rem 0;
+		font-size: 1rem;
+	}
+}
+
+// Sidebar
+.fps-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+
+	.fps-sidebar-item {
+		background: white;
+		border-radius: 1rem;
+		box-shadow: var(--fps-shadow);
+		border: 1px solid var(--fps-gray-200);
+        border-radius: 1rem;
+		margin: 0;
+        overflow: hidden;
+        padding: 25px;
+
+        > h3 {
+            color: var(--fps-gray-900);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+        }
+        
+        > p {
+            margin: 0 0 10px 0;
+        }
+
+        // Feature List
+        .fps-feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                color: var(--fps-gray-700);
+                font-weight: 500;
+                transition: all 0.2s ease;
+                border: 1px solid transparent;
+                margin: 0;
+
+                &:hover {
+                    background: white;
+                    border-color: var(--fps-gray-200);
+                    transform: translateX(2px);
+                    box-shadow: var(--fps-shadow-sm);
+                }
+
+                &::before {
+                    content: "✓";
+                    color: var(--fps-success);
+                    font-weight: 700;
+                    border-radius: 0.25rem;
+                    font-size: 0.875rem;
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+	}
+}
+
+// Steps Design
+.fps-step {
+	background: var(--fps-gray-50);
+	border: 1px solid var(--fps-gray-200);
+	border-radius: 1rem;
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:last-child {
+		margin-bottom: 2rem;
+	}
+
+	&:hover {
+		background: white;
+		border-color: var(--fps-primary);
+		box-shadow: var(--fps-shadow-md);
+		transform: translateX(4px);
+	}
+
+	h3 {
+		color: var(--fps-gray-900);
+		font-weight: 700;
+		font-size: 1.125rem;
+		margin: 0.5rem 0 1rem 0;
+		display: flex;
+		align-items: center;
+	}
+
+	p {
+		color: var(--fps-gray-600);
+		margin: 0 0 1rem 0;
+		line-height: 1.6;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	ul {
+		margin: 1rem 0;
+		padding-left: 1.5rem;
+        list-style: disc;
+
+		li {
+			margin-bottom: 0.5rem;
+			color: var(--fps-gray-600);
+			line-height: 1.6;
+
+            &::marker {
+                color: var(--fps-primary);
+            }
+		}
+	}
+
+    img {
+        width: 100%;
+    }
+}
+
+// Step Numbers
+.fps-step-number {
+	background: linear-gradient(135deg, var(--fps-primary), var(--fps-secondary));
+	color: white;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 0.875rem;
+	box-shadow: var(--fps-shadow-md);
+	margin-right: 0.75rem;
+	flex-shrink: 0;
+}
+
+// Highlight Boxes
+.fps-highlight {
+	background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+	border: 1px solid var(--fps-primary);
+	border-radius: 0.75rem;
+	padding: 1rem 1.25rem;
+	margin: 1.5rem 0;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 4px;
+		height: 100%;
+		background: var(--fps-primary);
+	}
+
+	strong {
+		color: var(--fps-primary-hover);
+	}
+}
+
+// Buttons
+.fps-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.875rem 1.5rem;
+	border-radius: 0.5rem;
+	font-weight: 600;
+	font-size: 0.875rem;
+	text-decoration: none;
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	border: none;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	background: var(--fps-primary);
+	color: white;
+	box-shadow: var(--fps-shadow-md);
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+		transition: left 0.5s;
+	}
+
+	&:hover {
+		background: var(--fps-primary-hover);
+		color: white;
+		transform: translateY(-2px);
+		box-shadow: var(--fps-shadow-lg);
+		text-decoration: none;
+
+		&::before {
+			left: 100%;
+		}
+	}
+
+	.dashicons {
+		font-size: 1rem;
+		width: 1rem;
+		height: 1rem;
+	}
+}
+
+// Quick Links styling
+.fps-sidebar p a:not(.fps-button) {
+	color: var(--fps-primary);
+	text-decoration: none;
+	font-weight: 500;
+
+	&:hover {
+		color: var(--fps-primary-hover);
+		text-decoration: underline;
+	}
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+	.fps-content {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	.fps-sidebar {
+		h3 {
+			padding: 1rem 1rem 0;
+		}
+
+		> p {
+			padding: 0 1rem 1rem;
+		}
+
+		.fps-highlight {
+			padding: 1rem;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.fps-header {
+		padding: 3rem 1rem;
+	}
+
+	.fps-content {
+		padding: 0 1rem 2rem;
+	}
+
+	.fps-main {
+		padding: 1.5rem;
+	}
+
+	.fps-step {
+		padding: 1.25rem;
+	}
+
+	.fps-feature-list {
+		padding: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.fps-header {
+		padding: 2rem 1rem;
+	}
+
+	.fps-main {
+		padding: 1rem;
+	}
+
+	.fps-step {
+		padding: 1rem;
+	}
+
+	.fps-step h3 {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.fps-step-number {
+		margin-right: 0;
+	}
+}

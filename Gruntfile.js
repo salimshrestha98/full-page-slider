@@ -11,15 +11,42 @@ module.exports = function ( grunt ) {
 				expand: true,
 				cwd: './',
 				src: [
-					'**',
+					// Include essential plugin files
+					'full-page-slider.php',
+					'readme.txt',
+					'build/**',
+					'includes/**',
+					'templates/**',
+					'assets/**',
+					'vendor/autoload.php',
+					'vendor/composer/**',
+					// Exclude development files and folders
 					'!node_modules/**',
-					'!full-page-slider.zip',
+					'!src/**',
+					'!bin/**',
 					'!.git/**',
+					'!.github/**',
+					// Exclude config and development files
 					'!.gitignore',
 					'!Gruntfile.js',
+					'!webpack.config.js',
 					'!package-lock.json',
 					'!package.json',
-					'!composer.lock'
+					'!composer.json',
+					'!composer.lock',
+					'!phpstan.neon',
+					// Exclude zip files
+					'!full-page-slider.zip',
+					'!*.zip',
+					// Exclude README.md (keep readme.txt for WordPress)
+					'!README.md',
+					// Exclude source maps from build
+					'!build/**/*.map',
+					// Exclude unnecessary vendor files
+					'!vendor/composer/installed.json',
+					'!vendor/composer/installed.php',
+					'!vendor/composer/InstalledVersions.php',
+					'!vendor/composer/LICENSE'
 				],
 				dest: 'full-page-slider/'
 			}

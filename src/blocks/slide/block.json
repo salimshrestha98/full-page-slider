@@ -13,6 +13,54 @@
         "parentAttributes": {
             "type": "object",
             "default": {}
+        },
+        "showTitle": {
+            "type": "boolean"
+        },
+        "titleAlignment": {
+            "type": "string"
+        },
+        "alignContent": {
+            "type": "string"
+        },
+        "enableContentAnimation": {
+            "type": "boolean"
+        },
+        "contentAnimation": {
+            "type": "string"
+        },
+        "contentAnimationDuration": {
+            "type": "number"
+        },
+        "contentAnimationDelay": {
+            "type": "number"
+        },
+        "titleColor": {
+            "type": "string"
+        },
+        "contentColor": {
+            "type": "string"
+        },
+        "contentBackground": {
+            "type": "string"
+        },
+        "background": {
+            "type": "object"
+        },
+        "titleTypography": {
+            "type": "object"
+        },
+        "contentTypography": {
+            "type": "object"
+        },
+        "titlePadding": {
+            "type": "object"
+        },
+        "contentPadding": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
         }
 	},
     "usesContext": [

@@ -31,14 +31,13 @@ import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { desktop, justifyCenter, justifyLeft, justifyRight, mobile, tablet } from '@wordpress/icons';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
-
 import { BlockControls } from '@wordpress/block-editor';
 import ColorPicker from '../../components/ColorPicker/ColorPicker';
 import DimensionsControl from '../../components/DimensionsControl/DimensionsControl';
 import { Swiper } from 'swiper';
 import TEMPLATE from './template';
 import { __ } from '@wordpress/i18n';
-import { getBackgroundStyles } from '../../utilities';
+import { getBackgroundStyles, loadGoogleFont } from '../../utilities';
 import { useState } from 'react';
 
 export default function Edit ( { clientId, attributes, setAttributes } ) {
@@ -81,6 +80,16 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		},
 		[ clientId ]
 	);
+
+	// Load Google fonts when typography settings are available
+	useEffect(() => {
+		if (titleTypography?.fontFamily) {
+			loadGoogleFont(titleTypography.fontFamily);
+		}
+		if (contentTypography?.fontFamily) {
+			loadGoogleFont(contentTypography.fontFamily);
+		}
+	}, [titleTypography?.fontFamily, contentTypography?.fontFamily]);
 
 	const backgroundStyles = getBackgroundStyles(background);
 
@@ -275,6 +284,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						label={__("Show Title", 'full-page-slider')}
 						checked={ showTitle }
 						onChange={ ( value ) => setAttributes( { showTitle: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 					{ showTitle && (
@@ -300,12 +310,14 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							{ label: __('Bottom', 'full-page-slider'), value: 'bottom' },
 							{ label: __('Cover', 'full-page-slider'), value: 'cover' },
 						]}
+						__nextHasNoMarginBottom
 					/>
 
 					<ToggleControl
 						label={__("Force Fullscreen", 'full-page-slider')}
 						checked={ forceFullScreen }
 						onChange={ ( value ) => setAttributes( { forceFullScreen: value } ) }
+						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 
@@ -318,6 +330,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							{ label: __('Vertical', 'full-page-slider'), value: 'vertical' },
 						] }
 						onChange={ ( value ) => setAttributes( { direction: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 					<SelectControl
@@ -330,6 +343,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							{ label: __('Flip', 'full-page-slider'), value: 'flip' },
 						] }
 						onChange={ ( value ) => setAttributes( { effect: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 					<RangeControl
@@ -345,6 +359,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						label={ __( "Enable Prev/Next Buttons", 'full-page-slider' )}
 						checked={ navigation }
 						onChange={ ( value ) => setAttributes( { navigation: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 					{ !navigation && (<p><i>{__('Prev/Next Button will be disabled on frontend only.', 'full-page-slider')}</i></p>)}
@@ -353,18 +368,21 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						label={__( "Enable Pagination", 'full-page-slider' )}
 						checked={ pagination }
 						onChange={ ( value ) => setAttributes( { pagination: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 					<ToggleControl
 						label={__( "Enable Scrollbar", 'full-page-slider' )}
 						checked={ scrollbar }
 						onChange={ ( value ) => setAttributes( { scrollbar: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 					<ToggleControl
 						label={__( "Loop Slides", 'full-page-slider' )}
 						checked={ loop }
 						onChange={ ( value ) => setAttributes( { loop: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 				</PanelBody>
@@ -374,6 +392,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						label={__( "Enable Content Animation", 'full-page-slider' )}
 						checked={ enableContentAnimation }
 						onChange={ ( value ) => setAttributes( { enableContentAnimation: value } ) }
+						__nextHasNoMarginBottom
 					/>
 
 					{ enableContentAnimation && (
@@ -400,6 +419,7 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 									{ label: __('Pop In', 'full-page-slider'), value: 'pop-in' },
 								] }
 								onChange={ ( value ) => setAttributes( { contentAnimation: value } ) }
+								__nextHasNoMarginBottom
 							/>
 
 							<RangeControl
@@ -432,11 +452,11 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 							label={__('Title Color', 'full-page-slider')}
 						/>
 					)}
-					<ColorPicker
+					{/* <ColorPicker
 						value={contentColor}
 						onChange={( color ) => setAttributes( { contentColor: color } )}
 						label={__('Content Color', 'full-page-slider')}
-					/>
+					/> */}
 
 					<ColorPicker
 						value={contentBackground}

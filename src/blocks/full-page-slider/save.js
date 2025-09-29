@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { __ } from '@wordpress/i18n';
 import { store as blockEditorStore } from '@wordpress/block-editor';
 import classNames from 'classnames';
-import { getBackgroundStyles } from '../../utilities';
+import { getBackgroundStyles, stableStringify } from '../../utilities';
 import { getColorObjectByAttributeValues } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 
@@ -36,18 +36,18 @@ export default function Save ( { attributes } ) {
 	return (
 		<div
 			className={wrapperClassNames}
-			data-attrs={ JSON.stringify( attributes ) }
+			data-attrs={ stableStringify( attributes ) }
 			style={styles}
 		>
 			<div className='swiper'>
 				<div className="swiper-wrapper">
 					<InnerBlocks.Content />
 				</div>
-				<div class="swiper-pagination"></div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
+				<div className="swiper-pagination"></div>
+				<div className="swiper-button-next"></div>
+				<div className="swiper-button-prev"></div>
 
-				<div class="swiper-scrollbar"></div>
+				<div className="swiper-scrollbar"></div>
 			</div>
 		</div >
 	);

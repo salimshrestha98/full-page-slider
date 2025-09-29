@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use FullPageSlider\Plugin;
+use FullPageSlider\Activator;
 
 require_once 'vendor/autoload.php';
 
@@ -35,3 +36,5 @@ define( 'FPSLIDER_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'FPSLIDER_TEXT_DOMAIN', 'full-page-slider' );
 
 Plugin::instance()->init();
+
+register_activation_hook( __FILE__, [ Activator::class, 'activate' ] );

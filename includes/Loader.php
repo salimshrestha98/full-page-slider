@@ -4,6 +4,7 @@ namespace FullPageSlider;
 
 use FullPageSlider\Admin\Admin;
 use FullPageSlider\Blocks\Blocks;
+use FullPageSlider\Activator;
 use FullPageSlider\Traits\Singleton;
 
 // Exit if accessed directly.
@@ -23,6 +24,7 @@ class Loader {
 	public function init() {
 		AssetsLoader::instance()->init();
 		Blocks::instance()->init();
+		Activator::instance()->init();
 
 		if ( is_admin() ) {
 			Admin::instance()->init();

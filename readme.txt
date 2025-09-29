@@ -4,7 +4,7 @@ Tags: gutenberg, slider, page animation, full page slider
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4  
-Stable tag: 1.0.0  
+Stable tag: 1.1.0  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Source Code: https://github.com/salimshrestha98/full-page-slider
@@ -21,6 +21,9 @@ Full Page Slider is a Gutenberg-powered plugin that allows you to create immersi
 - 🎨 Add heading, content, background, and optional footers for each slide
 - 🧭 Vertical or horizontal slide layouts
 - ⚡ Smooth animation transitions
+- 🔤 Google Fonts integration for enhanced typography
+- ⚙️ Dedicated admin page for settings and management
+- 🎛️ Enhanced slide-level controls for detailed customization
 - 🖼️ Works with any theme
 - 🌐 Responsive and mobile-ready
 
@@ -41,6 +44,15 @@ Whether you're creating a one-page site or an interactive multi-section experien
 4. Responsive mobile layout preview
 
 == Changelog ==
+
+= 1.1.0 =
+* **New:** Added Google Fonts integration for enhanced typography options
+* **New:** Added dedicated admin menu page for plugin settings and management
+* **Enhanced:** Improved slide-level controls for better customization
+* **Enhanced:** Added support for links and redirection on plugin activation
+* **Improved:** Hidden content color controls for slider and slide blocks for better UX
+* **Fixed:** Resolved console errors and various bugs
+* **Updated:** GitHub Actions workflow improvements
 
 = 1.0.0 =
 * Initial release of Full Page Slider
@@ -63,6 +75,9 @@ Yes, each slide supports multiple inner blocks, so you can add almost any conten
 Yes! You can toggle between vertical and horizontal slide modes.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Major update with Google Fonts support, enhanced slide controls, new admin page, and various improvements. Recommended for all users.
 
 = 1.0.0 =
 Initial stable release.

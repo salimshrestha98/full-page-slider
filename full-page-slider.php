@@ -4,7 +4,7 @@
  * Plugin Name:       Full Page Slider
  * Plugin URI:        https://salim.com.np/full-page-slider
  * Description:       Full Page Slider Plugin for WordPress.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            Salim Shrestha
@@ -28,7 +28,7 @@ require_once 'vendor/autoload.php';
  * Define plugin constants.
  */
 
-define( 'FPSLIDER_VERSION', '1.0.0' );
+define( 'FPSLIDER_VERSION', '1.1.0' );
 define( 'FPSLIDER_PLUGIN_FILE', __FILE__ );
 define( 'FPSLIDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FPSLIDER_PLUGIN_URL', plugins_url( '', __FILE__ ) );

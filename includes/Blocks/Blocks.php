@@ -51,9 +51,10 @@ class Blocks
                 "full-page-slider-$block_type-editor-script",
                 'fullPageSliderL10n',
                 array(
-                'pluginURL' => FPSLIDER_PLUGIN_URL,
-                'ajaxURL'   => admin_url('admin-ajax.php'),
-                'hideFirstTimeNotice' => get_option( 'fpslider_hide_first_time_notice', false),
+                    'pluginURL' => FPSLIDER_PLUGIN_URL,
+                    'ajaxURL'   => admin_url('admin-ajax.php'),
+                    'nonce'     => wp_create_nonce(\FullPageSlider\Admin\Ajax::NONCE_ACTION),
+                    'hideFirstTimeNotice' => get_option('fpslider_hide_first_time_notice', false),
                 )
             );
         }

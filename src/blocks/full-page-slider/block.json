@@ -25,10 +25,6 @@
 			"type": "number",
 			"default": 0
 		},
-		"device": {
-			"type": "string",
-			"default": "tablet"
-		},
 		"showTitle": {
 			"type": "boolean",
 			"default": true
@@ -75,7 +71,7 @@
 		},
 		"align": {
 			"type": "string",
-			"default": "none"
+			"default": "full"
 		},
 		"enableContentAnimation": {
 			"type": "boolean",
@@ -104,9 +100,6 @@
 			"type": "string"
 		},
 		"contentColor": {
-			"type": "string"
-		},
-		"contentBackground": {
 			"type": "string"
 		},
 		"background": {
@@ -206,12 +199,15 @@
 		"position": {
 			"type": "string",
 			"default": ""
+		},
+		"parallaxEnabled": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"providesContext": {
         "full-page-slider/activeSlide": "activeSlide",
         "full-page-slider/slidesCount": "slidesCount",
-        "full-page-slider/device": "device",
         "full-page-slider/showTitle": "showTitle",
         "full-page-slider/titleAlignment": "titleAlignment",
         "full-page-slider/alignContent": "alignContent",
@@ -232,7 +228,6 @@
         "full-page-slider/titleColor": "titleColor",
         "full-page-slider/titleBackground": "titleBackground",
         "full-page-slider/contentColor": "contentColor",
-        "full-page-slider/contentBackground": "contentBackground",
         "full-page-slider/background": "background",
         "full-page-slider/titleTypography": "titleTypography",
         "full-page-slider/contentTypography": "contentTypography",
@@ -246,9 +241,14 @@
         "full-page-slider/borderWidth": "borderWidth",
         "full-page-slider/borderRadius": "borderRadius",
         "full-page-slider/layout": "layout",
-        "full-page-slider/position": "position"
+        "full-page-slider/position": "position",
+        "full-page-slider/parallaxEnabled": "parallaxEnabled"
     },
-	"example": {},
+	"example": {
+		"attributes": {
+			"align": "full"
+		}
+	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:index.css",
 	"style": "file:style-index.css",

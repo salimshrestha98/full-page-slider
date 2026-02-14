@@ -6,103 +6,158 @@
 	"icon": "media-document",
 	"parent": ["full-page-slider/full-page-slider"],
 	"attributes": {
-        "title": {
-            "type": "string",
-            "default": "Slide Title"
-        },
-        "parentAttributes": {
-            "type": "object",
-            "default": {}
-        },
-        "showTitle": {
-            "type": "boolean"
-        },
-        "titleAlignment": {
-            "type": "string"
-        },
-        "alignContent": {
-            "type": "string"
-        },
-        "enableContentAnimation": {
-            "type": "boolean"
-        },
-        "contentAnimation": {
-            "type": "string"
-        },
-        "contentAnimationDuration": {
-            "type": "number"
-        },
-        "contentAnimationDelay": {
-            "type": "number"
-        },
-        "titleColor": {
-            "type": "string"
-        },
-        "contentColor": {
-            "type": "string"
-        },
-        "contentBackground": {
-            "type": "string"
-        },
-        "background": {
-            "type": "object"
-        },
-        "titleTypography": {
-            "type": "object"
-        },
-        "contentTypography": {
-            "type": "object"
-        },
-        "titlePadding": {
-            "type": "object"
-        },
-        "contentPadding": {
-            "type": "object"
-        },
-        "padding": {
-            "type": "object"
-        }
+		"title": {
+			"type": "string",
+			"default": "Slide Title"
+		},
+		"parentAttributes": {
+			"type": "object",
+			"default": {}
+		},
+		"showTitle": {
+			"type": "boolean"
+		},
+		"titleAlignment": {
+			"type": "string"
+		},
+		"alignContent": {
+			"type": "string"
+		},
+		"enableContentAnimation": {
+			"type": "boolean"
+		},
+		"contentAnimation": {
+			"type": "string"
+		},
+		"contentAnimationDuration": {
+			"type": "number"
+		},
+		"contentAnimationDelay": {
+			"type": "number"
+		},
+		"titleColor": {
+			"type": "string"
+		},
+		"contentColor": {
+			"type": "string"
+		},
+		"background": {
+			"type": "object"
+		},
+		"backgroundVideo": {
+			"type": "object",
+			"default": {
+				"url": "",
+				"id": null,
+				"poster": "",
+				"loop": true,
+				"muted": true
+			}
+		},
+		"overlay": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"color": "rgba(0,0,0,0.5)",
+				"blendMode": "normal"
+			}
+		},
+		"parallax": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"background": "-23%",
+				"title": { "x": 0, "y": 0, "scale": 1, "opacity": 1 },
+				"content": { "x": 0, "y": 100, "opacity": 0.5 }
+			}
+		},
+		"textShadow": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"x": 0,
+				"y": 4,
+				"blur": 8,
+				"color": "rgba(0,0,0,0.3)"
+			}
+		},
+		"textStroke": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"width": 1,
+				"color": "#ffffff"
+			}
+		},
+		"textGradient": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"gradient": "linear-gradient(90deg, #667eea, #764ba2)"
+			}
+		},
+		"shapeDivider": {
+			"type": "object",
+			"default": {
+				"top": { "enabled": false, "shape": "wave", "color": "#ffffff", "height": 100, "flip": false },
+				"bottom": { "enabled": false, "shape": "wave", "color": "#ffffff", "height": 100, "flip": false }
+			}
+		},
+		"titleTypography": {
+			"type": "object"
+		},
+		"contentTypography": {
+			"type": "object"
+		},
+		"titlePadding": {
+			"type": "object"
+		},
+		"contentPadding": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		}
 	},
-    "usesContext": [
-        "full-page-slider/activeSlide",
-        "full-page-slider/slidesCount",
-        "full-page-slider/device",
-        "full-page-slider/showTitle",
-        "full-page-slider/titleAlignment",
-        "full-page-slider/alignContent",
-        "full-page-slider/forceFullScreen",
-        "full-page-slider/direction",
-        "full-page-slider/effect",
-        "full-page-slider/speed",
-        "full-page-slider/navigation",
-        "full-page-slider/pagination",
-        "full-page-slider/loop",
-        "full-page-slider/scrollbar",
-        "full-page-slider/align",
-        "full-page-slider/enableContentAnimation",
-        "full-page-slider/contentAnimation",
-        "full-page-slider/contentAnimationDuration",
-        "full-page-slider/contentAnimationDelay",
-        "full-page-slider/colors",
-        "full-page-slider/titleColor",
-        "full-page-slider/titleBackground",
-        "full-page-slider/contentColor",
-        "full-page-slider/contentBackground",
-        "full-page-slider/background",
-        "full-page-slider/titleTypography",
-        "full-page-slider/contentTypography",
-        "full-page-slider/titlePadding",
-        "full-page-slider/contentPadding",
-        "full-page-slider/padding",
-        "full-page-slider/margin",
-        "full-page-slider/width",
-        "full-page-slider/height",
-        "full-page-slider/borderColor",
-        "full-page-slider/borderWidth",
-        "full-page-slider/borderRadius",
-        "full-page-slider/layout",
-        "full-page-slider/position"
-    ],
+	"usesContext": [
+		"full-page-slider/activeSlide",
+		"full-page-slider/slidesCount",
+		"full-page-slider/showTitle",
+		"full-page-slider/titleAlignment",
+		"full-page-slider/alignContent",
+		"full-page-slider/forceFullScreen",
+		"full-page-slider/direction",
+		"full-page-slider/effect",
+		"full-page-slider/speed",
+		"full-page-slider/navigation",
+		"full-page-slider/pagination",
+		"full-page-slider/loop",
+		"full-page-slider/scrollbar",
+		"full-page-slider/align",
+		"full-page-slider/enableContentAnimation",
+		"full-page-slider/contentAnimation",
+		"full-page-slider/contentAnimationDuration",
+		"full-page-slider/contentAnimationDelay",
+		"full-page-slider/colors",
+		"full-page-slider/titleColor",
+		"full-page-slider/titleBackground",
+		"full-page-slider/contentColor",
+		"full-page-slider/background",
+		"full-page-slider/titleTypography",
+		"full-page-slider/contentTypography",
+		"full-page-slider/titlePadding",
+		"full-page-slider/contentPadding",
+		"full-page-slider/padding",
+		"full-page-slider/margin",
+		"full-page-slider/width",
+		"full-page-slider/height",
+		"full-page-slider/borderColor",
+		"full-page-slider/borderWidth",
+		"full-page-slider/borderRadius",
+		"full-page-slider/layout",
+		"full-page-slider/position",
+		"full-page-slider/parallaxEnabled"
+	],
 	"supports": {
 		"html": false,
 		"customClassName": false,
@@ -112,5 +167,4 @@
 	},
 	"editorScript": "file:./index.js",
 	"style": "file:style-index.css"
-  }
-  
+}

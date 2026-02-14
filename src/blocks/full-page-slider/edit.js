@@ -19,32 +19,43 @@ import {
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import {
+	EffectCards,
 	EffectCoverflow,
 	EffectCreative,
 	EffectCube,
+	EffectFade,
 	EffectFlip,
 	Navigation,
 	Pagination,
 	Scrollbar
 } from 'swiper/modules';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { desktop, justifyCenter, justifyLeft, justifyRight, mobile, tablet } from '@wordpress/icons';
+import { justifyCenter, justifyLeft, justifyRight } from '@wordpress/icons';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
+import { useViewportMatch } from '@wordpress/compose';
 import { BlockControls } from '@wordpress/block-editor';
 import ColorPicker from '../../components/ColorPicker/ColorPicker';
 import DimensionsControl from '../../components/DimensionsControl/DimensionsControl';
 import { Swiper } from 'swiper';
 import TEMPLATE from './template';
+import TemplateSelector from './TemplateSelector';
 import { __ } from '@wordpress/i18n';
 import { getBackgroundStyles, loadGoogleFont } from '../../utilities';
 import { useState } from 'react';
 
 export default function Edit ( { clientId, attributes, setAttributes } ) {
 
+	// Use Gutenberg's built-in responsive preview detection
+	const isLargeViewport = useViewportMatch( 'large' );
+	const isMediumViewport = useViewportMatch( 'medium' );
+	const isSmallViewport = useViewportMatch( 'small' );
+	
+	// Determine current device based on Gutenberg's viewport
+	const currentDevice = isLargeViewport ? 'desktop' : isMediumViewport ? 'tablet' : 'mobile';
+
 	const {
 		activeSlide,
-		device,
 		showTitle,
 		alignContent,
 		forceFullScreen,
@@ -63,7 +74,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		titleColor,
 		titleBackground,
 		contentColor,
-		contentBackground,
 		background,
 		titleTypography,
 		contentTypography,
@@ -112,12 +122,37 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 	);
 
 	/**
-	 * Handle Swiper initialization and loading.
+	 * Handler to close the first timer notice if user clicks on close button.
+	 */
+	const [hideFirstTimeNotice, setHideFirstTimeNotice] = useState(fullPageSliderL10n.hideFirstTimeNotice);
+
+	/**
+	 * Template selector state
+	 */
+	const [showTemplateSelector, setShowTemplateSelector] = useState(false);
+	const [swiperKey, setSwiperKey] = useState(0);
+
+	/**
+	 * Swiper refs - declared early so reinitSwiper can use setInitialSlide
 	 */
 	const swiperRef = useRef( null );
 	const containerRef = useRef( null );
 	const setInitialSlide = useRef( null );
 
+	// Force Swiper re-initialization and optionally navigate to a specific slide
+	const reinitSwiper = (targetSlideIndex) => {
+		if (typeof targetSlideIndex === 'number') {
+			setInitialSlide.current = targetSlideIndex;
+		}
+		setSwiperKey(prev => prev + 1);
+	};
+
+	function closeFirstTimeNotice() {
+		setHideFirstTimeNotice(true);
+		fetch(fullPageSliderL10n.ajaxURL + '?action=fpslider_disable_first_time_notice&nonce=' + fullPageSliderL10n.nonce).catch(() => {});
+	}
+
+	// Initialize Swiper only once when settings that require re-initialization change
 	useEffect( () => {
 		let swiperModules = [];
 
@@ -128,55 +163,84 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		if ( 'coverflow' === effect ) swiperModules.push( EffectCoverflow );
 		if ( 'flip' === effect ) swiperModules.push( EffectFlip );
 		if ( 'creative' === effect ) swiperModules.push( EffectCreative );
+		if ( 'fade' === effect ) swiperModules.push( EffectFade );
+		if ( 'cards' === effect ) swiperModules.push( EffectCards );
 
 		if ( swiperRef.current )
 		{
 			swiperRef.current.destroy( true, true );
+			swiperRef.current = null;
 		}
 
-		const swiperArgs = {
-			modules: swiperModules,
-			direction: direction,
-			allowTouchMove: false,
-			simulateTouch: false,
-			touchStartPreventDefault: false,
-			touchStartForcePreventDefault: false,
-			initialSlide: setInitialSlide.current || 0,
-			centeredSlides: true,
-			spaceBetween: 50,
-			slidesPerView: "auto",
-			direction: direction || 'horizontal',
-			loop: !!loop,
-			slidesPerView: 1,
-			effect: effect || 'slide',
-			speed: speed,
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
-			},
-			pagination: {
-				el: '.swiper-pagination',
-				clickable: true
-			},
-			scrollbar: {
-				el: '.swiper-scrollbar',
-				draggable: true
-			}
+		// Function to initialize swiper
+		const initSwiper = () => {
+			// Get the navigation/pagination elements scoped to this container
+			const container = containerRef.current;
+			if (!container) return;
+
+			const nextEl = container.querySelector('.swiper-button-next');
+			const prevEl = container.querySelector('.swiper-button-prev');
+			const paginationEl = container.querySelector('.swiper-pagination');
+			const scrollbarEl = container.querySelector('.swiper-scrollbar');
+
+			const swiperArgs = {
+				modules: swiperModules,
+				direction: direction,
+				allowTouchMove: false,
+				simulateTouch: false,
+				touchStartPreventDefault: false,
+				touchStartForcePreventDefault: false,
+				initialSlide: setInitialSlide.current || 0,
+				centeredSlides: true,
+				spaceBetween: 50,
+				direction: direction || 'horizontal',
+				loop: !!loop,
+				slidesPerView: 1,
+				effect: effect || 'slide',
+				speed: speed,
+				observer: true,
+				observeParents: true,
+				observeSlideChildren: true,
+				watchSlidesProgress: true,
+				navigation: {
+					nextEl: nextEl,
+					prevEl: prevEl,
+					enabled: true
+				},
+				pagination: {
+					el: paginationEl,
+					clickable: true,
+					dynamicBullets: false,
+					enabled: !!pagination
+				},
+				scrollbar: {
+					el: scrollbarEl,
+					draggable: true,
+					enabled: !!scrollbar
+				}
+			};
+
+			swiperRef.current = new Swiper( container, swiperArgs );
+			setInitialSlide.current = null;
+
+			// Sync with activeSlide attribute.
+			const updateIndex = () => {
+				setAttributes({ activeSlide: swiperRef.current.activeIndex });
+			};
+
+			swiperRef.current.on('slideChange', updateIndex);
 		};
 
-		swiperRef.current = new Swiper( containerRef.current, swiperArgs );
-		setInitialSlide.current = null;
-
-		// Sync with activeSlide attribute.
-		const updateIndex = () => {
-			setAttributes({ activeSlide: swiperRef.current.activeIndex });
-		};
-
-		swiperRef.current.on('slideChange', updateIndex);
+		// Delay initialization slightly to ensure DOM is ready after replaceInnerBlocks
+		const timeoutId = setTimeout(initSwiper, 50);
 
 		// Cleanup
 		return () => {
-			swiperRef.current.off('slideChange', updateIndex);
+			clearTimeout(timeoutId);
+			if (swiperRef.current) {
+				swiperRef.current.destroy( true, true );
+				swiperRef.current = null;
+			}
 		}
 
 	}, [
@@ -187,9 +251,28 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		scrollbar,
 		effect,
 		speed,
-		slideCount,
-		padding
+		padding,
+		swiperKey
 	] );
+
+	// Update Swiper when slide count changes (e.g., from template insertion)
+	useEffect( () => {
+		if ( swiperRef.current ) {
+			// Small delay to allow DOM to update
+			setTimeout(() => {
+				if (swiperRef.current) {
+					swiperRef.current.update();
+					// Re-initialize navigation and pagination
+					if (swiperRef.current.navigation) {
+						swiperRef.current.navigation.update();
+					}
+					if (swiperRef.current.pagination) {
+						swiperRef.current.pagination.update();
+					}
+				}
+			}, 100);
+		}
+	}, [ slideCount ] );
 
 	const { insertBlock, removeBlock } = useDispatch( blockEditorStore );
 	const { getBlockOrder, getBlock } = useSelect(
@@ -239,16 +322,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 		}
 	}
 
-	/**
-	 * Handler to close the first timer notice if user clicks on close button.
-	 */
-	const [hideFirstTimeNotice, setHideFirstTimeNotice] = useState(fullPageSliderL10n.hideFirstTimeNotice);
-
-	function closeFirstTimeNotice() {
-		setHideFirstTimeNotice(true);
-		fetch(fullPageSliderL10n.ajaxURL + '?action=fpslider_disable_first_time_notice').catch(() => {});
-	}
-
 	return (
 		<>
 			<InspectorControls>
@@ -269,16 +342,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 					</Flex>
 				)}
 				<PanelBody title={ __( "General", 'full-page-slider' ) } initialOpen={false}>
-					<ChooseControl
-							label={__("Preview", 'full-page-slider')}
-							value={device}
-							onChange={(val) => setAttributes({ device: val })}
-							options={ [
-							{ label: __('Desktop', 'full-page-slider'), value: 'desktop', icon: desktop },
-							{ label: __('Tablet', 'full-page-slider'), value: 'tablet', icon: tablet },
-							{ label: __('Mobile', 'full-page-slider'), value: 'mobile', icon: mobile },
-						] }
-						/>
 
 					<ToggleControl
 						label={__("Show Title", 'full-page-slider')}
@@ -338,9 +401,12 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						value={ effect }
 						options={ [
 							{ label: __('Slide', 'full-page-slider'), value: 'slide' },
+							{ label: __('Fade', 'full-page-slider'), value: 'fade' },
 							{ label: __('Cube', 'full-page-slider'), value: 'cube' },
 							{ label: __('Coverflow', 'full-page-slider'), value: 'coverflow' },
 							{ label: __('Flip', 'full-page-slider'), value: 'flip' },
+							{ label: __('Cards', 'full-page-slider'), value: 'cards' },
+							{ label: __('Creative', 'full-page-slider'), value: 'creative' },
 						] }
 						onChange={ ( value ) => setAttributes( { effect: value } ) }
 						__nextHasNoMarginBottom
@@ -458,11 +524,6 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						label={__('Content Color', 'full-page-slider')}
 					/> */}
 
-					<ColorPicker
-						value={contentBackground}
-						onChange={( color ) => setAttributes( { contentBackground: color } )}
-						label={__('Content Background', 'full-page-slider')}
-					/>
 
 					<BackgroundControl
 						value={background || {}}
@@ -525,9 +586,16 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 						isDestructive
 					/>
 				</ToolbarGroup>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ <span className="dashicons dashicons-layout"></span> }
+						label={__("Choose Template", 'full-page-slider')}
+						onClick={ () => setShowTemplateSelector(true) }
+					/>
+				</ToolbarGroup>
 			</BlockControls>
 
-			<div { ...blockProps } className={ `${ blockProps.className } full-page-slider preview-${ device }` }>
+			<div { ...blockProps } className={ `${ blockProps.className } full-page-slider preview-${ currentDevice }` }>
 				<div className="swiper" ref={ containerRef }>
 					<div { ...innerBlocksProps }>
 					</div>
@@ -545,6 +613,15 @@ export default function Edit ( { clientId, attributes, setAttributes } ) {
 					) }
 				</div>
 			</div>
+
+			{showTemplateSelector && (
+				<TemplateSelector
+					clientId={clientId}
+					activeSlideIndex={swiperRef.current?.activeIndex || 0}
+					onClose={() => setShowTemplateSelector(false)}
+					onInsert={reinitSwiper}
+				/>
+			)}
 		</>
 	);
 }

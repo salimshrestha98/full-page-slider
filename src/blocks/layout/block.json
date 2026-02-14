@@ -1,0 +1,203 @@
+{
+	"apiVersion": 2,
+	"name": "full-page-slider/layout",
+	"title": "Full Page Slider Layout",
+	"category": "layout",
+	"icon": "layout",
+	"keywords": ["layout", "flex", "grid", "container"],
+	"parent": ["full-page-slider/slide"],
+	"supports": {
+		"customClassName": true,
+		"className": true,
+		"html": false,
+		"inserter": true,
+		"multiple": true,
+		"reusable": false
+	},
+	"attributes": {
+		"layoutType": {
+			"type": "string",
+			"default": "flex"
+		},
+		"flexDirection": {
+			"type": "string",
+			"default": "column"
+		},
+		"flexWrap": {
+			"type": "string",
+			"default": "nowrap"
+		},
+		"justifyContent": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"alignItems": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"alignContent": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"gap": {
+			"type": "object",
+			"default": {
+				"value": 16,
+				"unit": "px"
+			}
+		},
+		"gridTemplateColumns": {
+			"type": "string",
+			"default": "1fr"
+		},
+		"gridTemplateRows": {
+			"type": "string",
+			"default": "auto"
+		},
+		"gridGap": {
+			"type": "object",
+			"default": {
+				"value": 16,
+				"unit": "px"
+			}
+		},
+		"gridAutoFlow": {
+			"type": "string",
+			"default": "row"
+		},
+		"width": {
+			"type": "object",
+			"default": {
+				"value": 100,
+				"unit": "%"
+			}
+		},
+		"height": {
+			"type": "object",
+			"default": {
+				"value": 100,
+				"unit": "%"
+			}
+		},
+		"maxWidth": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"maxHeight": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"minWidth": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"minHeight": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0,
+				"unit": "px"
+			}
+		},
+		"margin": {
+			"type": "object",
+			"default": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0,
+				"unit": "px"
+			}
+		},
+		"position": {
+			"type": "string",
+			"default": "static"
+		},
+		"top": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"right": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"bottom": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"left": {
+			"type": "object",
+			"default": {
+				"value": "",
+				"unit": "px"
+			}
+		},
+		"zIndex": {
+			"type": "number",
+			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundImage": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "object",
+			"default": {
+				"value": 0,
+				"unit": "px"
+			}
+		},
+		"border": {
+			"type": "object",
+			"default": {
+				"width": 0,
+				"style": "solid",
+				"color": "",
+				"unit": "px"
+			}
+		},
+		"boxShadow": {
+			"type": "string",
+			"default": ""
+		},
+		"overflow": {
+			"type": "string",
+			"default": "visible"
+		}
+	},
+	"example": {},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:index.css",
+	"style": "file:style-index.css"
+}

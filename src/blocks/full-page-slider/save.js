@@ -14,7 +14,6 @@ import { useSelect } from '@wordpress/data';
 // import Swiper core and required modules
 export default function Save ( { attributes } ) {
 	const {
-		device,
 		navigation,
 		padding,
 		background,
@@ -28,7 +27,6 @@ export default function Save ( { attributes } ) {
 	const wrapperClassNames = classNames(
 		'full-page-slider',
 		'frontend',
-		`preview-${device}`,
 		`navigation-${navigation ? 'enabled' : 'disabled'}`
 	);
 

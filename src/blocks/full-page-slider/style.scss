@@ -15,33 +15,41 @@ body:not(.block-editor-page) {
 		height: 100%;
 		overflow: hidden;
 
-        .swiper-slide > :first-child {
-			display: flex;
-            flex-direction: column;
-			height: 100%;
-			box-sizing: border-box;
-			
-            .slide-title {
-				margin: 0;
-				text-align: center;
-            }
-			
-            .slide-main {
-				flex-grow: 1;
-				max-height: 80%;
-				overflow-x: hidden;
-				overflow-y: scroll;
-				scrollbar-width: none;
-				-ms-overflow-style: none;
-				scroll-behavior: smooth;
+        .swiper-slide {
+			position: relative;
+			overflow: hidden;
 
-				&::-webkit-scrollbar {
-					display: none;
+			> :first-child {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				box-sizing: border-box;
+				position: relative;
+
+				.slide-title {
+					margin: 0;
+					text-align: center;
+					position: relative;
+					z-index: 2;
 				}
-            }
+
+				.slide-main {
+					flex-grow: 1;
+					height: 100%;
+					overflow: hidden;
+					display: flex;
+					flex-direction: column;
+					position: relative;
+					z-index: 2;
+
+					& > .wp-block-columns {
+						margin-bottom: 0;
+					}
+				}
+			}
         }
     }
-	
+
 	&.frontend {
 		max-width: 100% !important;
 		box-sizing: border-box;
@@ -50,7 +58,7 @@ body:not(.block-editor-page) {
 			.swiper-slide {
 				> div {
 					.slide-main {
-						overflow-x: scroll;
+						overflow: hidden;
 					}
 				}
 			}
@@ -63,6 +71,85 @@ body:not(.block-editor-page) {
 			}
 		}
 	}
+}
+
+/* Video Background Styles */
+.fps-video-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 0;
+	pointer-events: none;
+
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+/* Overlay Styles */
+.fps-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	pointer-events: none;
+}
+
+/* Shape Divider Styles */
+.fps-shape-divider {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 100%;
+	overflow: hidden;
+	line-height: 0;
+	z-index: 1;
+	pointer-events: none;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	&--top {
+		top: 0;
+	}
+
+	&--bottom {
+		bottom: 0;
+	}
+}
+
+/* Slide Content z-index */
+.slide-content {
+	position: relative;
+	z-index: 2;
+}
+
+/* Gradient Text Support */
+.slide-title {
+	&[style*="background-clip: text"],
+	&[style*="-webkit-background-clip: text"] {
+		display: inline-block;
+		width: 100%;
+	}
+}
+
+/* Parallax transitions */
+[data-swiper-parallax],
+[data-swiper-parallax-x],
+[data-swiper-parallax-y],
+[data-swiper-parallax-scale],
+[data-swiper-parallax-opacity] {
+	transition-property: transform, opacity;
 }
 
 

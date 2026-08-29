@@ -1,15 +1,15 @@
 {
   "name": "full-page-slider",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "build/index.js",
   "scripts": {
     "build": "wp-scripts build --webpack-copy-php --blocks-manifest",
+    "start": "wp-scripts start --webpack-copy-php --blocks-manifest",
     "format": "wp-scripts format",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
     "packages-update": "wp-scripts packages-update",
-    "plugin-zip": "grunt compress",
-    "start": "wp-scripts start --webpack-copy-php --blocks-manifest"
+    "plugin-zip": "grunt compress"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,6 @@
   "dependencies": {
     "@wordpress/icons": "^10.23.0",
     "classnames": "^2.5.1",
-    "swiper": "^11.2.6"
+    "swiper": "^14.2.0"
   }
 }

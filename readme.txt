@@ -1,10 +1,10 @@
 === Full Page Slider ===
-Contributors: salimshrestha
+Contributors: bodhiwp, salimshrestha
 Tags: gutenberg, slider, page animation, full page slider
 Requires at least: 6.6
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4  
-Stable tag: 1.1.0  
+Stable tag: 1.2.0  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Source Code: https://github.com/salimshrestha98/full-page-slider
@@ -44,6 +44,9 @@ Whether you're creating a one-page site or an interactive multi-section experien
 4. Responsive mobile layout preview
 
 == Changelog ==
+
+= 1.2.0 =
+* **Updated:** Swiper dependency version to latest
 
 = 1.1.0 =
 * **New:** Added Google Fonts integration for enhanced typography options
